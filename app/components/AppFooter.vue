@@ -2,35 +2,47 @@
 const columns = [{
   label: 'Resources',
   children: [{
-    label: 'Help center'
+    label: 'FAQ',
+    to: '/faq'
   }, {
-    label: 'Docs'
+    label: 'Docs',
+    to: '/docs/nuxt/getting-started'
   }, {
-    label: 'Roadmap'
+    label: 'DevLovers',
+    to: '/devlovers'
   }, {
-    label: 'Changelog'
+    label: 'Grantara',
+    to: '/grantara'
   }]
 }, {
   label: 'Features',
   children: [{
-    label: 'Affiliates'
+    label: 'Community',
+    to: '/community'
   }, {
-    label: 'Portal'
+    label: 'Module',
+    to: '/module'
   }, {
-    label: 'Jobs'
+    label: 'Components',
+    to: '/components'
   }, {
-    label: 'Sponsors'
+    label: 'Analytics',
+    to: '/analytics'
   }]
 }, {
   label: 'Company',
   children: [{
-    label: 'About'
+    label: 'NLFTs Company',
+    to: '/about'
   }, {
-    label: 'Pricing'
+    label: 'Agency',
+    to: '/agency'
   }, {
-    label: 'Careers'
+    label: 'Sponsors',
+    to: '/sponsors'
   }, {
-    label: 'Blog'
+    label: 'Blog',
+    to: '/blog'
   }]
 }]
 
@@ -90,7 +102,7 @@ function onSubmit() {
 
     <template #left>
       <p class="text-muted text-sm">
-        Built with Nuxt UI • © {{ new Date().getFullYear() }}
+        NLFTs alright reserved • Copyright © {{ new Date().getFullYear() }}
       </p>
     </template>
 

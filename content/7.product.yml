@@ -1,0 +1,30 @@
+title: Template dan Starter Kit
+description: Temukan template, starter kit, dan tema Next.js, Nuxt,js, Laravel, dll untuk mempercepat pembuatan aplikasi dan situs web Anda.
+categories:
+  - AI
+  - Starter
+  - Ecommerce
+items:
+  - slug: saas-starter-kit
+    name: SaaS Boilerplate
+    description: Ultra-minimalist SaaS foundation. Clean architecture, integrated auth, and high-performance database.
+    category: Starter
+    priceType: free
+    liveDemo: https://saas-starter.demo
+    thumbnail: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/saas_dashboard_premium_1773532628243.png
+  - slug: ai-chatbot-template
+    name: Chatbot AI
+    description: Sophisticated AI interface powered by Vercel SDK. Built for seamless user interactions and rapid scaling.
+    category: AI
+    priceType: paid
+    price: Rp 149.000
+    liveDemo: https://ai-chatbot.demo
+    thumbnail: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/ai_interface_premium_1773532643581.png
+  - slug: ecommerce-hub
+    name: E-commerce Hub
+    description: Next-generation online commerce kit. Precision design with optimized conversion flows and local payment support.
+    category: Ecommerce
+    priceType: paid
+    price: Rp 299.000
+    liveDemo: https://eco-hub.demo
+    thumbnail: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/ecommerce_mockup_minimalist_1773532659046.png

@@ -1,0 +1,19 @@
+title: Pertanyaan yang Sering Diajukan
+description: Temukan jawaban untuk pertanyaan umum mengenai Program Member NLFTs, kontribusi, dan komunitas kami.
+items:
+  - label: Apa itu Program Member NLFTs?
+    content: Program Member NLFTs adalah inisiatif eksklusif bagi para pengembang yang ingin berkontribusi, berkolaborasi, dan membangun produk kelas dunia bersama komunitas terbaik. Program ini memberikan akses ke berbagai sumber daya, mentoring, dan kesempatan untuk bekerja pada proyek-proyek inovatif.
+  - label: Bagaimana cara saya bergabung dengan program ini?
+    content: Anda dapat bergabung dengan mendaftar melalui halaman Signup. Setelah mendaftar, Anda dapat mulai berkontribusi pada proyek kami di GitHub. Kami mencari pengembang yang memiliki semangat tinggi untuk berkolaborasi dan belajar hal-hal baru.
+  - label: Apakah ada prasyarat untuk menjadi member?
+    content: Secara umum, kami terbuka untuk semua tingkat keahlian. Namun, untuk mendapatkan peran khusus di Discord (seperti DevLovers), Anda mungkin perlu mencapai beberapa milestone, seperti memiliki pull request yang digabungkan (merged), membuat issue yang bermanfaat, atau memberikan komentar yang konstruktif di repositori kami.
+  - label: Apa keuntungan menjadi member?
+    content: Member mendapatkan akses ke jaringan pengembang ahli, kesempatan untuk berkontribusi pada proyek open-source terkemuka, pelatihan teknis eksklusif, serta pengakuan di dalam komunitas kami melalui badge dan peran khusus di Discord.
+  - label: Dimana saya bisa mendapatkan bantuan jika mengalami kesulitan?
+    content: Anda dapat bertanya langsung di server Discord komunitas kami pada kanal dukungan teknis. Selain itu, Anda juga dapat membaca dokumentasi lengkap kami di bagian Dokumentasi untuk panduan teknis yang lebih mendalam.
+  - label: Apakah program ini gratis?
+    content: Ya, sebagian besar program kontribusi dan akses komunitas kami bersifat gratis. Namun, kami mungkin menawarkan paket premium atau dukungan khusus yang berbayar untuk kebutuhan profesional atau perusahaan (cek halaman Pricing untuk detail lebih lanjut).
+  - label: Bagaimana cara saya berkontribusi ke repositori GitHub?
+    content: Anda bisa mulai dengan mencari issue yang ditandai dengan label "good first issue". Fork repositori kami, buat perubahan Anda di branch baru, dan kirimkan Pull Request (PR). Pastikan untuk mengikuti panduan kontribusi yang ada di setiap repositori.
+  - label: Apa itu DevLovers?
+    content: DevLovers adalah sebutan untuk pengembang yang telah memberikan kontribusi signifikan bagi NLFTs dan Tux. Member yang mendapatkan status ini akan mendapatkan apresiasi khusus dan profil mereka akan ditampilkan di halaman DevLovers kami.

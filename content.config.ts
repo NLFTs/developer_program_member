@@ -132,6 +132,64 @@ export const collections = {
     source: '4.changelog.yml',
     type: 'page'
   }),
+  faq: defineCollection({
+    source: '5.faq.yml',
+    type: 'page',
+    schema: z.object({
+      items: z.array(
+        z.object({
+          label: z.string().nonempty(),
+          content: z.string().nonempty()
+        })
+      )
+    })
+  }),
+  agency: defineCollection({
+    source: '6.agency.yml',
+    type: 'page',
+    schema: z.object({
+      title: z.string().nonempty(),
+      description: z.string().nonempty(),
+      cta: z.object({
+        label: z.string().nonempty(),
+        to: z.string().nonempty()
+      }),
+      agencies: z.array(
+        z.object({
+          name: z.string().nonempty(),
+          description: z.string().nonempty(),
+          location: z.string().nonempty(),
+          icon: z.string().nonempty(),
+          expertise: z.array(z.string())
+        })
+      )
+    })
+  }),
+  products: defineCollection({
+    source: '7.product.yml',
+    type: 'page',
+    schema: z.object({
+      title: z.string().nonempty(),
+      description: z.string().nonempty(),
+      categories: z.array(z.string()),
+      items: z.array(
+        z.object({
+          slug: z.string().nonempty(),
+          name: z.string().nonempty(),
+          description: z.string().nonempty(),
+          category: z.string().nonempty(),
+          priceType: z.enum(['free', 'paid']),
+          price: z.string().optional(),
+          liveDemo: z.string().nonempty(),
+          thumbnail: z.string().optional()
+        })
+      )
+    })
+  }),
+  productGuides: defineCollection({
+    source: 'product-guides/**/*',
+    type: 'page'
+  }),
   versions: defineCollection({
     source: '4.changelog/**/*',
     type: 'page',

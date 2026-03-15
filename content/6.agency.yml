@@ -1,0 +1,30 @@
+title: Layanan Agensi FTs Project
+description: Apakah Anda mencari mitra terpercaya dengan keahlian dalam ekosistem Nuxt dan Tux? Lihat katalog agensi kami dan temukan yang sesuai dengan kebutuhan Anda.
+cta:
+  label: Menjadi Partner
+  to: /contact
+agencies:
+  - name: FTs Project Software labs
+    description: Core R&D laboratory for Tux Framework. Focused on high-performance infrastructure and experimental software engineering.
+    location: Indonesia
+    icon: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/fts_labs_logo_minimalist_1773532673738.png
+    expertise:
+      - Core Framework
+      - Software R&D
+      - Product Design
+  - name: Asia Code 2022
+    description: Digital excellence academy. Curating the next generation of engineers through precision-focused intensives.
+    location: Asia
+    icon: i-lucide-award
+    expertise:
+      - Academy
+      - Bootcamp
+      - Talent Matching
+  - name: Grantara Nusantara
+    description: Ecosystem architects. Building and managing influential community infrastructures on a national scale.
+    location: Nusantara
+    icon: i-lucide-globe
+    expertise:
+      - Community Management
+      - Event Organizing
+      - Developer Relations
