@@ -1,0 +1,58 @@
+---
+title: HTML Introduction
+description: Memahami dasar HTML sebagai fondasi utama dalam pengembangan website.
+navigation:
+  icon: i-lucide-file-code
+---
+
+## Memahami HTML dan Fungsinya
+
+Sebelum mulai menulis kode, penting untuk mengerti dulu apa itu `HTML` dan mengapa ia menjadi fondasi dari setiap halaman web yang pernah kamu kunjungi.
+
+### Apa Itu HTML?
+
+HTML adalah singkatan dari **HyperText Markup Language**. Bukan bahasa pemrograman—ia adalah **bahasa markup**. Artinya, kita tidak menulis logika atau algoritma di dalamnya, melainkan hanya memberi “tanda” pada konten agar browser tahu bagaimana menampilkannya.
+
+Tanda-tanda itu disebut **tag**, yang ditulis dalam kurung sudut, misalnya `<p>` untuk memulai paragraf dan `</p>` untuk mengakhirinya. Browser kemudian membaca tag-tag tersebut dan merender konten sesuai fungsinya: teks biasa, judul, gambar, tautan, dan sebagainya.
+
+### Untuk Apa HTML Digunakan?
+
+Coba bayangkan sebuah halaman web tanpa HTML. Yang muncul di layar mungkin hanya tumpukan teks dan gambar tanpa struktur—tidak ada judul, tidak ada paragraf yang rapi, tidak ada tautan yang bisa diklik. HTML-lah yang mengubah kekacauan itu menjadi halaman yang terorganisasi.
+
+Dalam ekosistem web modern, HTML biasanya bekerja bersama dua teknologi lain:
+
+- **CSS** (Cascading Style Sheets) – mengatur tampilan: warna, ukuran, tata letak.
+- **JavaScript** – menambahkan interaktivitas: animasi, validasi formulir, konten dinamis.
+
+Jika diibaratkan membangun rumah:
+- **HTML** adalah kerangka bangunan (pondasi, dinding, atap).
+- **CSS** adalah cat, wallpaper, dan dekorasi interior.
+- **JavaScript** adalah instalasi listrik, pipa air, dan sistem keamanan.
+
+Tanpa HTML, tidak ada “rumah” yang bisa ditempati.
+
+### Sekilas Sejarah HTML
+
+HTML pertama kali diciptakan oleh Tim Berners-Lee pada tahun 1991 di CERN (Organisasi Riset Nuklir Eropa). Saat itu ia ingin memudahkan para peneliti berbagi dokumen melalui internet. Versi pertamanya hanya memiliki 18 tag, dan beberapa di antaranya—seperti `<html>`, `<head>`, `<title>`, `<h1>`, `<p>`, `<a>`—masih kita gunakan sampai sekarang.
+
+Sejak saat itu HTML terus berkembang. Versi yang kita gunakan saat ini adalah **HTML5**, yang dirilis sebagai standar pada tahun 2014. HTML5 membawa banyak fitur baru: elemen semantik seperti `<header>`, `<footer>`, `<article>`; dukungan multimedia native (`<video>`, `<audio>`); serta kemampuan grafis dengan `<canvas>`.
+
+### Peran HTML di Era Framework Modern
+
+Mungkin kamu pernah mendengar tentang React, Vue, atau Angular. Framework-framework ini memudahkan pengembangan web dengan pendekatan komponen. Namun perlu diingat: apa pun yang mereka hasilkan, pada akhirnya akan dikirim ke browser sebagai **HTML, CSS, dan JavaScript**. Jadi pemahaman HTML yang kuat tetap menjadi modal utama, bahkan ketika menggunakan teknologi canggih sekalipun.
+
+<tip>
+
+Kamu bisa langsung mencoba HTML tanpa menginstal apa pun melalui situs seperti [CodePen](https://codepen.io/pen/) atau [JSFiddle](https://jsfiddle.net/). Cukup tulis kode HTML di panel yang tersedia dan lihat hasilnya secara real-time.
+
+</tip>
+
+<read-more title="Sejarah lebih lengkap tentang HTML" to="https://id.wikipedia.org/wiki/HTML">
+
+Wikipedia menyediakan artikel cukup rinci mengenai sejarah dan perkembangan HTML dari masa ke masa.
+
+</read-more>
+
+---
+
+**Selanjutnya:** Kita akan mulai menulis kode HTML pertama dan mempelajari struktur dasar dokumen. Pastikan kamu sudah punya teks editor (seperti VS Code, Sublime, atau bahkan Notepad) dan browser untuk melihat hasilnya. Siap? Lanjut ke percakapan 2.

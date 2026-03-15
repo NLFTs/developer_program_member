@@ -13,6 +13,48 @@ const frameworks = computed(() => [
     to: '/docs/laravel/getting-started',
     icon: 'i-simple-icons-laravel',
     active: route.path.startsWith('/docs/laravel')
+  },
+  {
+    label: 'HTML',
+    to: '/docs/html/getting-started',
+    icon: 'i-simple-icons-html5',
+    active: route.path.startsWith('/docs/html')
+  },
+  {
+    label: 'CSS',
+    to: '/docs/css/getting-started',
+    icon: 'i-simple-icons-css3',
+    active: route.path.startsWith('/docs/css')
+  },
+  {
+    label: 'JavaScript',
+    to: '/docs/js/getting-started',
+    icon: 'i-simple-icons-javascript',
+    active: route.path.startsWith('/docs/js')
+  },
+  {
+    label: 'TypeScript',
+    to: '/docs/ts/getting-started',
+    icon: 'i-simple-icons-typescript',
+    active: route.path.startsWith('/docs/ts')
+  },
+  {
+    label: 'Next.js',
+    to: '/docs/next.js/getting-started',
+    icon: 'i-simple-icons-nextdotjs',
+    active: route.path.startsWith('/docs/next.js')
+  },
+  {
+    label: 'MongoDB',
+    to: '/docs/mongodb/getting-started',
+    icon: 'i-simple-icons-mongodb',
+    active: route.path.startsWith('/docs/mongodb')
+  },
+  {
+    label: 'Java',
+    to: '/docs/java/getting-started',
+    icon: 'i-lucide-coffee',
+    active: route.path.startsWith('/docs/java')
   }
 ])
 </script>
