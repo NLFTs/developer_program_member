@@ -6,13 +6,22 @@ const description = page.value?.seo?.description || page.value?.description
 
 useSeoMeta({
   titleTemplate: '',
-  title,
-  ogTitle: title,
-  description,
-  ogDescription: description
+  title: 'NLFTs Developer Program Member - Home',
+  ogTitle: 'NLFTs Developer Program Member',
+  description: 'Program eksklusif untuk para developer yang ingin berkontribusi, berkolaborasi, dan membangun produk berkelas dunia bersama komunitas terbaik NLFTs.',
+  ogDescription: 'Program eksklusif untuk para developer yang ingin berkontribusi, berkolaborasi, dan membangun produk berkelas dunia bersama komunitas terbaik NLFTs.',
+  twitterCard: 'summary_large_image',
+})
+
+defineOgImageComponent('NuxtSeo', {
+  title: 'NLFTs Developer Program',
+  description: 'Program eksklusif untuk para developer yang ingin berkontribusi, berkolaborasi, dan membangun produk berkelas dunia.',
+  theme: '#000000',
+  colorMode: 'dark'
 })
 
 const { gsap, setup } = useGsap()
+const { user, loginWithPopup } = useGithubAuth()
 
 setup(() => {
   const buttons = document.querySelectorAll('.hero-btn')
@@ -51,12 +60,26 @@ setup(() => {
       </p>
 
       <div class="hero-actions">
-        <a href="#get-started" class="hero-btn hero-btn-primary">
+        <NuxtLink 
+          v-if="user"
+          to="/devlovers" 
+          class="hero-btn hero-btn-primary"
+        >
+          Go to Dashboard
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </NuxtLink>
+        <button 
+          v-else
+          class="hero-btn hero-btn-primary"
+          @click.prevent="loginWithPopup"
+        >
           Get Started
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
-        </a>
+        </button>
         <a href="#live-demo" class="hero-btn hero-btn-ghost">
           Live Demo
         </a>

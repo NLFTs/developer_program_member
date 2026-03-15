@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content',
+    '@nuxtjs/supabase',
     '@vueuse/nuxt',
     'nuxt-og-image'
   ],
@@ -12,6 +13,15 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'dark',
     fallback: 'dark'
+  },
+
+  supabase: {
+    redirect: false
+  },
+
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://developer.nlfts.com', // fallback
+    name: 'NLFTs Developer Program'
   },
 
   app: {
@@ -41,7 +51,9 @@ export default defineNuxtConfig({
       routes: [
         '/'
       ],
-      crawlLinks: true
+      crawlLinks: true,
+      failOnError: false,
+      ignore: ['/contact', '/getting-started/installation']
     }
   },
 

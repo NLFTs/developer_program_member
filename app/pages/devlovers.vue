@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { user, loginWithPopup, logout } = useGithubAuth()
+const stats = ref<GithubStats | null>(null)
+
 const profiles = [
   { id: 1, name: 'DavinGM', avatar: 'https://avatars.githubusercontent.com/u/228851591?v=4' },
   { id: 2, name: 'Nairhacan', avatar: 'https://avatars.githubusercontent.com/u/204519754?v=4' },
@@ -13,10 +16,25 @@ const profiles = [
 ]
 
 const requirements = [
-  '1 pull request merged',
-  '1 helpful issue (3+ reactions)',
-  '1 helpful comment (3+ reactions)'
+  { label: 'merged pull request', key: 'mergedPrs' },
+  { label: 'helpful issue', key: 'helpfulIssues' },
+  { label: 'helpful comment', key: 'helpfulComments' }
 ]
+
+watchEffect(async () => {
+  if (user.value) {
+    stats.value = await fetchUserGithubStats(user.value?.user_metadata?.user_name || '')
+  } else {
+    stats.value = null
+  }
+})
+
+const shareProfile = () => {
+  if (!user.value) return
+  const url = `${window.location.origin}/devlovers/${user.value?.user_metadata?.user_name}`
+  navigator.clipboard.writeText(url)
+  alert('Link copied to clipboard!')
+}
 </script>
 
 <template>
@@ -45,9 +63,12 @@ const requirements = [
             </p>
             
             <ul class="space-y-4">
-              <li v-for="req in requirements" :key="req" class="flex items-center gap-3">
+              <li v-for="req in requirements" :key="req.key" class="flex items-center gap-3">
                 <UIcon name="i-lucide-check-circle-2" class="w-5 h-5 text-primary" />
-                <span class="text-lg">{{ req }}</span>
+                <span class="text-lg">
+                  1+ {{ req.label }}
+                  <span v-if="req.key !== 'mergedPrs'" class="text-sm text-neutral-400 ml-1">(3+ reactions)</span>
+                </span>
               </li>
             </ul>
           </div>
@@ -60,17 +81,74 @@ const requirements = [
         <!-- Connection Card -->
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <UCard class="relative bg-neutral-900/50 border-neutral-800 backdrop-blur-xl p-8 text-center ring-1 ring-white/10">
-            <h3 class="text-2xl font-semibold mb-8">Buka peran pengembang di server Discord Anda.</h3>
-            
-            <UButton
-              label="Connect with GitHub"
-              icon="i-simple-icons-github"
-              color="neutral"
-              size="xl"
-              class="rounded-full px-8 py-3 font-semibold shadow-lg shadow-black/20 hover:scale-105 transition-transform"
-              to="https://github.com/login"
-            />
+          <UCard class="relative bg-neutral-900/50 border-neutral-800 backdrop-blur-xl p-8 ring-1 ring-white/10 overflow-hidden">
+            <div v-if="user" class="text-left">
+              <div class="flex items-start justify-between mb-8">
+                <div class="flex items-center gap-4">
+                  <UAvatar
+                    :src="user?.user_metadata?.avatar_url"
+                    size="xl"
+                    class="ring-2 ring-primary/20"
+                  />
+                  <div>
+                    <h3 class="text-2xl font-bold">{{ user?.user_metadata?.full_name || user?.user_metadata?.user_name }}</h3>
+                    <p class="text-primary font-medium">{{ stats?.totalPoints || 0 }} pts <UIcon name="i-lucide-info" class="w-3 h-3 opacity-50" /></p>
+                  </div>
+                </div>
+                <UButton
+                  icon="i-lucide-log-out"
+                  color="neutral"
+                  variant="ghost"
+                  @click="logout"
+                />
+              </div>
+
+              <div class="space-y-4 mb-8">
+                <div v-for="req in requirements" :key="req.key" class="flex items-center justify-between group/item">
+                  <div class="flex items-center gap-3">
+                    <span class="text-lg font-medium">{{ stats?.[req.key as keyof GithubStats] || 0 }}</span>
+                    <span class="text-neutral-400 group-hover/item:text-neutral-300 transition-colors">{{ req.label }}</span>
+                  </div>
+                  <div 
+                    class="w-6 h-6 rounded flex items-center justify-center transition-colors"
+                    :class="((stats?.[req.key as keyof GithubStats] || 0) as number) > 0 ? 'bg-primary/20 text-primary' : 'bg-neutral-800 text-neutral-600'"
+                  >
+                    <UIcon name="i-lucide-check" class="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <UButton
+                  label="Unlock badge(s)"
+                  icon="i-simple-icons-discord"
+                  color="neutral"
+                  variant="subtle"
+                  class="flex-1 rounded-lg"
+                />
+                <UButton
+                  label="Share my profile"
+                  icon="i-lucide-share-2"
+                  color="neutral"
+                  variant="subtle"
+                  class="flex-1 rounded-lg"
+                  @click="shareProfile"
+                />
+              </div>
+            </div>
+
+            <div v-else class="text-center">
+              <h3 class="text-2xl font-semibold mb-8">Buka peran pengembang di server Discord Anda.</h3>
+              
+              <UButton
+                label="Connect with GitHub"
+                icon="i-simple-icons-github"
+                color="neutral"
+                size="xl"
+                class="rounded-full px-8 py-3 font-semibold shadow-lg shadow-black/20 hover:scale-105 transition-transform"
+                @click.prevent="loginWithPopup"
+              />
+            </div>
           </UCard>
         </div>
       </div>

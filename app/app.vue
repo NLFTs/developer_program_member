@@ -18,10 +18,16 @@ useHead({
 })
 
 useSeoMeta({
-  titleTemplate: '%s - Nuxt SaaS template',
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/saas-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/saas-light.png',
-  twitterCard: 'summary_large_image'
+  titleTemplate: '%s - NLFTs Developer Program',
+  title: 'NLFTs Developer Program Member',
+  description: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
+  ogTitle: 'NLFTs Developer Program Member',
+  ogDescription: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
+  ogImage: '/og-image.png', // Temporary, will be generated dynamically
+  twitterImage: '/og-image.png',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'NLFTs Developer Program Member',
+  twitterDescription: 'Bergabunglah dengan program eksklusif NLFTs Developer Member.'
 })
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {

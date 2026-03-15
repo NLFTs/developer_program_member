@@ -102,32 +102,24 @@ function onSubmit() {
 
     <template #left>
       <p class="text-muted text-sm">
-        NLFTs alright reserved • Copyright © {{ new Date().getFullYear() }}
+        NLFTs All Rights Reserved • Copyright © {{ new Date().getFullYear() }}
       </p>
     </template>
 
     <template #right>
       <UButton
-        to="https://go.nuxt.com/discord"
+        to="https://discord.gg/nlfts"
         target="_blank"
         icon="i-simple-icons-discord"
-        aria-label="Nuxt on Discord"
+        aria-label="NLFTs on Discord"
         color="neutral"
         variant="ghost"
       />
       <UButton
-        to="https://go.nuxt.com/x"
-        target="_blank"
-        icon="i-simple-icons-x"
-        aria-label="Nuxt on X"
-        color="neutral"
-        variant="ghost"
-      />
-      <UButton
-        to="https://github.com/nuxt-ui-templates/saas"
+        to="https://github.com/nlfts"
         target="_blank"
         icon="i-simple-icons-github"
-        aria-label="Nuxt UI on GitHub"
+        aria-label="NLFTs on GitHub"
         color="neutral"
         variant="ghost"
       />

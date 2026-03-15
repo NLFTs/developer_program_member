@@ -1,18 +1,11 @@
 <script setup lang="ts">
 const route = useRoute()
+const { user, loginWithPopup, logout } = useGithubAuth()
 
 const items = computed(() => [
   { 
     label: 'Product', 
     to: '/product' 
-  },
-  {
-    label: 'Use Cases',
-    children: [
-      { label: 'Professional', to: '/use-cases/professional', icon: 'i-lucide-users', description: 'Enterprise-grade solutions' },
-      { label: 'Frontend', to: '/use-cases/frontend', icon: 'i-lucide-code-2', description: 'Beautiful user interfaces' },
-      { label: 'Fullstack', to: '/use-cases/fullstack', icon: 'i-lucide-layers', description: 'Complete web applications' }
-    ]
   },
   { 
     label: 'Pricing', 
@@ -49,13 +42,26 @@ const items = computed(() => [
     />
 
     <template #right>
+      <div v-if="user" class="flex items-center gap-4">
+        <UDropdownMenu
+          :items="[{ label: 'Logout', icon: 'i-lucide-log-out', onSelect: logout }]"
+        >
+          <UAvatar
+            :src="user.user_metadata.avatar_url"
+            :alt="user.user_metadata.full_name"
+            size="sm"
+            class="cursor-pointer border border-white/10"
+          />
+        </UDropdownMenu>
+      </div>
       <UButton
+        v-else
         label="login"
         color="primary"
         size="md"
         class="rounded-full px-6 font-semibold"
         trailing-icon="i-lucide-user"
-        to="/login"
+        @click="loginWithPopup"
       />
     </template>
 
@@ -68,12 +74,29 @@ const items = computed(() => [
 
       <USeparator class="my-6" />
 
+      <div v-if="user" class="flex items-center gap-4 mb-3">
+        <UAvatar
+          :src="user.user_metadata.avatar_url"
+          size="md"
+        />
+        <div class="flex-1">
+          <p class="text-sm font-medium">{{ user.user_metadata.full_name }}</p>
+          <p class="text-xs text-neutral-400">{{ user.email }}</p>
+        </div>
+        <UButton
+          icon="i-lucide-log-out"
+          color="neutral"
+          variant="ghost"
+          @click="logout"
+        />
+      </div>
       <UButton
+        v-else
         label="login"
         color="primary"
-        to="/login"
         block
         class="mb-3"
+        @click="loginWithPopup"
       />
     </template>
   </UHeader>
