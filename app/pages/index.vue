@@ -94,6 +94,7 @@ setup(() => {
 .hero {
   position: relative;
   min-height: 100svh;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -128,7 +129,7 @@ setup(() => {
 
 /* Title */
 .hero-title {
-  font-size: clamp(5rem, 17vw, 12rem);
+  font-size: clamp(2.5rem, 15vw, 12rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.9;
