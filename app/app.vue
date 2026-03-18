@@ -60,20 +60,22 @@ provide('navigation', navigation)
 
 <template>
   <UApp>
-    <NuxtLoadingIndicator />
+    <div class="max-w-[1440px] mx-auto border-x min-h-screen bg-transparent border-neutral-200 dark:border-neutral-800">
+      <NuxtLoadingIndicator />
 
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
 
-    <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        shortcut="meta_k"
-        :navigation="navigation"
-        :links="links"
-        :fuse="{ resultLimit: 42 }"
-      />
-    </ClientOnly>
+      <ClientOnly>
+        <LazyUContentSearch
+          :files="files"
+          shortcut="meta_k"
+          :navigation="navigation"
+          :links="links"
+          :fuse="{ resultLimit: 42 }"
+        />
+      </ClientOnly>
+    </div>
   </UApp>
 </template>
