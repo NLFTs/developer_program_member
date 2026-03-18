@@ -1,82 +1,91 @@
-title: A plan for every need
-description: Our plans are designed to meet the requirements of both beginners and players. Get the right plan that suits you.
+title: Pilih Paket Belajar yang Tepat
+description: Dapatkan akses ke materi pembelajaran Java terlengkap, dari pemula hingga mahir. Tersedia paket gratis dan berbayar sesuai kebutuhan Anda.
 seo:
-  title: Pricing
-  description: Choose the plan that's right for you.
-navigation.icon: i-lucide-credit-card
+  title: Harga & Paket Belajar
+  description: Pilih paket belajar Java yang sesuai dengan kebutuhan Anda. Tersedia paket gratis dengan akses ke 3 modul pertama.
+navigation.icon: i-lucide-graduation-cap
 plans:
-  - title: Basic
-    description: A basic plan for individuals.
+  - title: Gratis
+    description: Untuk memulai perjalanan belajar Java Anda.
     price:
-      month: $9.9
-      year: $99.9
+      month: Rp 0
+      year: Rp 0
     button:
-      label: Get Started
+      label: Mulai Belajar Gratis
       color: neutral
       variant: subtle
     features:
-      - 1 GB Storage
-      - 1 Email Account
-      - 1 Domain
-      - 1 Website
-      - 1 Database
-      - 1 SSL Certificate
-      - 1 Support Ticket
-  - title: Standard
-    description: A standard plan for small teams.
+      - ✅ 3 Modul pertama (Pengenalan, Tipe Data, Operator)
+      - ✅ 5 Video tutorial dasar
+      - ✅ 10 Soal latihan Level 1
+      - ✅ Akses forum diskusi
+      - ✅ Update materi gratis
+      - ⭐ Cocok untuk pemula
+  - title: Gratis
+    description: Untuk pembelajaran yang lebih mendalam dan terstruktur.
     price:
-      month: $19.9
-      year: $199.9
+      month: Rp 99.000
+      year: Rp 999.000
     highlight: true
     scale: true
     button:
-      label: Get Started
+      label: Dapatkan Akses Pro
     features:
-      - 10 GB Storage
-      - 10 Email Accounts
-      - 10 Domains
-      - 10 Websites
-      - 10 Databases
-      - 10 SSL Certificates
-      - 10 Support Tickets
-  - title: Premium
-    description: A premium plan for large teams.
+      - ✅ Semua modul (1-9 lengkap)
+      - ✅ 30+ Video tutorial eksklusif
+      - ✅ 50+ Soal latihan Level 1-3
+      - ✅ Studi kasus mini project
+      - ✅ Sertifikat penyelesaian
+      - ✅ Akses source code lengkap
+      - ✅ Grup diskusi eksklusif
+      - ✅ Konsultasi via chat
+      - ⭐ Terpopuler
+  - title: Company
+    description: Untuk pengembangan karir dan persiapan sertifikasi.
     price:
-      month: $29.9
-      year: $299.9
+      month: Rp 199.000
+      year: Rp 1.999.000
     button:
-      label: Get Started
+      label: Upgrade ke Pro+
       color: neutral
       variant: subtle
     features:
-      - 100 GB Storage
-      - 100 Email Accounts
-      - 100 Domains
-      - 100 Websites
-      - 100 Databases
-      - 100 SSL Certificates
-      - 100 Support Tickets
+      - ✅ Semua fitur Pro
+      - ✅ 10 Modul lanjutan (OOP, Exception, Collection)
+      - ✅ 50+ Video tutorial lengkap
+      - ✅ 100+ Soal latihan semua level
+      - ✅ 5 Mini project (Todo App, Kalkulator, dll)
+      - ✅ 1 Final project (Aplikasi Perpustakaan)
+      - ✅ Persiapan sertifikasi OCA/OCP
+      - ✅ Review kode 1-on-1
+      - ✅ Konsultasi karir
+      - ✅ Akses seumur hidup
+      - ⭐ Untuk profesional
 logos:
-  title: Trusted by the world's best
+  title: Dipercaya oleh ribuan pembelajar dari
   icons:
-    - i-simple-icons-amazonaws
-    - i-simple-icons-heroku
-    - i-simple-icons-netlify
-    - i-simple-icons-vercel
-    - i-simple-icons-cloudflare
+    - i-simple-icons-ui
+    - i-simple-icons-bri
+    - i-simple-icons-gojek
+    - i-simple-icons-bukalapak
+    - i-simple-icons-traveloka
 faq:
-  title: Frequently asked questions
-  description: Culpa consectetur dolor pariatur commodo aliqua amet tempor nisi enim deserunt elit cillum.
+  title: Pertanyaan yang Sering Diajukan
+  description: Temukan jawaban atas pertanyaan seputar course Java ini.
   items:
-    - label: Is this a secure service?
-      content: Qui sunt nostrud aliquip reprehenderit enim proident veniam magna aliquip velit occaecat eiusmod nisi deserunt sunt.
-    - label: How can I cancel my subscription?
-      content: Consectetur irure Lorem nostrud adipisicing aliqua mollit Lorem sit officia magna eiusmod cupidatat.
-    - label: How does the free trial work?
-      content: Quis officia commodo magna eu qui aliquip duis.
-    - label: Can I switch plans later?
-      content: Dolore irure ullamco dolore eu occaecat magna eiusmod dolor aliqua culpa labore.
-    - label: Do you offer refunds?
-      content: Duis mollit nostrud voluptate mollit Lorem dolore commodo veniam incididunt eiusmod.
-    - label: Do you offer support?
-      content: Aliqua sit nisi consequat pariatur Lorem minim irure qui.
+    - label: Apa saja yang didapat di paket Gratis?
+      content: Paket Gratis memberikan akses ke 3 modul pertama (Pengenalan Java, Tipe Data & Variabel, Operator), 5 video tutorial dasar, 10 soal latihan Level 1, dan akses forum diskusi. Cocok untuk mencoba sebelum memutuskan upgrade.
+    - label: Bagaimana cara mengakses materi setelah membeli?
+      content: Setelah melakukan pembayaran, Anda akan mendapatkan email dengan link akses ke dashboard pembelajaran. Anda bisa mengakses materi kapan saja, di mana saja melalui browser.
+    - label: Apada masa berlaku akses?
+      content: Paket bulanan berlaku 30 hari, paket tahunan berlaku 12 bulan, dan paket Pro+ berlaku seumur hidup (tidak perlu perpanjangan).
+    - label: Bisa upgrade dari paket Gratis ke Pro?
+      content: Tentu! Anda bisa upgrade kapan saja. Biaya upgrade akan dihitung prorata jika Anda masih dalam masa percobaan.
+    - label: Apakah ada garansi uang kembali?
+      content: Ya, kami memberikan garansi 7 hari uang kembali jika Anda tidak puas dengan materi. Syarat dan ketentuan berlaku.
+    - label: Apakah ada diskon untuk pembelian grup?
+      content: Ya, untuk pembelian minimal 5 akun, kami memberikan diskon khusus. Silakan hubungi tim support untuk informasi lebih lanjut.
+    - label: Bagaimana jika saya kesulitan memahami materi?
+      content: Untuk paket Pro dan Pro+, Anda bisa bertanya melalui grup diskusi eksklusif atau fitur konsultasi chat. Tim pengajar akan merespon dalam 1x24 jam.
+    - label: Apakah sertifikatnya diakui?
+      content: Sertifikat penyelesaian dikeluarkan oleh platform kami dan dapat dicantumkan di LinkedIn atau CV sebagai bukti kompetensi. Untuk sertifikasi resmi Oracle (OCA/OCP), kami sediakan modul persiapan khusus.

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AppBanner />
     <AppHeader />
 
     <UMain>
