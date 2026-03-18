@@ -60,7 +60,7 @@ provide('navigation', navigation)
 
 <template>
   <UApp>
-    <div class="max-w-[1440px] mx-auto border-x min-h-screen bg-transparent border-neutral-200 dark:border-neutral-800">
+    <div class="max-w-[1440px] w-full mx-auto min-h-screen border-x border-neutral-200/70 dark:border-neutral-800/70 bg-transparent px-2 sm:px-4">
       <NuxtLoadingIndicator />
 
       <NuxtLayout>

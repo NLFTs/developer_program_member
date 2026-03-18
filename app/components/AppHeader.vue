@@ -3,18 +3,9 @@ const route = useRoute()
 const { user, loginWithPopup, logout } = useGithubAuth()
 
 const items = computed(() => [
-  { 
-    label: 'Product', 
-    to: '/product' 
-  },
-  { 
-    label: 'Pricing', 
-    to: '/pricing' 
-  },
-  { 
-    label: 'Blog', 
-    to: '/blog' 
-  },
+  { label: 'Product', to: '/product' },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'Blog', to: '/blog' },
   {
     label: 'Resources',
     children: [
@@ -25,6 +16,19 @@ const items = computed(() => [
     ]
   }
 ])
+
+const socials = [
+  { label: 'bsky', href: 'https://bsky.app', icon: 'i-simple-icons-bluesky' },
+  { label: 'github', href: 'https://github.com/nlfts', icon: 'i-simple-icons-github' },
+  { label: 'x', href: 'https://x.com/nlfts', icon: 'i-simple-icons-x' },
+  { label: 'discord', href: 'https://discord.gg/nlfts', icon: 'i-simple-icons-discord' }
+]
+
+const { open } = useContentSearch()
+
+const openSearch = () => {
+  open.value = true
+}
 </script>
 
 <template>
@@ -38,66 +42,78 @@ const items = computed(() => [
     <UNavigationMenu
       :items="items"
       variant="link"
-      class="hidden lg:flex"
+      class="hidden lg:flex text-white/80"
     />
 
     <template #right>
-      <div v-if="user" class="flex items-center gap-4">
-        <UDropdownMenu
-          :items="[{ label: 'Logout', icon: 'i-lucide-log-out', onSelect: logout }]"
+      <div class="flex items-center gap-2">
+        <button
+          class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-xs font-semibold text-white/60 transition-all hover:border-white/30 hover:text-white mr-2"
+          type="button"
+          @click="openSearch"
         >
-          <UAvatar
-            :src="user.user_metadata.avatar_url"
-            :alt="user.user_metadata.full_name"
+          <UIcon name="i-lucide-search" class="w-4 h-4" />
+          <span>Ctrl K</span>
+        </button>
+
+        <div class="flex items-center">
+          <a
+            v-for="social in socials"
+            :key="social.label"
+            :href="social.href"
+            target="_blank"
+            rel="noreferrer"
+            :aria-label="social.label"
+            class="p-2 text-white/60 hover:text-white transition-colors duration-200"
+          >
+            <UIcon :name="social.icon" class="w-5 h-5 block" />
+          </a>
+        </div>
+
+        <div v-if="user" class="ml-2 flex items-center border-l border-white/10 pl-4 gap-3">
+          <UButton
+            icon="i-lucide-log-out"
+            color="neutral"
+            variant="ghost"
             size="sm"
-            class="cursor-pointer border border-white/10"
+            @click="logout"
           />
-        </UDropdownMenu>
+        </div>
       </div>
-      <UButton
-        v-else
-        label="login"
-        color="primary"
-        size="md"
-        class="rounded-full px-6 font-semibold"
-        trailing-icon="i-lucide-user"
-        @click="loginWithPopup"
-      />
     </template>
 
     <template #body>
-      <UNavigationMenu
-        :items="items"
-        orientation="vertical"
-        class="-mx-2.5"
-      />
-
-      <USeparator class="my-6" />
-
-      <div v-if="user" class="flex items-center gap-4 mb-3">
-        <UAvatar
-          :src="user.user_metadata.avatar_url"
-          size="md"
+      <div class="space-y-6 pt-4">
+        <UNavigationMenu
+          :items="items"
+          orientation="vertical"
+          class="text-lg"
         />
-        <div class="flex-1">
-          <p class="text-sm font-medium">{{ user.user_metadata.full_name }}</p>
-          <p class="text-xs text-neutral-400">{{ user.email }}</p>
+
+        <USeparator class="opacity-10" />
+
+        <div class="flex items-center justify-center gap-4">
+          <a
+            v-for="social in socials"
+            :key="social.label"
+            :href="social.href"
+            class="text-white/60 hover:text-white transition-colors"
+          >
+            <UIcon :name="social.icon" class="w-6 h-6" />
+          </a>
         </div>
-        <UButton
-          icon="i-lucide-log-out"
-          color="neutral"
-          variant="ghost"
-          @click="logout"
-        />
-      </div>
-      <UButton
-        v-else
-        label="login"
-        color="primary"
-        block
-        class="mb-3"
-        @click="loginWithPopup"
-      />
+
+        <div v-if="user" class="bg-white/5 rounded-xl p-4 flex items-center gap-4">
+          
+          </div>
+          <UButton
+            icon="i-lucide-log-out"
+            color="error"
+            variant="soft"
+            @click="logout"
+          />
+        </div>
     </template>
   </UHeader>
 </template>
+ 

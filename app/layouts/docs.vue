@@ -21,15 +21,19 @@ const filteredNavigation = computed(() => {
       <UContainer>
         <UPage>
           <template #left>
-            <UPageAside>
+            <UPageAside class="border-r border-neutral-200/40 dark:border-neutral-800/60">
               <template #top>
                 <UContentSearchButton :collapsed="false" />
               </template>
 
-              <UContentNavigation
-                :navigation="filteredNavigation"
-                highlight
-              />
+              <div class="flex justify-center">
+                <div class="w-full max-w-[280px]">
+                  <UContentNavigation
+                    :navigation="filteredNavigation"
+                    highlight
+                  />
+                </div>
+              </div>
             </UPageAside>
           </template>
 

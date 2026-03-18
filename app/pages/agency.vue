@@ -23,18 +23,22 @@ const expertises = [
 
 <template>
   <UMain v-if="page" class="bg-black text-white py-16">
-    <UContainer>
-      <!-- Refined Header -->
-      <section class="max-w-3xl mb-24">
-        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-          {{ page.title }}
-        </h1>
-        <p class="text-neutral-500 text-lg leading-relaxed max-w-xl">
-          {{ page.description }}
-        </p>
-      </section>
+    <div class="w-full border-b border-neutral-900/60">
+      <UContainer>
+        <!-- Refined Header -->
+        <section class="max-w-3xl mb-24 pb-12">
+          <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+            {{ page.title }}
+          </h1>
+          <p class="text-neutral-500 text-lg leading-relaxed max-w-xl">
+            {{ page.description }}
+          </p>
+        </section>
+      </UContainer>
+    </div>
 
-      <!-- Minimalist Directory Layout -->
+    <!-- Minimalist Directory Layout -->
+    <UContainer class="mt-12">
       <div class="grid lg:grid-cols-[200px_1fr] gap-12">
         <!-- Sidebar -->
         <aside class="space-y-10">

@@ -1,11 +1,15 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
 
 @source "../../../content/**/*";
 
 @theme static {
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
 
   --color-zinc-950: #09090b;
 }
@@ -32,6 +36,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  width: 100%;
+  min-width: 0;
+  letter-spacing: 0.01em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,6 +47,22 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.05em;
 }
 
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
 .text-balance {
   text-wrap: balance;
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

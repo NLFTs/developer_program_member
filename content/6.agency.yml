@@ -7,7 +7,7 @@ agencies:
   - name: FTs Project Software labs
     description: Core R&D laboratory for Tux Framework. Focused on high-performance infrastructure and experimental software engineering.
     location: Indonesia
-    icon: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/fts_labs_logo_minimalist_1773532673738.png
+    icon: i-lucide-cpu
     expertise:
       - Core Framework
       - Software R&D

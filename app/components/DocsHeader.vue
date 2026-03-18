@@ -62,12 +62,12 @@ const frameworks = computed(() => [
 <template>
   <div class="border-b border-default bg-background/75 backdrop-blur shadow-sm sticky top-[--header-height] z-40">
     <UContainer>
-      <div class="flex items-center gap-4 h-12">
+      <div class="flex flex-wrap items-center gap-2 py-3 overflow-x-auto no-scrollbar">
         <NuxtLink
           v-for="framework in frameworks"
           :key="framework.label"
           :to="framework.to"
-          class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+          class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors flex-shrink-0"
           :class="[
             framework.active 
               ? 'bg-primary/10 text-primary' 

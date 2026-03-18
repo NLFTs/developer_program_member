@@ -51,7 +51,13 @@ defineOgImageComponent('Saas')
       v-if="page?.body?.toc?.links?.length"
       #right
     >
-      <UContentToc :links="page.body.toc.links" />
+      <div class="border-l border-neutral-200/40 dark:border-neutral-800/60 pl-5">
+        <div class="relative flex flex-col h-full">
+          <div class="flex-1 py-4">
+            <UContentToc :links="page.body.toc.links" />
+          </div>
+        </div>
+      </div>
     </template>
   </UPage>
 </template>
