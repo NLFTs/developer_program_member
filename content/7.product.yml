@@ -5,13 +5,13 @@ categories:
   - Starter
   - Ecommerce
 items:
-  - slug: saas-starter-kit
-    name: SaaS Boilerplate
+  - slug: portofolio-nuxt
+    name: Portofolio Nuxt.js
     description: Ultra-minimalist SaaS foundation. Clean architecture, integrated auth, and high-performance database.
     category: Starter
     priceType: free
-    liveDemo: https://saas-starter.demo
-    thumbnail: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/saas_dashboard_premium_1773532628243.png
+    liveDemo: https://destkaa.nlfts.dev
+    thumbnail: https://github.com/NLFTs/portofolio/raw/main/public/og.png
   - slug: ai-chatbot-template
     name: Chatbot AI
     description: Sophisticated AI interface powered by Vercel SDK. Built for seamless user interactions and rapid scaling.
