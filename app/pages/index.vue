@@ -49,6 +49,7 @@ const communityTestimonials = [
 const visibleTestimonials = communityTestimonials.slice(0, 3)
 
 setup(() => {
+  // Hero button hover effects
   const buttons = document.querySelectorAll('.hero-btn')
   buttons.forEach((btn) => {
     btn.addEventListener('mouseenter', () => {
@@ -58,23 +59,40 @@ setup(() => {
       gsap.to(btn, { scale: 1, duration: 0.2, ease: 'power2.out' })
     })
   })
+
+  // Unified Timeline for Contributors Section
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#contributors',
+      start: 'top 75%',
+      toggleActions: 'play none none none'
+    }
+  })
+
+  tl.to('.reveal-content > *', {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    stagger: 0.1,
+    ease: 'expo.out'
+  })
+  .to('.contributor-avatar', {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: {
+      each: 0.03,
+      from: 'center',
+      grid: 'auto'
+    },
+    ease: 'back.out(1.2)'
+  }, '-=0.8') // Start avatars animation before content finished
 })
 </script>
 
 <template>
   <div class="hero">
-    <div class="hero-background hidden lg:block">
-      <AppBackgroundHero
-        :enabled-waves="['top', 'middle', 'bottom']"
-        :line-count="[10, 15, 20]"
-        :line-distance="[8, 6, 4]"
-        :bend-radius="5.0"
-        :bend-strength="-0.5"
-        :interactive="true"
-        :parallax="true"
-      />
-    </div>
-
     <div class="hero-inner">
       <h1 class="hero-title">Developer</h1>
 
@@ -137,6 +155,67 @@ setup(() => {
       </div>
     </UContainer>
   </section>
+
+  <section class="contributors-section py-20 lg:py-32 border-t border-white/5 overflow-hidden relative" id="contributors">
+    <UContainer>
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <!-- Avatar Grid -->
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-3 lg:gap-4 order-2 lg:order-1 reveal-grid">
+          <div 
+            v-for="i in 24" 
+            :key="i" 
+            class="contributor-avatar relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-white/10 transition-all duration-300 hover:scale-110 hover:z-20 hover:border-white/30 cursor-crosshair"
+          >
+            <img 
+              :src="`https://i.pravatar.cc/150?u=${i + 10}`" 
+              alt="Avatar"
+              class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+          </div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="flex flex-col items-start gap-8 order-1 lg:order-2 reveal-content">
+          <div class="space-y-4">
+            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1] tracking-tighter">
+              Built by developers around the world
+            </h2>
+            <p class="text-lg sm:text-xl text-neutral-400 max-w-lg leading-relaxed">
+              Hundreds of contributors making NLFTs better every day. Join us and build the future of open modules.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-8">
+            <UButton
+              label="Members"
+              icon="i-lucide-arrow-right"
+              trailing
+              size="xl"
+              color="neutral"
+              class="rounded-full px-8 py-4 font-bold transition-transform hover:scale-105"
+            />
+            
+            <div class="flex items-center gap-6">
+              <a href="https://discord.gg/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Discord">
+                <UIcon name="i-simple-icons-discord" class="w-8 h-8" />
+              </a>
+              <a href="https://x.com/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="X">
+                <UIcon name="i-simple-icons-x" class="w-7 h-7" />
+              </a>
+              <a href="#" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Share">
+                <UIcon name="i-lucide-share-2" class="w-8 h-8" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </UContainer>
+    
+    <!-- Decorative background glow -->
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40 lg:opacity-60" />
+  </section>
 </template>
 
 <style scoped>
@@ -149,8 +228,41 @@ setup(() => {
   justify-content: center;
   padding: calc(var(--header-height) + 2rem) 1rem 3rem;
   background-color: #000;
+  /* Minimal Tech Background */
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 80px 80px, 80px 80px;
   color: #fff;
   overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  /* Very subtle accent vectors */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Cfilter id='noiseFilter'%3%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3%3C/filter%3%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3%3C/svg%3");
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  z-index: 2;
 }
 
 @media (min-width: 640px) {
@@ -410,5 +522,17 @@ setup(() => {
   filter: blur(40px);
   pointer-events: none;
   z-index: 0;
+}
+
+/* Contributors Section Animation States */
+.reveal-content > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.contributor-avatar {
+  opacity: 0;
+  transform: scale(0.6) translateY(20px);
+  will-change: transform, opacity;
 }
 </style>

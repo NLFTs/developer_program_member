@@ -30,7 +30,17 @@ const openSearch = () => {
 </script>
 
 <template>
-  <UHeader class="border-b border-white/5 bg-background/75 backdrop-blur-md">
+  <UHeader class="border-b border-white/5 bg-background/75 backdrop-blur-md relative">
+    <!-- Ambient Blue Glow Line (Downward Shine) -->
+    <div class="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50">
+      <!-- Intense center beam -->
+      <div class="absolute inset-0 bg-blue-300 blur-[1px] opacity-100" />
+      
+      <!-- Downward light cast (The 'Bus' effect) -->
+      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[90%] h-[30px] bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent blur-md pointer-events-none" />
+      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[70%] h-[60px] bg-gradient-to-b from-blue-400/20 to-transparent blur-2xl pointer-events-none" />
+    </div>
+
     <template #left>
       <NuxtLink to="/" class="flex items-center gap-4 group">
         <AppLogo class="w-auto h-7 sm:h-8 shrink-0 transition-transform group-hover:scale-105" />
