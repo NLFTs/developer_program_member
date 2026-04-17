@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const route = useRoute()
-const { user, loginWithPopup, logout } = useGithubAuth()
 
 const items = computed(() => [
   { label: 'Product', to: '/product' },
@@ -11,7 +10,6 @@ const items = computed(() => [
     children: [
       { label: 'Docs', to: '/docs', icon: 'i-lucide-book-open' },
       { label: 'FAQ', to: '/faq', icon: 'i-lucide-help-circle' },
-      { label: 'DevLovers', to: '/devlovers', icon: 'i-lucide-heart' },
       { label: 'Grantara', to: '/grantara', icon: 'i-lucide-award' }
     ]
   }
@@ -32,17 +30,17 @@ const openSearch = () => {
 </script>
 
 <template>
-  <UHeader>
+  <UHeader class="border-b border-white/5 bg-background/75 backdrop-blur-md">
     <template #left>
-      <NuxtLink to="/" class="flex items-center gap-4">
-        <AppLogo class="w-auto h-8 shrink-0" />
+      <NuxtLink to="/" class="flex items-center gap-4 group">
+        <AppLogo class="w-auto h-7 sm:h-8 shrink-0 transition-transform group-hover:scale-105" />
       </NuxtLink>
     </template>
 
     <UNavigationMenu
       :items="items"
       variant="link"
-      class="hidden lg:flex text-white/80"
+      class="hidden lg:flex"
     />
 
     <template #right>
@@ -56,7 +54,7 @@ const openSearch = () => {
           <span>Ctrl K</span>
         </button>
 
-        <div class="flex items-center">
+        <div class="hidden md:flex items-center">
           <a
             v-for="social in socials"
             :key="social.label"
@@ -70,20 +68,12 @@ const openSearch = () => {
           </a>
         </div>
 
-        <div v-if="user" class="ml-2 flex items-center border-l border-white/10 pl-4 gap-3">
-          <UButton
-            icon="i-lucide-log-out"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-            @click="logout"
-          />
-        </div>
+        <UHeaderMobileButton class="lg:hidden" />
       </div>
     </template>
 
     <template #body>
-      <div class="space-y-6 pt-4">
+      <div class="space-y-6 pt-4 px-4">
         <UNavigationMenu
           :items="items"
           orientation="vertical"
@@ -92,7 +82,7 @@ const openSearch = () => {
 
         <USeparator class="opacity-10" />
 
-        <div class="flex items-center justify-center gap-4">
+        <div class="flex items-center justify-center gap-6">
           <a
             v-for="social in socials"
             :key="social.label"
@@ -102,17 +92,7 @@ const openSearch = () => {
             <UIcon :name="social.icon" class="w-6 h-6" />
           </a>
         </div>
-
-        <div v-if="user" class="bg-white/5 rounded-xl p-4 flex items-center gap-4">
-          
-          </div>
-          <UButton
-            icon="i-lucide-log-out"
-            color="error"
-            variant="soft"
-            @click="logout"
-          />
-        </div>
+      </div>
     </template>
   </UHeader>
 </template>

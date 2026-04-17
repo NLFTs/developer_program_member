@@ -21,7 +21,6 @@ defineOgImageComponent('NuxtSeo', {
 })
 
 const { gsap, setup } = useGsap()
-const { user, loginWithPopup } = useGithubAuth()
 
 const communityStats = [
   { label: 'Github Stars', value: '75+' },
@@ -87,25 +86,14 @@ setup(() => {
 
       <div class="hero-actions">
         <NuxtLink 
-          v-if="user"
-          to="/devlovers" 
+          to="/product" 
           class="hero-btn hero-btn-primary"
-        >
-          Go to Dashboard
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </NuxtLink>
-        <button 
-          v-else
-          class="hero-btn hero-btn-primary"
-          @click.prevent="loginWithPopup"
         >
           Get Started
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
-        </button>
+        </NuxtLink>
         <a href="#live-demo" class="hero-btn hero-btn-ghost">
           Live Demo
         </a>
@@ -159,10 +147,16 @@ setup(() => {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 5rem 1.5rem 3rem;
+  padding: calc(var(--header-height) + 2rem) 1rem 3rem;
   background-color: #000;
   color: #fff;
   overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .hero {
+    padding: calc(var(--header-height) + 4rem) 1.5rem 3rem;
+  }
 }
 
 .hero-background {
@@ -190,11 +184,11 @@ setup(() => {
 
 /* Title */
 .hero-title {
-  font-size: clamp(2.5rem, 15vw, 12rem);
+  font-size: clamp(2.5rem, 12vw, 8rem);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 0.9;
-  margin: 0 0 1.2rem;
+  line-height: 1;
+  margin: 0 0 1rem;
   background-image: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.4) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

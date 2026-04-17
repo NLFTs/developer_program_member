@@ -1,32 +1,17 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-const isMockMode = process.env.MOCK_BACKEND === 'true'
-
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content',
-    !isMockMode && '@nuxtjs/supabase',
     '@vueuse/nuxt',
     'nuxt-og-image'
-  ].filter(Boolean) as any[],
-
-  imports: {
-    dirs: isMockMode ? ['utils'] : []
-  },
+  ],
 
   colorMode: {
     preference: 'dark',
     fallback: 'dark'
   },
-
-  // Only configure supabase property if module is loaded
-  ...(isMockMode ? {} : {
-    supabase: {
-      redirect: false
-    }
-  }),
 
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://developer.nlfts.com', // fallback

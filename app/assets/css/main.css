@@ -17,6 +17,7 @@
 :root {
   --background: 0 0% 0%;
   --foreground: 0 0% 100%;
+  --header-height: 64px;
 }
 
 .dark {
@@ -40,6 +41,7 @@ body {
   min-width: 0;
   letter-spacing: 0.01em;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
