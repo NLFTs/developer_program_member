@@ -23,7 +23,7 @@ useSeoMeta({
   description: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
   ogTitle: 'NLFTs Developer Program Member',
   ogDescription: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
-  ogImage: '/og-image.png', // Temporary, will be generated dynamically
+  ogImage: '/og-image.png',
   twitterImage: '/og-image.png',
   twitterCard: 'summary_large_image',
   twitterTitle: 'NLFTs Developer Program Member',
@@ -60,7 +60,7 @@ provide('navigation', navigation)
 
 <template>
   <UApp>
-    <div class="lg:max-w-[1440px] w-full mx-auto min-h-screen lg:border-x border-white/10 bg-transparent flex flex-col">
+    <div class="lg:max-w-[1440px] w-full mx-auto min-h-screen lg:border-x border-white/5 bg-black flex flex-col">
       <NuxtLoadingIndicator />
 
       <NuxtLayout>

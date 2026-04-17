@@ -63,7 +63,7 @@ setup(() => {
 
 <template>
   <div class="hero">
-    <div class="hero-background">
+    <div class="hero-background hidden lg:block">
       <AppBackgroundHero
         :enabled-waves="['top', 'middle', 'bottom']"
         :line-count="[10, 15, 20]"
