@@ -27,12 +27,31 @@ const { open } = useContentSearch()
 const openSearch = () => {
   open.value = true
 }
+
+const { gsap, setup } = useGsap()
+
+setup(() => {
+  gsap.from('.navbar-glow', {
+    scaleX: 0,
+    duration: 1.8,
+    delay: 0.5,
+    ease: 'expo.inOut'
+  })
+  
+  gsap.from('.navbar-glow > div', {
+    opacity: 0,
+    duration: 1,
+    delay: 1,
+    stagger: 0.2,
+    ease: 'power2.out'
+  })
+})
 </script>
 
 <template>
   <UHeader class="border-b border-white/5 bg-background/75 backdrop-blur-md relative">
     <!-- Ambient Blue Glow Line (Downward Shine) -->
-    <div class="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50">
+    <div class="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50 origin-center navbar-glow">
       <!-- Intense center beam -->
       <div class="absolute inset-0 bg-blue-300 blur-[1px] opacity-100" />
       
