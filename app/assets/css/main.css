@@ -1,5 +1,32 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Slightly wider base for better hit area */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 2px solid transparent; /* Creates padding */
+  background-clip: content-box;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border: 0px solid transparent; /* Expands to full width on hover */
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
 @import "@fontsource/space-grotesk/400.css";
 @import "@fontsource/space-grotesk/500.css";
 @import "@fontsource/space-grotesk/600.css";
@@ -30,6 +57,11 @@
   --ui-bg-accented: #1a1a1a;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--ui-bg);
@@ -39,6 +71,7 @@ body {
   line-height: 1.6;
   width: 100%;
   min-width: 0;
+  overflow-x: hidden;
   letter-spacing: 0.01em;
 }
 

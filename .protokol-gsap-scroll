@@ -1,0 +1,43 @@
+# PROTOKOL GSAP SCROLL - NLFTs Developer Program
+
+Dokumen ini adalah panduan bagi AI Agent lain untuk mengimplementasikan animasi scroll yang mulus, efisien, dan memiliki estetika "Premium" (Google/Apple-like) pada proyek ini.
+
+## 1. Penggunaan Composable
+Gunakan `useGsap()` yang sudah disediakan di `~/composables/useGsap`.
+
+```typescript
+const { gsap, ScrollTrigger, setup, reveal } = useGsap()
+```
+
+## 2. Aturan Utama Animasi
+- **Kill on Exit**: Pastikan setiap animasi didaftarkan di dalam `setup(() => { ... })`. Composable ini secara otomatis akan memanggil `ctx.revert()` saat komponen di-unmount, membunuh semua animasi dan ScrollTrigger untuk menghemat memori.
+- **Toggle Actions**: Gunakan default `play pause resume reverse` agar animasi berhenti saat tidak terlihat oleh user (Viewport Optimization).
+- **Easing**: Gunakan `expo.out` atau `power4.out` untuk pergerakan yang organik dan elegan. Hindari `linear` kecuali untuk parallax yang sangat halus.
+- **Threshold**: Gunakan `start: "top 85%"` untuk reveal agar animasi dimulai sesaat sebelum elemen masuk ke pusat pandangan user.
+
+## 3. Utility `reveal`
+Gunakan fungsi `reveal(el, vars)` untuk standar animasi masuk.
+
+```typescript
+// Contoh implementasi di Agent lain:
+reveal('.section-title', { 
+  y: 50, 
+  duration: 1.2,
+  scrollTrigger: {
+    start: "top 90%"
+  }
+})
+```
+
+## 4. Scroll Management
+- Proyek ini menggunakan standar GSAP ScrollTrigger yang dioptimalkan untuk performa mobile.
+- Jangan gunakan `locomotive-scroll` atau library smooth scroll berat lainnya tanpa integrasi dengan `useGsap`.
+
+## 5. Performance Checklist
+- [ ] Animasi dibungkus dalam `gsap.context()` (via `setup`).
+- [ ] Tidak ada penumpukan ScrollTrigger (selalu gunakan `ctx.revert`).
+- [ ] Animasi di-pause saat di luar viewport (Defaults).
+- [ ] Elemen berat/kompleks menggunakan `will-change: transform`.
+
+---
+*Dibuat untuk menjaga kestabilan dan kemulusan UI NLFTs.*
