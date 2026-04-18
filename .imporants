@@ -1,0 +1,9 @@
+IMPORTANT
+
+Langkah Selanjutnya di Supabase Dashboard: Pastikan Anda telah menambahkan Redirect URL di pengaturan GitHub Auth pada dashboard Supabase Anda:
+
+Pergi ke Authentication > URL Configuration.
+Tambahkan http://localhost:3000/confirm untuk development.
+Tambahkan https://nlfts.dev/confirm untuk production.
+
+

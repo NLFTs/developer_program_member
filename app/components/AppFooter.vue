@@ -1,38 +1,38 @@
 <script setup lang="ts">
 const columns = [{
-  label: 'Resources',
+  label: 'Products',
   children: [{
-    label: 'FAQ',
-    to: '/faq'
+    label: 'Modules',
+    to: '/product/modules'
   }, {
-    label: 'Docs',
-    to: '/docs/nuxt/getting-started'
+    label: 'Cloud',
+    to: '/product/cloud'
   }, {
-    label: 'DevLovers',
-    to: '/devlovers'
-  }, {
-    label: 'Grantara',
-    to: '/grantara'
-  }]
-}, {
-  label: 'Features',
-  children: [{
-    label: 'Community',
-    to: '/community'
-  }, {
-    label: 'Module',
-    to: '/module'
-  }, {
-    label: 'Components',
-    to: '/components'
+    label: 'Deployment',
+    to: '/product/deployment'
   }, {
     label: 'Analytics',
-    to: '/analytics'
+    to: '/product/analytics'
+  }]
+}, {
+  label: 'Resources',
+  children: [{
+    label: 'Documentation',
+    to: '/docs/nuxt/getting-started'
+  }, {
+    label: 'Starter Kits',
+    to: '/starter-kits'
+  }, {
+    label: 'Developer Hub',
+    to: '/devlovers'
+  }, {
+    label: 'Events',
+    to: '/events'
   }]
 }, {
   label: 'Company',
   children: [{
-    label: 'NLFTs Company',
+    label: 'About NLFTs',
     to: '/about'
   }, {
     label: 'Agency',
@@ -45,84 +45,73 @@ const columns = [{
     to: '/blog'
   }]
 }]
-
-const toast = useToast()
-
-const email = ref('')
-const loading = ref(false)
-
-function onSubmit() {
-  loading.value = true
-
-  toast.add({
-    title: 'Subscribed!',
-    description: 'You\'ve been subscribed to our newsletter.'
-  })
-}
 </script>
 
 <template>
-  <USeparator
-    icon="i-simple-icons-nuxtdotjs"
-    class="h-px"
-  />
+  <footer class="bg-black border-t border-white/5 pt-24 pb-12 relative overflow-hidden" id="footer">
+    <UContainer>
+      <div class="grid lg:grid-cols-2 gap-20 lg:gap-32 mb-20 relative z-10">
+        <!-- Brand Section -->
+        <div class="flex flex-col items-start gap-8">
+          <AppLogo />
+          
+          <p class="text-neutral-400 text-lg sm:text-xl font-medium leading-relaxed max-w-sm">
+            The professional standard for building modern open modules and scalable cloud applications.
+          </p>
 
-  <UFooter :ui="{ top: 'border-b border-default' }">
-    <template #top>
-      <UContainer>
-        <UFooterColumns :columns="columns">
-          <template #right>
-            <form @submit.prevent="onSubmit">
-              <UFormField
-                name="email"
-                label="Subscribe to our newsletter"
-                size="lg"
-              >
-                <UInput
-                  v-model="email"
-                  type="email"
-                  class="w-full"
-                  placeholder="Enter your email"
+          <div class="flex items-center gap-6">
+            <a href="https://github.com/nlfts" target="_blank" class="text-neutral-500 hover:text-white transition-all hover:scale-110" aria-label="GitHub">
+              <UIcon name="i-simple-icons-github" class="w-6 h-6" />
+            </a>
+            <a href="https://x.com/nlfts" target="_blank" class="text-neutral-500 hover:text-white transition-all hover:scale-110" aria-label="X">
+              <UIcon name="i-simple-icons-x" class="w-6 h-6" />
+            </a>
+            <a href="https://discord.gg/nlfts" target="_blank" class="text-neutral-500 hover:text-white transition-all hover:scale-110" aria-label="Discord">
+              <UIcon name="i-simple-icons-discord" class="w-7 h-7" />
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-6 text-[10px] sm:text-xs font-bold text-neutral-600 uppercase tracking-[0.2em] pt-4">
+            <span>© {{ new Date().getFullYear() }} NLFTs</span>
+            <NuxtLink to="/legal" class="hover:text-white transition-colors">Legal</NuxtLink>
+            <NuxtLink to="/status" class="hover:text-white transition-colors">Status</NuxtLink>
+            <NuxtLink to="/privacy" class="hover:text-white transition-colors">Privacy</NuxtLink>
+          </div>
+        </div>
+
+        <!-- Links Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-10 sm:gap-4">
+          <div v-for="column in columns" :key="column.label" class="flex flex-col gap-6">
+            <h4 class="text-white font-bold text-sm uppercase tracking-widest">{{ column.label }}</h4>
+            <ul class="flex flex-col gap-4">
+              <li v-for="child in column.children" :key="child.label">
+                <NuxtLink 
+                  :to="child.to" 
+                  class="text-neutral-500 hover:text-white transition-colors text-[15px] font-medium"
                 >
-                  <template #trailing>
-                    <UButton
-                      type="submit"
-                      size="xs"
-                      color="neutral"
-                      label="Subscribe"
-                    />
-                  </template>
-                </UInput>
-              </UFormField>
-            </form>
-          </template>
-        </UFooterColumns>
-      </UContainer>
-    </template>
+                  {{ child.label }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </UContainer>
 
-    <template #left>
-      <p class="text-muted text-sm">
-        NLFTs All Rights Reserved • Copyright © {{ new Date().getFullYear() }}
-      </p>
-    </template>
-
-    <template #right>
-      <UButton
-        to="https://discord.gg/nlfts"
-        target="_blank"
-        icon="i-simple-icons-discord"
-        aria-label="NLFTs on Discord"
-        color="neutral"
-        variant="ghost"
-      />
-      <UButton
-        to="https://github.com/nlfts"
-        target="_blank"
-        icon="i-simple-icons-github"
-        aria-label="NLFTs on GitHub"
-        color="neutral"
-        variant="ghost"
-      />
-    </template>
-  </UFooter>
+    <!-- Giant Brand Text Background (Clean & Unblocked) -->
+    <div class="relative w-full pointer-events-none select-none">
+      <div class="text-[clamp(120px,32vw,600px)] font-bold text-sky-400 opacity-30 leading-[0.7] tracking-tight w-full text-center whitespace-nowrap pt-20 drop-shadow-[0_0_80px_rgba(56,189,248,0.2)]" style="font-family: 'Outfit', sans-serif;">
+        NLFTs
+      </div>
+    </div>
+    
+    <!-- Sub-bottom decorative glow -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+  </footer>
 </template>
+
+<style scoped>
+#footer {
+  background: #000;
+}
+</style>

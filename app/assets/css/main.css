@@ -1,5 +1,32 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Slightly wider base for better hit area */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 2px solid transparent; /* Creates padding */
+  background-clip: content-box;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border: 0px solid transparent; /* Expands to full width on hover */
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
 @import "@fontsource/space-grotesk/400.css";
 @import "@fontsource/space-grotesk/500.css";
 @import "@fontsource/space-grotesk/600.css";
@@ -17,16 +44,42 @@
 :root {
   --background: 0 0% 0%;
   --foreground: 0 0% 100%;
+  --header-height: 64px;
 }
 
 .dark {
   --background: 240 10% 4%;
   --foreground: 0 0% 98%;
   
-  --ui-bg: #000000;
+  --ui-bg: #080808;
   --ui-bg-muted: #0a0a0a;
   --ui-bg-elevated: #111111;
   --ui-bg-accented: #1a1a1a;
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -38,8 +91,10 @@ body {
   line-height: 1.6;
   width: 100%;
   min-width: 0;
+  overflow-x: hidden;
   letter-spacing: 0.01em;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
@@ -54,6 +109,33 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-balance {
   text-wrap: balance;
+}
+
+
+/* Permanent Dark Mode Enforcement */
+html, :root {
+  color-scheme: dark !important;
+}
+
+/* Hide all color mode switchers regardless of component */
+.u-color-mode-button,
+[aria-label*="color mode"],
+[aria-label*="theme"],
+.dark-mode-toggle {
+  display: none !important;
+}
+
+/* Permanent Dark Mode Enforcement */
+html, :root {
+  color-scheme: dark !important;
+}
+
+/* Hide all color mode switchers regardless of component */
+.u-color-mode-button,
+[aria-label*="color mode"],
+[aria-label*="theme"],
+.dark-mode-toggle {
+  display: none !important;
 }
 
 @layer utilities {

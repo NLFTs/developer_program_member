@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('index', () => queryCollection('index').first())
+const { data: productsPage } = await useAsyncData('products', () => queryCollection('products').first())
+
+const showcasesItems = computed(() => productsPage.value?.items || [])
 
 const title = page.value?.seo?.title || page.value?.title
 const description = page.value?.seo?.description || page.value?.description
@@ -21,7 +24,6 @@ defineOgImageComponent('NuxtSeo', {
 })
 
 const { gsap, setup } = useGsap()
-const { user, loginWithPopup } = useGithubAuth()
 
 const communityStats = [
   { label: 'Github Stars', value: '75+' },
@@ -47,35 +49,118 @@ const communityTestimonials = [
   },
 ]
 
+const contributorUrls = [
+  "https://avatars.githubusercontent.com/u/228843429?v=4",
+  "https://avatars.githubusercontent.com/u/228851591?v=4",
+  "https://avatars.githubusercontent.com/u/228332586?v=4",
+  "https://avatars.githubusercontent.com/u/228840381?v=4",
+  "https://avatars.githubusercontent.com/u/216720543?v=4",
+  "https://avatars.githubusercontent.com/u/228839961?v=4",
+  "https://avatars.githubusercontent.com/u/232500114?v=4",
+  "https://avatars.githubusercontent.com/u/225441519?v=4",
+  "https://avatars.githubusercontent.com/u/232498018?v=4",
+  "https://avatars.githubusercontent.com/u/182593937?v=4",
+  "https://avatars.githubusercontent.com/u/204519754?v=4",
+  "https://avatars.githubusercontent.com/u/249846662?v=4",
+  "https://avatars.githubusercontent.com/u/218329504?v=4",
+  "https://avatars.githubusercontent.com/u/202130049?v=4",
+  "https://avatars.githubusercontent.com/u/237564897?v=4",
+  "https://avatars.githubusercontent.com/u/222330932?v=4",
+  "https://avatars.githubusercontent.com/u/232498781?v=4",
+  "https://avatars.githubusercontent.com/u/232498504?v=4",
+  "/avatar/dark.jpg",
+  "/avatar/elaina.jpg",
+  "/avatar/happy.jpg",
+  "/avatar/koba.jpg",
+  "/avatar/priasolo.jpg",
+  "/avatar/sigma.jpg",
+]
+
+const contributors = [
+  ...contributorUrls.map((url, i) => ({
+    id: i,
+    login: `Contributor`,
+    avatar_url: url,
+    html_url: "#",
+    isEmpty: false
+  }))
+]
+
 const visibleTestimonials = communityTestimonials.slice(0, 3)
 
 setup(() => {
-  const buttons = document.querySelectorAll('.hero-btn')
-  buttons.forEach((btn) => {
-    btn.addEventListener('mouseenter', () => {
-      gsap.to(btn, { scale: 1.05, duration: 0.2, ease: 'power2.out' })
+  // GSAP animations - only on desktop for performance
+  const mm = gsap.matchMedia()
+
+  mm.add("(min-width: 1024px)", () => {
+    // Hero button hover effects
+    const buttons = document.querySelectorAll('.hero-btn')
+    buttons.forEach((btn) => {
+      btn.addEventListener('mouseenter', () => {
+        gsap.to(btn, { scale: 1.05, duration: 0.2, ease: 'power2.out' })
+      })
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { scale: 1, duration: 0.2, ease: 'power2.out' })
+      })
     })
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { scale: 1, duration: 0.2, ease: 'power2.out' })
+
+    // Unified Timeline for Contributors Section
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#contributors',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
     })
+
+    tl.to('.reveal-content > *', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: 'expo.out'
+    })
+    .to('.contributor-avatar', {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: {
+        each: 0.03,
+        from: 'center',
+        grid: 'auto'
+      },
+      ease: 'back.out(1.2)'
+    }, '-=0.8')
   })
+
+  // Showcase scroll logic
+  const scrollContainer = document.querySelector('.showcase-scroll-container')
+  const prevBtn = document.querySelector('.showcase-prev')
+  const nextBtn = document.querySelector('.showcase-next')
+
+  if (scrollContainer && prevBtn && nextBtn) {
+    const getScrollAmount = () => {
+      const card = scrollContainer.querySelector('.showcase-card')
+      return card ? (card as HTMLElement).offsetWidth + 32 : 600
+    }
+
+    prevBtn.addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' })
+    })
+
+    nextBtn.addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' })
+    })
+
+    // Auto-scroll loop removed per user request for unfriendly desktop scroll
+    // Native scroll is preserved for better UX
+  }
 })
 </script>
 
 <template>
   <div class="hero">
-    <div class="hero-background">
-      <AppBackgroundHero
-        :enabled-waves="['top', 'middle', 'bottom']"
-        :line-count="[10, 15, 20]"
-        :line-distance="[8, 6, 4]"
-        :bend-radius="5.0"
-        :bend-strength="-0.5"
-        :interactive="true"
-        :parallax="true"
-      />
-    </div>
-
     <div class="hero-inner">
       <h1 class="hero-title">Developer</h1>
 
@@ -87,25 +172,14 @@ setup(() => {
 
       <div class="hero-actions">
         <NuxtLink 
-          v-if="user"
-          to="/devlovers" 
+          to="/product" 
           class="hero-btn hero-btn-primary"
-        >
-          Go to Dashboard
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </NuxtLink>
-        <button 
-          v-else
-          class="hero-btn hero-btn-primary"
-          @click.prevent="loginWithPopup"
         >
           Get Started
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
-        </button>
+        </NuxtLink>
         <a href="#live-demo" class="hero-btn hero-btn-ghost">
           Live Demo
         </a>
@@ -149,6 +223,152 @@ setup(() => {
       </div>
     </UContainer>
   </section>
+
+  <section class="contributors-section py-20 lg:py-32 border-t border-white/5 overflow-hidden relative" id="contributors">
+    <UContainer>
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <!-- Avatar Grid -->
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-3 lg:gap-4 order-2 lg:order-1 reveal-grid">
+          <a
+            v-for="member in contributors"
+            :key="member.id"
+            :href="member.isEmpty ? undefined : member.html_url"
+            target="_blank"
+            class="contributor-avatar relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-white/10 transition-all duration-300 hover:scale-110 hover:z-20 hover:border-white/30 cursor-crosshair"
+            :class="{ 'opacity-40 cursor-default': member.isEmpty }"
+          >
+            <template v-if="!member.isEmpty">
+              <img 
+                :src="member.avatar_url" 
+                :alt="member.login"
+                class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none select-none"
+                loading="lazy"
+                draggable="false"
+                @contextmenu.prevent
+              />
+              <!-- Privacy Overlay - Blocks right click and drag -->
+              <div class="absolute inset-0 z-20" @contextmenu.prevent />
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10" />
+              
+              <!-- Tooltip with username -->
+              <div class="absolute bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30">
+                {{ member.login }}
+              </div>
+            </template>
+            <div v-else class="w-full h-full flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-white/10" />
+            </div>
+          </a>
+        </div>
+
+        <!-- Right Content -->
+        <div class="flex flex-col items-start gap-8 order-1 lg:order-2 reveal-content">
+          <div class="space-y-4">
+            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1] tracking-tighter">
+              Built by developers around the world
+            </h2>
+            <p class="text-lg sm:text-xl text-neutral-400 max-w-lg leading-relaxed">
+              Hundreds of contributors making NLFTs better every day. Join us and build the future of open modules.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-8">
+            <UButton
+              label="Members"
+              icon="i-lucide-arrow-right"
+              trailing
+              size="xl"
+              color="neutral"
+              class="rounded-full px-8 py-4 font-bold transition-transform hover:scale-105"
+            />
+            
+            <div class="flex items-center gap-6">
+              <a href="https://discord.gg/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Discord">
+                <UIcon name="i-simple-icons-discord" class="w-8 h-8" />
+              </a>
+              <a href="https://x.com/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="X">
+                <UIcon name="i-simple-icons-x" class="w-7 h-7" />
+              </a>
+              <a href="#" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Share">
+                <UIcon name="i-lucide-share-2" class="w-8 h-8" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </UContainer>
+    
+    <!-- Decorative background glow -->
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40 lg:opacity-60" />
+  </section>
+
+  <section class="showcase-section py-20 lg:py-32 bg-[#020205] relative overflow-hidden" id="showcase">
+    <UContainer>
+      <div class="flex flex-col items-center text-center mb-16 gap-6">
+        <p class="text-xs font-bold tracking-[0.3em] uppercase text-emerald-500">Showcase</p>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter max-w-3xl">
+          Real-world Web Applications built with NLFTs
+        </h2>
+        <UButton
+          label="View all websites"
+          color="neutral"
+          variant="solid"
+          size="lg"
+          class="rounded-lg px-8 py-3 bg-white text-black font-bold hover:bg-neutral-200 transition-colors"
+        />
+      </div>
+
+      <div class="showcase-slider-wrapper relative group/slider -mx-4 sm:mx-0">
+        <!-- Center-focused native slider -->
+        <div class="showcase-scroll-container flex overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]" data-lenis-prevent>
+          <NuxtLink 
+            v-for="item in showcasesItems" 
+            :key="item.name"
+            :to="'/product/' + item.slug"
+            class="flex-none w-full sm:w-[60vw] lg:w-[50vw]"
+          >
+            <div class="showcase-card group cursor-pointer">
+              <div class="relative aspect-[16/9] overflow-hidden rounded-none sm:rounded-3xl border-y sm:border border-white/10 bg-neutral-900 shadow-2xl transition-all duration-700 group-hover:border-white/20 sm:group-hover:-translate-y-4">
+                <img 
+                  :src="item.thumbnail" 
+                  :alt="item.name"
+                  class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 scale-75 group-hover:scale-100">
+                  <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                    <UIcon name="i-lucide-arrow-up-right" class="w-8 h-8 text-white" />
+                  </div>
+                </div>
+
+                <!-- Card Info Overlay (Always visible on mobile) -->
+                <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-10">
+                  <div class="flex flex-col gap-0 sm:gap-1">
+                    <span class="text-[10px] sm:text-xs font-bold text-emerald-500 uppercase tracking-widest">{{ item.category }}</span>
+                    <h3 class="text-xl sm:text-3xl font-black text-white tracking-tighter">{{ item.name }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+
+        <!-- Enhanced Navigation Buttons -->
+        <button class="showcase-prev hidden xl:flex absolute left-8 top-1/2 -translate-y-12 w-14 h-14 rounded-full border border-white/10 bg-black/60 backdrop-blur-xl items-center justify-center text-white hover:bg-white hover:text-black transition-all z-20 cursor-pointer active:scale-90 shadow-2xl">
+          <UIcon name="i-lucide-chevron-left" class="w-8 h-8" />
+        </button>
+        <button class="showcase-next hidden xl:flex absolute right-8 top-1/2 -translate-y-12 w-14 h-14 rounded-full border border-white/10 bg-black/60 backdrop-blur-xl items-center justify-center text-white hover:bg-white hover:text-black transition-all z-20 cursor-pointer active:scale-90 shadow-2xl">
+          <UIcon name="i-lucide-chevron-right" class="w-8 h-8" />
+        </button>
+      </div>
+    </UContainer>
+
+    <!-- Background Decoration -->
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+  </section>
 </template>
 
 <style scoped>
@@ -159,10 +379,46 @@ setup(() => {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 5rem 1.5rem 3rem;
+  padding: calc(var(--header-height) + 2rem) 1rem 3rem;
   background-color: #000;
+  /* Minimal Tech Background */
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  background-size: 100% 100%, 80px 80px, 80px 80px;
   color: #fff;
   overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  /* Very subtle accent vectors */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (min-width: 640px) {
+  .hero {
+    padding: calc(var(--header-height) + 4rem) 1.5rem 3rem;
+  }
 }
 
 .hero-background {
@@ -190,11 +446,11 @@ setup(() => {
 
 /* Title */
 .hero-title {
-  font-size: clamp(2.5rem, 15vw, 12rem);
+  font-size: clamp(2.5rem, 12vw, 8rem);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 0.9;
-  margin: 0 0 1.2rem;
+  line-height: 1;
+  margin: 0 0 1rem;
   background-image: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.4) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -280,8 +536,7 @@ setup(() => {
 
 .community-section {
   padding: 5rem 1.5rem 6rem;
-  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.03), transparent 45%),
-    #05050a;
+  background: #05050a;
   color: #f5f5ff;
   position: relative;
   overflow: hidden;
@@ -355,17 +610,20 @@ setup(() => {
 }
 
 .testimonial-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
   border-radius: 1rem;
   padding: 1.8rem;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height: 180px;
   box-shadow: 0 25px 35px rgba(0, 0, 0, 0.45);
   transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .testimonial-card {
+    min-height: 140px;
+    padding: 1.25rem;
+  }
 }
 
 .testimonial-card:hover {
@@ -393,28 +651,41 @@ setup(() => {
   color: #fff;
 }
 
-.community-section::after {
-  content: '';
-  position: absolute;
-  inset: 12% 6% auto auto;
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(circle, rgba(136, 103, 255, 0.45), transparent 60%);
-  filter: blur(28px);
-  pointer-events: none;
-  z-index: 0;
+
+/* Contributors Section Animation States */
+@media (min-width: 1024px) {
+  .reveal-content > * {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .contributor-avatar {
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+    will-change: transform, opacity;
+  }
+}
+/* Showcase Section Styles */
+.showcase-slider :deep(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  transition: all 0.3s ease;
+  border-radius: 4px;
 }
 
-.community-section::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -40px;
-  height: 180px;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
+.showcase-slider :deep(.swiper-pagination-bullet-active) {
+  width: 24px;
+  background: #10b981; /* emerald-500 */
+}
+
+/* Showcase Manual Slider Styles */
+.showcase-scroll-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.showcase-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 </style>

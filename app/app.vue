@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
-
-const color = computed(() => colorMode.value === 'dark' ? '#020618' : 'white')
+const color = '#020618'
 
 useHead({
   meta: [
@@ -23,7 +21,7 @@ useSeoMeta({
   description: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
   ogTitle: 'NLFTs Developer Program Member',
   ogDescription: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
-  ogImage: '/og-image.png', // Temporary, will be generated dynamically
+  ogImage: '/og-image.png',
   twitterImage: '/og-image.png',
   twitterCard: 'summary_large_image',
   twitterTitle: 'NLFTs Developer Program Member',
@@ -42,9 +40,9 @@ const links = [{
   icon: 'i-lucide-book',
   to: '/docs/nuxt/getting-started'
 }, {
-  label: 'Pricing',
-  icon: 'i-lucide-credit-card',
-  to: '/pricing'
+  label: 'Events',
+  icon: 'i-lucide-calendar',
+  to: '/events'
 }, {
   label: 'Blog',
   icon: 'i-lucide-pencil',
@@ -60,7 +58,7 @@ provide('navigation', navigation)
 
 <template>
   <UApp>
-    <div class="max-w-[1440px] w-full mx-auto min-h-screen border-x border-neutral-200/70 dark:border-neutral-800/70 bg-transparent px-2 sm:px-4">
+    <div class="lg:max-w-[1440px] w-full mx-auto min-h-screen lg:border-x border-white/5 bg-black flex flex-col">
       <NuxtLoadingIndicator />
 
       <NuxtLayout>
