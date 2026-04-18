@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
+    '@nuxtjs/supabase',
     '@nuxt/content',
     '@vueuse/nuxt',
     'nuxt-og-image'
@@ -50,6 +51,10 @@ export default defineNuxtConfig({
       failOnError: false,
       ignore: ['/contact', '/getting-started/installation']
     }
+  },
+
+  supabase: {
+    redirect: false
   },
 
   eslint: {

@@ -1,6 +1,36 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const client = useSupabaseClient()
+const user = useSupabaseUser()
+const { profile, loading, fetchProfile, isAdmin } = useProfile()
+
+// Debug auth state
+watchEffect(() => {
+  console.log('[Profile Debug] Current Supabase User:', user.value?.id)
+  if (user.value) {
+    console.log('[Profile Debug] User metadata:', user.value.user_metadata)
+  }
+})
+
+const isUserMenuOpen = ref(false)
+const userMenuRef = ref(null)
+const isMobileMenuOpen = ref(false)
+
+onClickOutside(userMenuRef, () => {
+  isUserMenuOpen.value = false
+})
+
+const toggleUserMenu = () => {
+  isUserMenuOpen.value = !isUserMenuOpen.value
+}
+
+const handleLogout = async () => {
+  isUserMenuOpen.value = false
+  await client.auth.signOut()
+  navigateTo('/login')
+}
+
 const items = [
   { label: 'Product', to: '/product' },
   { label: 'Events', to: '/events', hasMega: true },
@@ -85,6 +115,22 @@ const openSearch = () => { open.value = true }
 
 const { gsap, setup } = useGsap()
 
+watch(isUserMenuOpen, (isOpen) => {
+  if (isOpen) {
+    nextTick(() => {
+      gsap.fromTo('.user-dropdown-menu', 
+        { opacity: 0, y: -10, scale: 0.95 }, 
+        { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: 'power2.out' }
+      )
+    })
+  }
+})
+
+const profileLink = computed(() => {
+  const username = profile.value?.username || user.value?.user_metadata?.preferred_username || user.value?.user_metadata?.user_name
+  return username ? `/${username}` : '#'
+})
+
 setup(() => {
   gsap.from('.navbar-glow', {
     scaleX: 0,
@@ -163,16 +209,97 @@ setup(() => {
           <span class="opacity-30 border border-white/20 rounded px-1.5 ml-1 font-mono">⌘K</span>
         </button>
 
-        <UButton
-          to="/grantara"
-          color="white"
-          variant="solid"
-          size="sm"
-          class="hidden sm:flex rounded-full font-bold px-5"
-          label="Join Program"
-        />
+        <!-- Custom Auth Section -->
+        <template v-if="user">
+          <div ref="userMenuRef" class="relative">
+            <button 
+              class="flex items-center group outline-none focus:outline-none"
+              @click="toggleUserMenu"
+            >
+              <UAvatar
+                :src="user.user_metadata.avatar_url"
+                :alt="user.user_metadata.full_name"
+                size="sm"
+                class="ring-2 transition-all cursor-pointer"
+                :class="isAdmin ? 'ring-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)]' : 'ring-white/10 group-hover:ring-blue-500/50'"
+              />
+              <!-- Small Badge on Avatar for Admin - Perfectly Centered -->
+              <div v-if="isAdmin" class="absolute -bottom-0.5 -right-0.5 bg-blue-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-[#080808] shadow-lg z-10">
+                <UIcon name="i-lucide-check" class="w-2.5 h-2.5 text-white stroke-[4]" />
+              </div>
+            </button>
 
-        <UHeaderMobileButton class="lg:hidden" />
+            <!-- Custom Premium Dropdown Menu -->
+            <div 
+              v-if="isUserMenuOpen"
+              class="user-dropdown-menu absolute right-0 mt-3 w-64 bg-[#080808]/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-[300]"
+            >
+              <!-- Account info -->
+              <div class="px-5 py-4 border-b border-white/5 bg-white/5">
+                <p class="text-[10px] uppercase tracking-[0.2em] font-bold mb-1" :class="isAdmin ? 'text-blue-400' : 'text-white/30'">
+                  {{ isAdmin ? 'Program Administrator' : 'Authenticated' }}
+                </p>
+                <div class="flex items-center gap-1.5">
+                  <p class="text-sm font-bold text-white truncate max-w-[160px]">
+                    {{ user.user_metadata.full_name || user.user_metadata.user_name || user.email }}
+                  </p>
+                  <div v-if="isAdmin" class="flex items-center justify-center bg-blue-500 rounded-full w-3.5 h-3.5 flex-shrink-0">
+                    <UIcon name="i-lucide-check" class="w-2 h-2 text-white stroke-[4]" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Links -->
+              <div class="py-2">
+                <NuxtLink 
+                  :to="profileLink" 
+                  class="flex items-center gap-3 px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                  @click="isUserMenuOpen = false"
+                >
+                  <UIcon name="i-lucide-user" class="w-4 h-4" />
+                  My Profile
+                </NuxtLink>
+                <NuxtLink 
+                  to="#" 
+                  class="flex items-center gap-3 px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                  @click="isUserMenuOpen = false"
+                >
+                  <UIcon name="i-lucide-settings" class="w-4 h-4" />
+                  Settings
+                </NuxtLink>
+              </div>
+
+              <!-- Logout -->
+              <div class="p-2 border-t border-white/5">
+                <button 
+                  class="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-500 hover:bg-red-500/10 rounded-xl transition-all font-bold"
+                  @click="handleLogout"
+                >
+                  <UIcon name="i-lucide-log-out" class="w-4 h-4" />
+                  Sign out
+                </button>
+              </div>
+            </div>
+          </div>
+        </template>
+        <template v-else>
+          <UButton
+            to="/login"
+            color="white"
+            variant="solid"
+            size="sm"
+            class="hidden sm:flex rounded-full font-bold px-5"
+            label="Login"
+          />
+        </template>
+
+        <button
+          class="p-2 text-zinc-400 hover:text-white transition-colors lg:hidden ml-2"
+          @click="isMobileMenuOpen = !isMobileMenuOpen"
+        >
+          <Icon v-if="!isMobileMenuOpen" name="heroicons:bars-3" class="w-6 h-6" />
+          <Icon v-else name="heroicons:x-mark" class="w-6 h-6" />
+        </button>
       </div>
     </template>
   </UHeader>

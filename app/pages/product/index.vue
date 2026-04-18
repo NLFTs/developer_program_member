@@ -37,6 +37,22 @@ function clearFilters() {
   selectedCategories.value = []
   searchQuery.value = ''
 }
+
+const user = useSupabaseUser()
+const router = useRouter()
+
+const handlePurchase = (item: any) => {
+  if (!user.value) {
+    // If not logged in, redirect to login with a query param to return here
+    return navigateTo({
+      path: '/login',
+      query: { redirect: `/product/${item.slug}` }
+    })
+  }
+  
+  // If logged in, proceed to product page or purchase logic
+  navigateTo(`/product/${item.slug}`)
+}
 </script>
 
 <template>
@@ -127,11 +143,20 @@ function clearFilters() {
 
                 <!-- Actions -->
                 <div class="flex items-center gap-4 pt-4">
+                  <UButton
+                    v-if="item.priceType === 'paid'"
+                    size="xs"
+                    color="white"
+                    class="font-bold px-4 rounded-sm"
+                    label="Buy Now"
+                    @click="handlePurchase(item)"
+                  />
                   <NuxtLink 
+                    v-else
                     :to="`/product/${item.slug}`"
                     class="text-xs font-semibold py-2 px-4 bg-white text-black rounded-sm hover:bg-neutral-200 transition-colors"
                   >
-                    {{ item.priceType === 'paid' ? 'Buy Now' : 'Get Started' }}
+                    Get Started
                   </NuxtLink>
                   <a 
                     :href="item.liveDemo" 
