@@ -46,6 +46,43 @@ const communityTestimonials = [
   },
 ]
 
+const contributorUrls = [
+  "https://avatars.githubusercontent.com/u/228843429?v=4",
+  "https://avatars.githubusercontent.com/u/228851591?v=4",
+  "https://avatars.githubusercontent.com/u/228332586?v=4",
+  "https://avatars.githubusercontent.com/u/228840381?v=4",
+  "https://avatars.githubusercontent.com/u/216720543?v=4",
+  "https://avatars.githubusercontent.com/u/228839961?v=4",
+  "https://avatars.githubusercontent.com/u/232500114?v=4",
+  "https://avatars.githubusercontent.com/u/225441519?v=4",
+  "https://avatars.githubusercontent.com/u/232498018?v=4",
+  "https://avatars.githubusercontent.com/u/182593937?v=4",
+  "https://avatars.githubusercontent.com/u/204519754?v=4",
+  "https://avatars.githubusercontent.com/u/249846662?v=4",
+  "https://avatars.githubusercontent.com/u/218329504?v=4",
+  "https://avatars.githubusercontent.com/u/202130049?v=4",
+  "https://avatars.githubusercontent.com/u/237564897?v=4",
+  "https://avatars.githubusercontent.com/u/222330932?v=4",
+  "https://avatars.githubusercontent.com/u/232498781?v=4",
+  "https://avatars.githubusercontent.com/u/232498504?v=4",
+  "/avatar/dark.jpg",
+  "/avatar/elaina.jpg",
+  "/avatar/happy.jpg",
+  "/avatar/koba.jpg",
+  "/avatar/priasolo.jpg",
+  "/avatar/sigma.jpg",
+]
+
+const contributors = [
+  ...contributorUrls.map((url, i) => ({
+    id: i,
+    login: `Contributor`,
+    avatar_url: url,
+    html_url: "#",
+    isEmpty: false
+  }))
+]
+
 const visibleTestimonials = communityTestimonials.slice(0, 3)
 
 setup(() => {
@@ -161,19 +198,37 @@ setup(() => {
       <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <!-- Avatar Grid -->
         <div class="grid grid-cols-4 sm:grid-cols-6 gap-3 lg:gap-4 order-2 lg:order-1 reveal-grid">
-          <div 
-            v-for="i in 24" 
-            :key="i" 
+          <a
+            v-for="member in contributors"
+            :key="member.id"
+            :href="member.isEmpty ? undefined : member.html_url"
+            target="_blank"
             class="contributor-avatar relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-white/10 transition-all duration-300 hover:scale-110 hover:z-20 hover:border-white/30 cursor-crosshair"
+            :class="{ 'opacity-40 cursor-default': member.isEmpty }"
           >
-            <img 
-              :src="`https://i.pravatar.cc/150?u=${i + 10}`" 
-              alt="Avatar"
-              class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-          </div>
+            <template v-if="!member.isEmpty">
+              <img 
+                :src="member.avatar_url" 
+                :alt="member.login"
+                class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none select-none"
+                loading="lazy"
+                draggable="false"
+                @contextmenu.prevent
+              />
+              <!-- Privacy Overlay - Blocks right click and drag -->
+              <div class="absolute inset-0 z-20" @contextmenu.prevent />
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10" />
+              
+              <!-- Tooltip with username -->
+              <div class="absolute bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30">
+                {{ member.login }}
+              </div>
+            </template>
+            <div v-else class="w-full h-full flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-white/10" />
+            </div>
+          </a>
         </div>
 
         <!-- Right Content -->
