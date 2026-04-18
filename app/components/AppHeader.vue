@@ -49,7 +49,7 @@ setup(() => {
 </script>
 
 <template>
-  <UHeader class="border-b border-white/5 bg-background/75 backdrop-blur-md relative">
+  <UHeader class="border-b border-white/5 bg-background/90 relative">
     <!-- Ambient Blue Glow Line (Downward Shine) -->
     <div class="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50 origin-center navbar-glow">
       <!-- Intense center beam -->
