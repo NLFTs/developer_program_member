@@ -128,7 +128,7 @@ function clearFilters() {
                 <!-- Actions -->
                 <div class="flex items-center gap-4 pt-4">
                   <NuxtLink 
-                    :to="item.priceType === 'paid' ? '/pricing' : `/product/${item.slug}`"
+                    :to="`/product/${item.slug}`"
                     class="text-xs font-semibold py-2 px-4 bg-white text-black rounded-sm hover:bg-neutral-200 transition-colors"
                   >
                     {{ item.priceType === 'paid' ? 'Buy Now' : 'Get Started' }}

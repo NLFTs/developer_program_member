@@ -26,8 +26,8 @@ const columns = [{
     label: 'Developer Hub',
     to: '/devlovers'
   }, {
-    label: 'Community',
-    to: '/community'
+    label: 'Events',
+    to: '/events'
   }]
 }, {
   label: 'Company',

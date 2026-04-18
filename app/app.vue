@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
-
-const color = computed(() => colorMode.value === 'dark' ? '#020618' : 'white')
+const color = '#020618'
 
 useHead({
   meta: [
@@ -42,9 +40,9 @@ const links = [{
   icon: 'i-lucide-book',
   to: '/docs/nuxt/getting-started'
 }, {
-  label: 'Pricing',
-  icon: 'i-lucide-credit-card',
-  to: '/pricing'
+  label: 'Events',
+  icon: 'i-lucide-calendar',
+  to: '/events'
 }, {
   label: 'Blog',
   icon: 'i-lucide-pencil',

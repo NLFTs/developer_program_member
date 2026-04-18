@@ -37,7 +37,7 @@ onMounted(() => {
       <!-- CTA button -->
       <div class="shrink-0 flex items-center gap-3">
         <NuxtLink
-          to="/pricing"
+          to="/events"
           class="flex items-center gap-1.5 bg-red-600 hover:bg-red-500 transition-colors text-white text-xs font-semibold px-3 py-1.5 rounded-md whitespace-nowrap"
         >
           Gabung Sekarang
