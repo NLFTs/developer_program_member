@@ -24,7 +24,7 @@ onMounted(() => {
       <!-- Left brand -->
       <div class="flex items-center gap-3 min-w-0 shrink-0">
         <span class="text-sm font-bold tracking-tight">
-          <span class="text-red-500">NLFTs</span><span class="font-light">Dev</span>
+          <span class="text-red-500">NLFTs.</span><span class="font-light">Dev</span>
         </span>
       </div>
 

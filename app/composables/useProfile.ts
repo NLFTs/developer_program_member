@@ -10,6 +10,7 @@ export const useProfile = () => {
   // Shared state across components
   const profile = useState<any>('user-profile', () => null)
   const loading = useState<boolean>('user-profile-loading', () => false)
+  const lastError = useState<string | null>('user-profile-error', () => null)
 
   // Computed helper for Admin status
   const isAdmin = computed(() => {
@@ -28,6 +29,7 @@ export const useProfile = () => {
     if (!userId) return
     
     loading.value = true
+    lastError.value = null
     try {
       const { data, error } = await supabase
         .from('profiles')
@@ -41,6 +43,72 @@ export const useProfile = () => {
       profile.value = data
     } catch (error: any) {
       console.error('[Profile Debug] Fetch Error:', error.message)
+      lastError.value = error.message
+    } finally {
+      loading.value = false
+    }
+  }
+
+  /**
+   * Update profile fields. Returns { success, error } for UI feedback.
+   * Only updates the authenticated user's own row (id = auth user id).
+   */
+  const updateProfile = async (updates: Record<string, any>): Promise<{ success: boolean; error?: string }> => {
+    let userId = user.value?.id
+
+    // Fallback: Check active session asynchronously if reactive user is null
+    if (!userId) {
+      const { data: { session } } = await supabase.auth.getSession()
+      userId = session?.user?.id
+    }
+
+    if (!userId) {
+      const msg = 'Tidak ada user session aktif. Silakan login ulang.'
+      console.error('[Profile] updateProfile failed:', msg)
+      lastError.value = msg
+      return { success: false, error: msg }
+    }
+
+    loading.value = true
+    lastError.value = null
+
+    try {
+      // Use .upsert() merging existing profile data
+      // This ensures if the row is somehow missing it won't silently fail like .update()
+      const currentUsername = profile.value?.username || user.value.user_metadata?.preferred_username || user.value.user_metadata?.user_name
+      
+      const payload = {
+        id: userId,
+        ...profile.value,
+        username: currentUsername,
+        ...updates,
+        updated_at: new Date().toISOString()
+      }
+
+      const { data, error } = await supabase
+        .from('profiles')
+        .upsert(payload)
+        .select()
+
+      if (error) {
+        console.error('[Profile] Update Error:', error.message, error.details, error.hint)
+        lastError.value = error.message
+        return { success: false, error: error.message }
+      }
+
+      console.log('[Profile] Update success:', data)
+      // Refresh local profile state with fresh data
+      if (data && data.length > 0) {
+        profile.value = data[0]
+      } else {
+        await fetchProfile()
+      }
+
+      return { success: true }
+    } catch (err: any) {
+      console.error('[Profile] Update exception:', err)
+      lastError.value = err.message
+      return { success: false, error: err.message }
     } finally {
       loading.value = false
     }
@@ -98,8 +166,10 @@ export const useProfile = () => {
   return {
     profile,
     loading,
-    isAdmin, // Exported now!
+    lastError,
+    isAdmin,
     fetchProfile,
-    upsertProfile
+    upsertProfile,
+    updateProfile // New: safer update method with error feedback
   }
 }

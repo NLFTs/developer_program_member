@@ -6,7 +6,7 @@ export const fetchUserProfileByUsername = async (event: H3Event, username: strin
 
   const { data, error } = await supabase
     .from('profiles')
-    .select('id, username, full_name, avatar_url, website, is_admin, updated_at')
+    .select('id, username, full_name, avatar_url, website, bio, bahasa, social, is_admin, updated_at')
     .eq('username', username)
     .single()
 
