@@ -38,11 +38,11 @@ function clearFilters() {
   searchQuery.value = ''
 }
 
-const user = useSupabaseUser()
+const { user, isLoggedIn } = useAuth()
 const router = useRouter()
 
 const handlePurchase = (item: any) => {
-  if (!user.value) {
+  if (!isLoggedIn.value) {
     // If not logged in, redirect to login with a query param to return here
     return navigateTo({
       path: '/login',

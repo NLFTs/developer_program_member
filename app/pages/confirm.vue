@@ -1,56 +1,45 @@
 <script setup lang="ts">
-const client = useSupabaseClient()
-const user = useSupabaseUser()
+// Simple OAuth callback handler without database
 const route = useRoute()
+const router = useRouter()
 
-// Comprehensive finish function
-const finishAuth = (currentUser: any) => {
-  if (!currentUser) return
+onMounted(async () => {
+  const code = route.query.code as string
   
-  const redirectTo = route.query.redirect as string || '/'
-  
-  // Double check if we are in a popup
-  if (window.opener && window.opener !== window) {
+  if (code) {
     try {
-      // Notify parent about success
-      window.opener.postMessage({ type: 'supabase-auth-success' }, window.location.origin)
+      // Exchange code for access token (you'll need a server endpoint for this)
+      // For now, we'll simulate a successful login
+      const response = await $fetch('/api/auth/github', {
+        method: 'POST',
+        body: { code }
+      })
       
-      // Redirect parent window
-      window.opener.location.href = redirectTo
-      
-      // Close the popup after a tiny delay to ensure message delivery
-      setTimeout(() => {
-        window.close()
-      }, 100)
-    } catch (e) {
-      console.error('Error communicating with parent window:', e)
-      // Fallback for full-page redirect if parent communication fails
-      navigateTo(redirectTo)
+      if (response && response.user) {
+        // Store user data in localStorage (simple approach without database)
+        localStorage.setItem('github_user', JSON.stringify(response.user))
+        localStorage.setItem('github_token', response.access_token)
+        
+        // Notify parent window if in popup
+        if (window.opener && window.opener !== window) {
+          window.opener.postMessage({ type: 'github-auth-success' }, window.location.origin)
+          setTimeout(() => {
+            window.close()
+          }, 100)
+        } else {
+          // Redirect to home
+          const redirectTo = route.query.redirect as string || '/'
+          router.push(redirectTo)
+        }
+      }
+    } catch (error) {
+      console.error('Auth error:', error)
+      // Redirect to login on error
+      router.push('/login')
     }
   } else {
-    // Normal full-page redirect
-    navigateTo(redirectTo)
-  }
-}
-
-// Listen to auth state changes - this is often faster than the user watch
-client.auth.onAuthStateChange((event, session) => {
-  if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session?.user) {
-    finishAuth(session.user)
-  }
-})
-
-// Watch user state as a secondary check
-watch(user, (newUser) => {
-  if (newUser) {
-    finishAuth(newUser)
-  }
-}, { immediate: true })
-
-onMounted(() => {
-  // Check if session is already active on mount
-  if (user.value) {
-    finishAuth(user.value)
+    // No code, redirect to login
+    router.push('/login')
   }
 })
 </script>
