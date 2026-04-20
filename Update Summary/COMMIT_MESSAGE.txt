@@ -1,0 +1,74 @@
+refactor: major overhaul - remove social media features and fix avatar paths
+
+BREAKING CHANGES:
+- Removed all social media features (user profiles, posts, comments)
+- Removed Supabase database integration
+- Removed dynamic user profile pages (/[username])
+- Simplified authentication to GitHub OAuth only (localStorage-based)
+
+Features Removed:
+- User profile pages and editing
+- Social media integration (Instagram, Bluesky, Facebook, X)
+- Tech stack badges and selection
+- Following/followers system
+- Achievement center and Creator LAB
+- Admin badges and verification
+- Database storage for user data
+
+Features Added:
+- Simple GitHub OAuth authentication (client-side only)
+- Comprehensive documentation (8 new docs files)
+- Static content-driven website
+- Improved performance (no database queries)
+
+Files Deleted:
+- app/pages/[username].vue
+- app/pages/sampel_prof.vue
+- app/components/ProfileEditModal.vue
+- app/composables/useProfile.ts
+- server/api/profile/[username].get.ts
+- server/utils/profile.ts
+
+Files Added:
+- app/composables/useAuth.ts - Simple auth state management
+- server/api/auth/github.post.ts - GitHub OAuth endpoint
+- .env.example - Environment variables template
+- .gitattributes - Line endings and binary files config
+- REFACTOR_SUMMARY.md - Refactor overview
+- REFACTOR_NOTES.md - Detailed documentation
+- SETUP_GITHUB_OAUTH.md - OAuth setup guide
+- CHECKLIST.md - Deployment checklist
+- QUICK_START.md - Quick start guide
+- PENJELASAN_REFACTOR.md - Indonesian documentation
+- DOCS_INDEX.md - Documentation index
+- CHANGELOG.md - Version history
+- FIX_AVATAR_ISSUE.md - Avatar fix documentation
+
+Files Modified:
+- app/pages/login.vue - Simplified without Supabase
+- app/pages/confirm.vue - New OAuth callback handler
+- app/components/AppHeader.vue - Updated auth system
+- app/pages/product/index.vue - Updated auth composable
+- nuxt.config.ts - Removed Supabase, added runtime config
+- package.json - Removed Supabase dependency
+- README.md - Updated documentation
+
+Bug Fixes:
+- fix: renamed public/Avatar/ to public/avatar/ (lowercase)
+  * Fixes case-sensitivity issue on Linux/Vercel
+  * Avatar images now load correctly in production
+  * Windows/macOS are case-insensitive, but Linux is not
+
+Configuration:
+- Added runtime config for GitHub OAuth
+- Removed Supabase configuration
+- Added .gitattributes for consistent line endings
+
+Migration:
+- Users must login again with new auth system
+- Old profile URLs will return 404
+- No data migration from old system
+
+See REFACTOR_SUMMARY.md for complete overview.
+See QUICK_START.md for setup instructions.
+See FIX_AVATAR_ISSUE.md for avatar fix details.

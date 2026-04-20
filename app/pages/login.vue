@@ -1,91 +1,69 @@
 <script setup lang="ts">
-const supabase = useSupabaseClient()
-const user = useSupabaseUser()
-const colorMode = useColorMode()
+// Simple GitHub OAuth login without database
+const config = useRuntimeConfig()
+const route = useRoute()
+const isLoading = ref(false)
 
-// Redirect if already logged in
-watchEffect(() => {
-  if (user.value) {
-    navigateTo('/')
+// Check if user is already logged in (from localStorage)
+const isLoggedIn = ref(false)
+const userData = ref<any>(null)
+
+onMounted(() => {
+  const stored = localStorage.getItem('github_user')
+  if (stored) {
+    try {
+      userData.value = JSON.parse(stored)
+      isLoggedIn.value = true
+      // Redirect to home if already logged in
+      navigateTo('/')
+    } catch (e) {
+      localStorage.removeItem('github_user')
+    }
   }
 })
 
-const isLoading = ref(false)
-
 const handleLogin = async () => {
   isLoading.value = true
-  const redirectToParam = useRoute().query.redirect as string || ''
   
-  // Open popup immediately to bypass popup blockers (user-initiated gesture)
+  // GitHub OAuth URL
+  const clientId = config.public.githubClientId || 'Ov23liXqPqPqPqPqPqPq' // Replace with your GitHub OAuth App Client ID
+  const redirectUri = `${window.location.origin}/confirm`
+  const scope = 'read:user user:email'
+  
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`
+  
+  // Open popup for OAuth
   const width = 600
   const height = 750
   const left = (window.innerWidth - width) / 2 + window.screenX
   const top = (window.innerHeight - height) / 2 + window.screenY
   
   const popup = window.open(
-    '',
+    githubAuthUrl,
     'github-auth',
     `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes`
   )
   
   if (popup) {
     popup.document.title = 'Authenticating...'
-    popup.document.body.innerHTML = `
-      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#020420;color:white;text-align:center;">
-        <div style="width:40px;height:40px;border:3px solid rgba(59,130,246,0.2);border-top:3px solid #3b82f6;border-radius:50%;animation:spin 1s linear infinite;"></div>
-        <p style="margin-top:20px;font-size:14px;opacity:0.7;">Connecting to GitHub...</p>
-        <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
-      </div>
-    `
-  }
-
-  try {
-    const redirectUrl = `${window.location.origin}/confirm${redirectToParam ? `?redirect=${encodeURIComponent(redirectToParam)}` : ''}`
-    
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'github',
-      options: {
-        redirectTo: redirectUrl,
-        skipBrowserRedirect: true
-      }
-    })
-    
-    if (error) throw error
-    
-    if (data?.url && popup) {
-      popup.location.href = data.url
-      
-      // Check for popup closure
-      const checkPopup = setInterval(() => {
-        if (!popup || popup.closed) {
-          clearInterval(checkPopup)
-          isLoading.value = false
-        }
-      }, 1000)
-    } else if (!popup) {
-      // Fallback if popup was blocked despite the attempt
-      alert('Please allow popups for this website to sign in.')
-      isLoading.value = false
-    }
-  } catch (error: any) {
-    console.error('Error logging in:', error.message)
+  } else {
+    alert('Please allow popups for this website to sign in.')
     isLoading.value = false
-    if (popup) popup.close()
   }
+  
+  // Listen for auth success
+  window.addEventListener('message', (event) => {
+    if (event.origin !== window.location.origin) return
+    if (event.data?.type === 'github-auth-success') {
+      isLoading.value = false
+      navigateTo('/')
+    }
+  })
 }
 
-// Background animation logic (similar to other pages for consistency)
 const { gsap } = useGsap()
 
 onMounted(() => {
-  // Listen for success message from popup
-  window.addEventListener('message', (event) => {
-    if (event.origin !== window.location.origin) return
-    if (event.data?.type === 'supabase-auth-success') {
-      isLoading.value = false
-    }
-  })
-
   gsap.from('.login-card', {
     y: 20,
     opacity: 0,
@@ -126,7 +104,7 @@ onMounted(() => {
           Welcome Back
         </h1>
         <p class="text-white/50 text-sm mb-10 max-w-[280px]">
-          Sign in to your account with GitHub to access the NLFTs Developer Program.
+          Sign in with GitHub to access the NLFTs Developer Program.
         </p>
 
         <!-- GitHub Login Button -->
@@ -161,7 +139,7 @@ onMounted(() => {
     <!-- Additional Ambient Elements -->
     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white/20">
       <UIcon name="i-simple-icons-nuxtdotjs" class="w-5 h-5" />
-      <UIcon name="i-simple-icons-supabase" class="w-5 h-5" />
+      <UIcon name="i-simple-icons-github" class="w-5 h-5" />
       <UIcon name="i-simple-icons-tailwindcss" class="w-5 h-5" />
     </div>
   </div>

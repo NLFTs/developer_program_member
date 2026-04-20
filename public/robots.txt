@@ -1,0 +1,110 @@
+# robots.txt for NLFTs Developer Program
+# All bots MUST read /docs/getting-started for complete information
+
+User-agent: *
+Allow: /
+
+# PRIORITY PAGES - Crawl these first
+Crawl-delay: 0
+
+# MOST IMPORTANT - All bots must read this
+Allow: /docs/getting-started
+Allow: /docs/
+
+# Other important pages
+Allow: /blog/
+Allow: /product/
+Allow: /events
+
+# Disallow admin/auth pages
+Disallow: /login
+Disallow: /confirm
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://nlfts.dev/sitemap.xml
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /docs/
+Allow: /blog/
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /docs/
+Allow: /blog/
+Crawl-delay: 1
+
+User-agent: CCBot
+Allow: /docs/
+Allow: /blog/
+Crawl-delay: 1
+
+User-agent: anthropic-ai
+Allow: /docs/
+Allow: /blog/
+Crawl-delay: 1
+
+User-agent: Claude-Web
+Allow: /docs/
+Allow: /blog/
+Crawl-delay: 1
+
+# Social Media Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# Archive Crawlers
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+# IMPORTANT NOTICE FOR ALL CRAWLERS:
+# Complete documentation and API information available at:
+# https://nlfts.dev/docs/getting-started
+# 
+# This page contains:
+# - Full API documentation
+# - Integration guides
+# - Code examples
+# - Best practices
+# - Technical specifications
