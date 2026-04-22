@@ -15,7 +15,10 @@ defineOgImageComponent('Saas')
 </script>
 
 <template>
-  <div v-if="page" class="bg-black min-h-screen text-white">
+  <div
+    v-if="page"
+    class="bg-black min-h-screen text-white"
+  >
     <UPageHero
       :title="page.hero.title"
       :description="page.hero.description"
@@ -31,13 +34,18 @@ defineOgImageComponent('Saas')
         >
           <template #header>
             <div class="relative aspect-video -m-4 overflow-hidden">
-              <img 
-                :src="event.image" 
-                :alt="event.title" 
+              <img
+                :src="event.image"
+                :alt="event.title"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               >
               <div class="absolute top-4 left-4">
-                <UBadge color="sky" variant="solid" size="sm" class="font-bold">
+                <UBadge
+                  color="sky"
+                  variant="solid"
+                  size="sm"
+                  class="font-bold"
+                >
                   {{ event.date }}
                 </UBadge>
               </div>
@@ -48,23 +56,47 @@ defineOgImageComponent('Saas')
             <h3 class="text-xl font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">
               {{ event.title }}
             </h3>
-            <p class="text-neutral-400 text-sm">
+            <p class="text-neutral-400 text-sm line-clamp-2">
               {{ event.description }}
             </p>
-            <div class="flex items-center gap-2 text-sm text-neutral-500">
-              <UIcon name="i-lucide-map-pin" class="w-4 h-4" />
+            <div class="flex items-center gap-2 text-xs text-neutral-500">
+              <UIcon
+                name="i-lucide-map-pin"
+                class="w-4 h-4 text-sky-500"
+              />
               {{ event.location }}
             </div>
-            <UButton 
-              label="Pelajari Lebih Lanjut" 
-              :to="event.link"
-              color="sky"
-              size="sm"
-              class="w-full"
-            />
           </div>
+
+          <template #footer>
+            <UButton
+              :to="event.link"
+              block
+              color="sky"
+              variant="soft"
+              label="Learn More"
+              trailing-icon="i-lucide-arrow-right"
+              class="group-hover:bg-sky-500 group-hover:text-white transition-all"
+            />
+          </template>
         </UCard>
       </div>
     </UContainer>
+
+    <UPageSection
+      :title="page.faq.title"
+      :description="page.faq.description"
+      class="border-t border-white/5"
+    >
+      <UAccordion
+        :items="page.faq.items"
+        class="max-w-3xl mx-auto"
+        variant="ghost"
+        :ui="{
+          trigger: 'text-lg font-semibold text-white/90 hover:text-sky-400 py-4',
+          body: 'text-neutral-400 pb-6'
+        }"
+      />
+    </UPageSection>
   </div>
 </template>

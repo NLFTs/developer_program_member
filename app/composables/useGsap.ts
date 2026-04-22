@@ -4,12 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 export const useGsap = () => {
   if (import.meta.client) {
     gsap.registerPlugin(ScrollTrigger)
-    
+
     // Global ScrollTrigger defaults for Apple/Google-like smoothness
     ScrollTrigger.config({
       autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load,resize'
     })
-    
+
     ScrollTrigger.defaults({
       toggleActions: 'play pause resume reverse',
       markers: false
@@ -36,7 +36,7 @@ export const useGsap = () => {
    */
   const reveal = (el: string | Element, vars: gsap.TweenVars = {}) => {
     if (!import.meta.client) return
-    
+
     return gsap.from(el, {
       opacity: 0,
       y: 30,
@@ -57,7 +57,7 @@ export const useGsap = () => {
    */
   const scrollTo = (target: string | Element, offset = 0) => {
     if (!import.meta.client) return
-    
+
     gsap.to(window, {
       scrollTo: { y: target, offsetY: offset },
       duration: 1.5,

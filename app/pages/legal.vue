@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Hukum - Program Developer NLFTs',
-  ogTitle: 'Informasi Hukum - Program Developer NLFTs',
-  description: 'Informasi hukum, syarat layanan, dan kebijakan untuk Program Developer NLFTs dan layanan terkait.',
-  ogDescription: 'Informasi hukum, syarat layanan, dan kebijakan untuk Program Developer NLFTs dan layanan terkait.'
+  title: 'Legal - NLFTs Developer Program',
+  ogTitle: 'Legal Information - NLFTs Developer Program',
+  description: 'Legal information, terms of service, and policies for NLFTs Developer Program and related services.',
+  ogDescription: 'Legal information, terms of service, and policies for NLFTs Developer Program and related services.'
 })
 </script>
 
@@ -14,10 +14,10 @@ useSeoMeta({
         <!-- Header -->
         <section class="mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Informasi Hukum
+            Legal Information
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl leading-relaxed">
-            Informasi hukum penting, syarat layanan, dan kebijakan yang mengatur penggunaan layanan NLFTs.
+            Important legal information, terms of service, and policies governing the use of NLFTs services.
           </p>
         </section>
 
@@ -25,81 +25,129 @@ useSeoMeta({
         <section class="space-y-12">
           <!-- Terms of Service -->
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">Syarat Layanan</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              Terms of Service
+            </h2>
             <div class="prose prose-invert max-w-none">
               <p class="text-neutral-300 mb-4">
-                Dengan menggunakan layanan NLFTs, Anda setuju untuk terikat oleh syarat layanan ini. Silakan baca dengan cermat.
-              </p>
-              
-              <h3 class="text-lg font-semibold mb-3">1. Penerimaan Syarat</h3>
-              <p class="text-neutral-400 mb-4">
-                Dengan mengakses dan menggunakan layanan NLFTs, Anda menerima dan setuju untuk terikat oleh syarat dan ketentuan perjanjian ini.
+                By using NLFTs services, you agree to be bound by these terms of service. Please read them carefully.
               </p>
 
-              <h3 class="text-lg font-semibold mb-3">2. Lisensi Penggunaan</h3>
+              <h3 class="text-lg font-semibold mb-3">
+                1. Acceptance of Terms
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Izin diberikan untuk sementara mengunduh satu salinan materi NLFTs untuk tampilan pribadi, non-komersial saja.
+                By accessing and using NLFTs services, you accept and agree to be bound by the terms and provision of this agreement.
               </p>
 
-              <h3 class="text-lg font-semibold mb-3">3. Penafian</h3>
+              <h3 class="text-lg font-semibold mb-3">
+                2. Use License
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Materi di NLFTs disediakan atas dasar 'sebagaimana adanya'. NLFTs tidak memberikan jaminan, tersurat atau tersirat.
+                Permission is granted to temporarily download one copy of NLFTs materials for personal, non-commercial transitory viewing only.
+              </p>
+
+              <h3 class="text-lg font-semibold mb-3">
+                3. Disclaimer
+              </h3>
+              <p class="text-neutral-400 mb-4">
+                The materials on NLFTs are provided on an 'as is' basis. NLFTs makes no warranties, expressed or implied.
               </p>
 
               <div class="mt-6">
-                <p class="text-sm text-neutral-500">Terakhir diperbarui: Desember 2024</p>
+                <p class="text-sm text-neutral-500">
+                  Last updated: December 2024
+                </p>
               </div>
             </div>
           </div>
 
           <!-- Privacy Policy -->
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">Kebijakan Privasi</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              Privacy Policy
+            </h2>
             <div class="prose prose-invert max-w-none">
               <p class="text-neutral-300 mb-4">
-                Privasi Anda penting bagi kami. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda.
-              </p>
-              
-              <h3 class="text-lg font-semibold mb-3">Informasi yang Kami Kumpulkan</h3>
-              <p class="text-neutral-400 mb-4">
-                Kami mengumpulkan informasi yang Anda berikan langsung kepada kami, seperti saat Anda membuat akun, menggunakan layanan kami, atau menghubungi kami.
+                Your privacy is important to us. This policy explains how we collect, use, and protect your information.
               </p>
 
-              <h3 class="text-lg font-semibold mb-3">Bagaimana Kami Menggunakan Informasi</h3>
+              <h3 class="text-lg font-semibold mb-3">
+                Information We Collect
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Kami menggunakan informasi yang kami kumpulkan untuk menyediakan, memelihara, dan meningkatkan layanan kami, memproses transaksi, dan berkomunikasi dengan Anda.
+                We collect information you provide directly to us, such as when you create an account, use our services, or contact us.
               </p>
 
-              <h3 class="text-lg font-semibold mb-3">Berbagi Informasi</h3>
+              <h3 class="text-lg font-semibold mb-3">
+                How We Use Information
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Kami tidak menjual, menukar, atau mentransfer informasi pribadi Anda kepada pihak ketiga tanpa persetujuan Anda.
+                We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.
+              </p>
+
+              <h3 class="text-lg font-semibold mb-3">
+                Information Sharing
+              </h3>
+              <p class="text-neutral-400 mb-4">
+                We do not sell, trade, or otherwise transfer your personal information to third parties without your consent.
               </p>
 
               <div class="mt-6">
-                <p class="text-sm text-neutral-500">Terakhir diperbarui: Desember 2024</p>
+                <p class="text-sm text-neutral-500">
+                  Last updated: December 2024
+                </p>
               </div>
             </div>
           </div>
 
           <!-- Cookie Policy -->
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">Kebijakan Cookie</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              Cookie Policy
+            </h2>
             <div class="prose prose-invert max-w-none">
               <p class="text-neutral-300 mb-4">
-                Kami menggunakan cookie dan teknologi serupa untuk meningkatkan pengalaman Anda di situs web kami.
-              </p>
-              
-              <h3 class="text-lg font-semibold mb-3">Apa itu Cookie</h3>
-              <p class="text-neutral-400 mb-4">
-                Cookie adalah file teks kecil yang disimpan di perangkat Anda saat Anda mengunjungi situs web kami.
+                We use cookies and similar technologies to enhance your experience on our website.
               </p>
 
-              <h3 class="text-lg font-semibold mb-3">Bagaimana Kami Menggunakan Cookie</h3>
+              <h3 class="text-lg font-semibold mb-3">
+                What Are Cookies
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Kami menggunakan cookie untuk mengingat preferensi Anda, menganalisis lalu lintas situs, dan menyediakan konten yang dipersonalisasi.
+                Cookies are small text files that are stored on your device when you visit our website.
               </p>
+
+              <h3 class="text-lg font-semibold mb-3">
+                How We Use Cookies
+              </h3>
+              <p class="text-neutral-400 mb-4">
+                We use cookies to remember your preferences, analyze site traffic, and provide personalized content.
+              </p>
+
+              <div class="mt-6">
+                <p class="text-sm text-neutral-500">
+                  Last updated: December 2024
+                </p>
+              </div>
             </div>
           </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="text-center mt-16">
+          <h2 class="text-2xl font-bold mb-4">
+            Questions About Our Legal Policies?
+          </h2>
+          <p class="text-neutral-400 mb-6">
+            If you have any questions about these legal documents, please contact us.
+          </p>
+          <UButton
+            label="Contact Legal Team"
+            color="white"
+            size="lg"
+            to="/contact"
+          />
         </section>
       </div>
     </UContainer>

@@ -4,10 +4,14 @@
     <div class="relative flex items-center justify-center shrink-0">
       <div class="w-9 h-9 bg-neutral-950 dark:bg-white rounded-[10px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl overflow-hidden ring-1 ring-white/10 dark:ring-black/10">
         <!-- Modern, Thick Geometric N -->
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-white dark:fill-black" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          viewBox="0 0 24 24"
+          class="w-5 h-5 fill-white dark:fill-black"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path d="M3 3H8.5L15.5 14.5V3H21V21H15.5L8.5 9.5V21H3V3Z" />
         </svg>
-        
+
         <!-- Subtle noise/texture overlay for character -->
         <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
         <!-- Reflective sheen -->

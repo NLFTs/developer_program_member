@@ -17,19 +17,32 @@ defineProps<{
 </script>
 
 <template>
-  <section class="community-section" id="community">
+  <section
+    id="community"
+    class="community-section"
+  >
     <UContainer>
       <div class="community-head">
         <div>
-          <p class="eyebrow">Loved by the community</p>
+          <p class="eyebrow">
+            Loved by the community
+          </p>
           <h2>
             Jangan hanya percaya perkataan kami — dengarkan apa kata para developer
           </h2>
         </div>
         <div class="community-stats">
-          <div class="stat-card" v-for="stat in stats" :key="stat.label">
-            <p class="stat-value">{{ stat.value }}</p>
-            <p class="stat-label">{{ stat.label }}</p>
+          <div
+            v-for="stat in stats"
+            :key="stat.label"
+            class="stat-card"
+          >
+            <p class="stat-value">
+              {{ stat.value }}
+            </p>
+            <p class="stat-label">
+              {{ stat.label }}
+            </p>
           </div>
         </div>
       </div>
@@ -40,7 +53,9 @@ defineProps<{
           :key="testimonial.author"
           class="testimonial-card"
         >
-          <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+          <p class="testimonial-quote">
+            "{{ testimonial.quote }}"
+          </p>
           <div class="testimonial-meta">
             <span class="author">{{ testimonial.author }}</span>
             <span class="handle">{{ testimonial.handle }}</span>

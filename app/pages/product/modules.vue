@@ -104,13 +104,13 @@ const filteredModules = computed(() => {
             <button
               v-for="category in categories"
               :key="category"
-              @click="selectedCategory = category"
               :class="[
                 'px-4 py-2 rounded-full text-sm font-medium transition-colors',
                 selectedCategory === category
                   ? 'bg-blue-500 text-white'
                   : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
               ]"
+              @click="selectedCategory = category"
             >
               {{ category }}
             </button>
@@ -120,15 +120,17 @@ const filteredModules = computed(() => {
         <!-- Modules Grid -->
         <section class="mb-16">
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div 
-              v-for="module in filteredModules" 
+            <div
+              v-for="module in filteredModules"
               :key="module.name"
               class="border border-neutral-800 rounded-lg p-6 hover:border-neutral-700 transition-all duration-300 group"
             >
               <!-- Header -->
               <div class="flex items-start justify-between mb-4">
                 <div>
-                  <h3 class="text-xl font-semibold mb-2">{{ module.name }}</h3>
+                  <h3 class="text-xl font-semibold mb-2">
+                    {{ module.name }}
+                  </h3>
                   <span class="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded-full">
                     {{ module.category }}
                   </span>
@@ -146,14 +148,14 @@ const filteredModules = computed(() => {
               <!-- Features -->
               <div class="mb-6">
                 <div class="flex flex-wrap gap-1">
-                  <span 
-                    v-for="feature in module.features.slice(0, 3)" 
+                  <span
+                    v-for="feature in module.features.slice(0, 3)"
                     :key="feature"
                     class="text-xs bg-neutral-800 text-neutral-300 px-2 py-1 rounded"
                   >
                     {{ feature }}
                   </span>
-                  <span 
+                  <span
                     v-if="module.features.length > 3"
                     class="text-xs text-neutral-500 px-2 py-1"
                   >
@@ -165,27 +167,33 @@ const filteredModules = computed(() => {
               <!-- Stats -->
               <div class="flex items-center gap-4 mb-6 text-sm text-neutral-400">
                 <div class="flex items-center gap-1">
-                  <UIcon name="i-lucide-download" class="w-4 h-4" />
+                  <UIcon
+                    name="i-lucide-download"
+                    class="w-4 h-4"
+                  />
                   {{ module.downloads }}
                 </div>
                 <div class="flex items-center gap-1">
-                  <UIcon name="i-lucide-star" class="w-4 h-4" />
+                  <UIcon
+                    name="i-lucide-star"
+                    class="w-4 h-4"
+                  />
                   {{ module.stars }}
                 </div>
               </div>
 
               <!-- Actions -->
               <div class="flex gap-2">
-                <UButton 
-                  :label="module.npm" 
-                  color="white" 
-                  size="sm" 
+                <UButton
+                  :label="module.npm"
+                  color="white"
+                  size="sm"
                   class="flex-1 text-xs"
                 />
-                <UButton 
-                  label="GitHub" 
-                  color="neutral" 
-                  size="sm" 
+                <UButton
+                  label="GitHub"
+                  color="neutral"
+                  size="sm"
                   :to="module.github"
                   external
                 />
@@ -196,14 +204,21 @@ const filteredModules = computed(() => {
 
         <!-- Getting Started -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Ready to Get Started?
+          </h2>
           <p class="text-neutral-400 mb-6">
             Install any module with npm or yarn and start building amazing applications.
           </p>
           <div class="bg-neutral-800 rounded-lg p-4 mb-6 text-left max-w-md mx-auto">
             <code class="text-green-400 text-sm">npm install @nlfts/ui</code>
           </div>
-          <UButton label="View Documentation" color="white" size="lg" to="/docs" />
+          <UButton
+            label="View Documentation"
+            color="white"
+            size="lg"
+            to="/docs"
+          />
         </section>
       </div>
     </UContainer>

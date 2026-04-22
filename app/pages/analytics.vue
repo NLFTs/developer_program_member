@@ -2,16 +2,23 @@
   <UMain class="py-24">
     <UContainer>
       <UPageHeader
-        title="Analitik"
+        title="Analytics"
         description="Pantau performa dan wawasan mendalam aplikasi Anda."
         class="text-center"
       />
       <UPageBody>
         <UCard class="max-w-3xl mx-auto mt-12 backdrop-blur-xl bg-neutral-900/50 border-neutral-800">
           <div class="text-center py-12">
-            <UIcon name="i-lucide-bar-chart-3" class="w-16 h-16 mx-auto mb-6 text-primary" />
-            <h2 class="text-2xl font-bold mb-4">Dashboard Analitik</h2>
-            <p class="text-neutral-400">Fitur analitik sedang dalam proses integrasi.</p>
+            <UIcon
+              name="i-lucide-bar-chart-3"
+              class="w-16 h-16 mx-auto mb-6 text-primary"
+            />
+            <h2 class="text-2xl font-bold mb-4">
+              Dashboard Analytics
+            </h2>
+            <p class="text-neutral-400">
+              Fitur analitik sedang dalam proses integrasi.
+            </p>
           </div>
         </UCard>
       </UPageBody>

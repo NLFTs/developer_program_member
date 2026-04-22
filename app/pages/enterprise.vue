@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Solusi Enterprise - Program Developer NLFTs',
-  ogTitle: 'Solusi Enterprise - Program Developer NLFTs',
-  description: 'Skalakan pengembangan enterprise Anda dengan alat profesional NLFTs, dukungan khusus, dan layanan konsultasi.',
-  ogDescription: 'Skalakan pengembangan enterprise Anda dengan alat profesional NLFTs, dukungan khusus, dan layanan konsultasi.'
+  title: 'Enterprise Solutions - NLFTs Developer Program',
+  ogTitle: 'Enterprise Solutions - NLFTs Developer Program',
+  description: 'Scale your enterprise development with NLFTs professional tools, support, and consulting services.',
+  ogDescription: 'Scale your enterprise development with NLFTs professional tools, support, and consulting services.'
 })
 </script>
 
@@ -14,62 +14,72 @@ useSeoMeta({
         <!-- Header -->
         <section class="text-center mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Solusi Enterprise
+            Enterprise Solutions
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            Skalakan pengembangan Anda dengan alat tingkat enterprise, dukungan khusus, dan layanan konsultasi profesional.
+            Scale your development with enterprise-grade tools, dedicated support, and professional consulting services.
           </p>
         </section>
 
         <!-- Features -->
         <section class="mb-16">
-          <h2 class="text-2xl font-bold mb-8">Fitur Enterprise</h2>
+          <h2 class="text-2xl font-bold mb-8">
+            Enterprise Features
+          </h2>
           <div class="grid md:grid-cols-2 gap-8">
             <div class="border border-neutral-800 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-4">Dukungan Prioritas</h3>
+              <h3 class="text-lg font-semibold mb-4">
+                Priority Support
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Dapatkan dukungan khusus dengan waktu respons terjamin dan akses langsung ke tim engineering kami.
+                Get dedicated support with guaranteed response times and direct access to our engineering team.
               </p>
               <ul class="text-sm text-neutral-300 space-y-2">
-                <li>• Dukungan teknis 24/7</li>
-                <li>• Account manager khusus</li>
-                <li>• Perbaikan bug prioritas</li>
+                <li>• 24/7 technical support</li>
+                <li>• Dedicated account manager</li>
+                <li>• Priority bug fixes</li>
               </ul>
             </div>
 
             <div class="border border-neutral-800 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-4">Pengembangan Kustom</h3>
+              <h3 class="text-lg font-semibold mb-4">
+                Custom Development
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Solusi yang disesuaikan dibangun khusus untuk kebutuhan dan persyaratan enterprise Anda.
+                Tailored solutions built specifically for your enterprise needs and requirements.
               </p>
               <ul class="text-sm text-neutral-300 space-y-2">
-                <li>• Modul dan plugin kustom</li>
-                <li>• Layanan integrasi</li>
-                <li>• Optimasi performa</li>
+                <li>• Custom modules and plugins</li>
+                <li>• Integration services</li>
+                <li>• Performance optimization</li>
               </ul>
             </div>
 
             <div class="border border-neutral-800 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-4">Pelatihan & Konsultasi</h3>
+              <h3 class="text-lg font-semibold mb-4">
+                Training & Consulting
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Panduan ahli untuk membantu tim Anda mengadopsi dan menguasai alat NLFTs secara efektif.
+                Expert guidance to help your team adopt and master NLFTs tools effectively.
               </p>
               <ul class="text-sm text-neutral-300 space-y-2">
-                <li>• Sesi pelatihan on-site</li>
-                <li>• Konsultasi arsitektur</li>
-                <li>• Workshop best practices</li>
+                <li>• On-site training sessions</li>
+                <li>• Architecture consulting</li>
+                <li>• Best practices workshops</li>
               </ul>
             </div>
 
             <div class="border border-neutral-800 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-4">Keamanan & Kepatuhan</h3>
+              <h3 class="text-lg font-semibold mb-4">
+                Security & Compliance
+              </h3>
               <p class="text-neutral-400 mb-4">
-                Fitur keamanan tingkat enterprise dan dukungan kepatuhan untuk industri yang diatur.
+                Enterprise-grade security features and compliance support for regulated industries.
               </p>
               <ul class="text-sm text-neutral-300 space-y-2">
-                <li>• Kepatuhan SOC 2</li>
-                <li>• Audit keamanan</li>
-                <li>• Alat kepatuhan GDPR</li>
+                <li>• SOC 2 compliance</li>
+                <li>• Security audits</li>
+                <li>• GDPR compliance tools</li>
               </ul>
             </div>
           </div>
@@ -77,56 +87,89 @@ useSeoMeta({
 
         <!-- Pricing -->
         <section class="mb-16">
-          <h2 class="text-2xl font-bold mb-8">Harga Enterprise</h2>
+          <h2 class="text-2xl font-bold mb-8">
+            Enterprise Pricing
+          </h2>
           <div class="grid md:grid-cols-3 gap-8">
             <div class="border border-neutral-800 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-2">Pemula</h3>
-              <div class="text-3xl font-bold mb-4">$2,500<span class="text-lg text-neutral-400">/bulan</span></div>
+              <h3 class="text-lg font-semibold mb-2">
+                Starter
+              </h3>
+              <div class="text-3xl font-bold mb-4">
+                $2,500<span class="text-lg text-neutral-400">/month</span>
+              </div>
               <ul class="text-sm text-neutral-300 space-y-2 mb-6">
-                <li>• Hingga 10 developer</li>
-                <li>• Dukungan email</li>
-                <li>• Pelatihan dasar</li>
-                <li>• SLA standar</li>
+                <li>• Up to 10 developers</li>
+                <li>• Email support</li>
+                <li>• Basic training</li>
+                <li>• Standard SLA</li>
               </ul>
-              <UButton label="Hubungi Penjualan" color="neutral" class="w-full" />
+              <UButton
+                label="Contact Sales"
+                color="neutral"
+                class="w-full"
+              />
             </div>
 
             <div class="border border-blue-500 rounded-lg p-6 relative">
               <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                Populer
+                Popular
               </div>
-              <h3 class="text-lg font-semibold mb-2">Profesional</h3>
-              <div class="text-3xl font-bold mb-4">$7,500<span class="text-lg text-neutral-400">/bulan</span></div>
+              <h3 class="text-lg font-semibold mb-2">
+                Professional
+              </h3>
+              <div class="text-3xl font-bold mb-4">
+                $7,500<span class="text-lg text-neutral-400">/month</span>
+              </div>
               <ul class="text-sm text-neutral-300 space-y-2 mb-6">
-                <li>• Hingga 50 developer</li>
-                <li>• Dukungan prioritas 24/7</li>
-                <li>• Pelatihan komprehensif</li>
-                <li>• SLA bisnis</li>
+                <li>• Up to 50 developers</li>
+                <li>• Priority support</li>
+                <li>• Advanced training</li>
+                <li>• Custom integrations</li>
               </ul>
-              <UButton label="Hubungi Penjualan" color="white" class="w-full" />
+              <UButton
+                label="Contact Sales"
+                color="white"
+                class="w-full"
+              />
             </div>
 
             <div class="border border-neutral-800 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-2">Enterprise</h3>
-              <div class="text-3xl font-bold mb-4">Kustom<span class="text-lg text-neutral-400"></span></div>
+              <h3 class="text-lg font-semibold mb-2">
+                Enterprise
+              </h3>
+              <div class="text-3xl font-bold mb-4">
+                Custom
+              </div>
               <ul class="text-sm text-neutral-300 space-y-2 mb-6">
-                <li>• Developer unlimited</li>
-                <li>• Dukungan dedicated</li>
-                <li>• Pengembangan kustom</li>
-                <li>• SLA enterprise</li>
+                <li>• Unlimited developers</li>
+                <li>• 24/7 dedicated support</li>
+                <li>• On-site training</li>
+                <li>• Custom development</li>
               </ul>
-              <UButton label="Hubungi Penjualan" color="neutral" class="w-full" />
+              <UButton
+                label="Contact Sales"
+                color="neutral"
+                class="w-full"
+              />
             </div>
           </div>
         </section>
 
         <!-- CTA -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Siap untuk Skalakan?</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Ready to Scale?
+          </h2>
           <p class="text-neutral-400 mb-6">
-            Hubungi tim penjualan kami untuk mendiskusikan kebutuhan enterprise Anda.
+            Let's discuss how NLFTs can help accelerate your enterprise development.
           </p>
-          <UButton label="Hubungi Kami" color="white" size="lg" to="/contact" />
+          <UButton
+            label="Schedule a Demo"
+            color="white"
+            size="lg"
+            to="/contact"
+          />
         </section>
       </div>
     </UContainer>
