@@ -193,6 +193,15 @@ const openSearch = () => {
 }
 
 const { gsap, setup } = useGsap()
+const expandedMobileItems = ref<Set<string>>(new Set())
+
+const toggleMobileSubmenu = (label: string) => {
+  if (expandedMobileItems.value.has(label)) {
+    expandedMobileItems.value.delete(label)
+  } else {
+    expandedMobileItems.value.add(label)
+  }
+}
 
 watch(isUserMenuOpen, (isOpen) => {
   if (isOpen) {
@@ -421,22 +430,129 @@ setup(() => {
     <!-- Mobile Menu Panel -->
     <div
       v-if="isMobileMenuOpen"
-      class="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/5 lg:hidden z-[199]"
+      class="mobile-menu-panel absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/5 lg:hidden z-[199] max-h-[calc(100vh-80px)] overflow-y-auto"
     >
       <nav class="flex flex-col divide-y divide-white/5">
-        <NuxtLink
+        <!-- Main Navigation Items with Expandable Submenus -->
+        <div
           v-for="item in items"
           :key="item.label"
-          :to="item.to"
-          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
+          class="mobile-menu-item"
         >
-          {{ item.label }}
-        </NuxtLink>
+          <button
+            v-if="item.hasMega"
+            class="w-full px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors flex items-center justify-between"
+            @click="toggleMobileSubmenu(item.label)"
+          >
+            <span>{{ item.label }}</span>
+            <UIcon
+              name="i-lucide-chevron-down"
+              class="w-4 h-4 transition-transform duration-300"
+              :class="expandedMobileItems.has(item.label) ? 'rotate-180' : ''"
+            />
+          </button>
+          <NuxtLink
+            v-else
+            :to="item.to"
+            class="block px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+            @click="isMobileMenuOpen = false"
+          >
+            {{ item.label }}
+          </NuxtLink>
 
+          <!-- Expandable Submenu for Events and Resources -->
+          <div
+            v-if="item.hasMega && expandedMobileItems.has(item.label)"
+            class="mobile-submenu bg-white/5 border-t border-white/5"
+          >
+            <!-- Events Submenu -->
+            <div
+              v-if="item.label === 'Events'"
+              class="divide-y divide-white/5"
+            >
+              <div class="px-4 py-3">
+                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
+                  Upcoming Events
+                </p>
+                <div class="space-y-2">
+                  <div
+                    v-for="event in megaMenuData.Events.upcoming"
+                    :key="event.title"
+                    class="text-xs"
+                  >
+                    <p class="text-white/80 font-semibold">
+                      {{ event.title }}
+                    </p>
+                    <p class="text-white/40 text-xs">
+                      {{ event.date }} • {{ event.desc }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="px-4 py-3">
+                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
+                  Featured Events
+                </p>
+                <div class="space-y-3">
+                  <NuxtLink
+                    v-for="event in megaMenuData.Events.featured"
+                    :key="event.title"
+                    :to="`/events?featured=${event.title}`"
+                    class="block text-xs hover:opacity-80 transition-opacity"
+                    @click="isMobileMenuOpen = false"
+                  >
+                    <p class="text-white/80 font-semibold">{{ event.title }}</p>
+                    <p class="text-white/40">{{ event.date }} • {{ event.location }}</p>
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+
+            <!-- Resources Submenu -->
+            <div
+              v-if="item.label === 'Resources'"
+              class="divide-y divide-white/5"
+            >
+              <div class="px-4 py-3">
+                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
+                  Categories
+                </p>
+                <div class="space-y-2">
+                  <NuxtLink
+                    v-for="category in megaMenuData.Resources.categories"
+                    :key="category.title"
+                    :to="category.to"
+                    class="block text-xs text-white/60 hover:text-white transition-colors py-1"
+                    @click="isMobileMenuOpen = false"
+                  >
+                    {{ category.title }}
+                  </NuxtLink>
+                </div>
+              </div>
+              <div class="px-4 py-3">
+                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
+                  Company
+                </p>
+                <div class="space-y-2">
+                  <NuxtLink
+                    v-for="link in megaMenuData.Resources.company"
+                    :key="link.label"
+                    :to="link.to"
+                    class="block text-xs text-white/60 hover:text-white transition-colors py-1"
+                    @click="isMobileMenuOpen = false"
+                  >
+                    {{ link.label }}
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Links -->
         <NuxtLink
           to="/about"
-          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
           @click="isMobileMenuOpen = false"
         >
           About
@@ -444,7 +560,7 @@ setup(() => {
 
         <NuxtLink
           to="/careers"
-          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
           @click="isMobileMenuOpen = false"
         >
           Careers
@@ -452,7 +568,7 @@ setup(() => {
 
         <NuxtLink
           to="/contact"
-          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
           @click="isMobileMenuOpen = false"
         >
           Contact
