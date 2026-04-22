@@ -232,6 +232,17 @@ watch(isMobileMenuOpen, (isOpen) => {
   }
 })
 
+// Animate submenu expansion
+watch(expandedMobileItems, () => {
+  nextTick(() => {
+    gsap.to('.mobile-submenu', {
+      duration: 0.3,
+      ease: 'power2.out',
+      stagger: 0.05
+    })
+  })
+}, { deep: true })
+
 setup(() => {
   gsap.from('.navbar-glow', {
     scaleX: 0,
@@ -463,7 +474,7 @@ setup(() => {
           <!-- Expandable Submenu for Events and Resources -->
           <div
             v-if="item.hasMega && expandedMobileItems.has(item.label)"
-            class="mobile-submenu bg-white/5 border-t border-white/5"
+            class="mobile-submenu bg-white/5 border-t border-white/5 transition-all duration-300 ease-out"
           >
             <!-- Events Submenu -->
             <div
