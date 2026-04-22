@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const baseUrl = config.public.siteUrl || 'https://nlfts.dev'
-  
+
   // Static pages with their priorities and change frequencies
   const staticPages = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
@@ -41,6 +41,6 @@ ${staticPages.map(page => `  <url>
   // Set proper headers
   setHeader(event, 'Content-Type', 'application/xml')
   setHeader(event, 'Cache-Control', 'max-age=3600') // Cache for 1 hour
-  
+
   return sitemap
 })

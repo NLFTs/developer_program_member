@@ -11,10 +11,15 @@ defineProps<{
 </script>
 
 <template>
-  <section class="partners-section py-16 lg:py-24 bg-black relative overflow-hidden" id="partners">
+  <section
+    id="partners"
+    class="partners-section py-16 lg:py-24 bg-black relative overflow-hidden"
+  >
     <UContainer>
       <div class="flex flex-col items-center text-center mb-12 gap-4">
-        <p class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">Trusted by</p>
+        <p class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">
+          Trusted by
+        </p>
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
           Leading organizations worldwide
         </h2>
@@ -22,8 +27,8 @@ defineProps<{
 
       <!-- Logo Grid -->
       <div class="partners-grid">
-        <a 
-          v-for="partner in partners" 
+        <a
+          v-for="partner in partners"
           :key="partner.name"
           :href="partner.url"
           target="_blank"
@@ -31,12 +36,12 @@ defineProps<{
           class="partner-logo-container group"
         >
           <div class="partner-logo-wrapper">
-            <img 
-              :src="partner.logo" 
+            <img
+              :src="partner.logo"
               :alt="partner.name"
               class="partner-logo-image"
               loading="lazy"
-            />
+            >
           </div>
         </a>
       </div>

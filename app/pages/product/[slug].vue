@@ -27,12 +27,17 @@ useSeoMeta({
     />
 
     <article class="prose prose-invert prose-primary max-w-none">
-      <ContentRenderer v-if="post" :value="post" />
+      <ContentRenderer
+        v-if="post"
+        :value="post"
+      />
     </article>
 
     <div class="mt-20 pt-10 border-t border-white/10">
       <div class="p-8 rounded-3xl bg-neutral-900/50 border border-neutral-800 text-center">
-        <h3 class="text-2xl font-bold text-white mb-4">Butuh bantuan lebih lanjut?</h3>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          Butuh bantuan lebih lanjut?
+        </h3>
         <p class="text-muted mb-8 max-w-md mx-auto">
           Tim developer kami siap membantu Anda mengimplementasikan template ini ke aplikasi Anda.
         </p>

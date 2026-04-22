@@ -1,30 +1,48 @@
 <template>
   <div class="hero">
     <div class="hero-inner">
-      <h1 class="hero-title">Developer</h1>
+      <h1 class="hero-title">
+        Developer
+      </h1>
 
-      <p class="hero-sub">NLFTs Program Member</p>
+      <p class="hero-sub">
+        NLFTs Program Member
+      </p>
 
       <p class="hero-desc">
         Program eksklusif untuk para developer yang ingin berkontribusi, berkolaborasi, dan membangun produk berkelas dunia bersama komunitas terbaik
       </p>
 
       <div class="hero-actions">
-        <NuxtLink 
-          to="/product" 
+        <NuxtLink
+          to="/product"
           class="hero-btn hero-btn-primary"
         >
           Get Started
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
           </svg>
         </NuxtLink>
-        <a href="#live-demo" class="hero-btn hero-btn-ghost">
+        <a
+          href="#live-demo"
+          class="hero-btn hero-btn-ghost"
+        >
           Live Demo
         </a>
       </div>
 
-      <p class="hero-meta">NLFTs &bull; Fts Project 2024 &bull; Grantara </p>
+      <p class="hero-meta">
+        NLFTs &bull; Fts Project 2024 &bull; Grantara
+      </p>
     </div>
   </div>
 </template>
@@ -40,7 +58,7 @@
   padding: calc(var(--header-height) + 2rem) 1rem 3rem;
   background-color: #000;
   /* Minimal Tech Background */
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
   background-size: 100% 100%, 80px 80px, 80px 80px;
   color: #fff;
@@ -56,7 +74,7 @@
   width: 100%;
   height: 100%;
   /* Very subtle accent vectors */
-  background: 
+  background:
     radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
   pointer-events: none;

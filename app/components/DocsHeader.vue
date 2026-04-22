@@ -69,12 +69,15 @@ const frameworks = computed(() => [
           :to="framework.to"
           class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all flex-shrink-0 border border-transparent"
           :class="[
-            framework.active 
-              ? 'bg-primary/10 text-primary border-primary/20' 
+            framework.active
+              ? 'bg-primary/10 text-primary border-primary/20'
               : 'text-white/60 hover:text-white hover:bg-white/5'
           ]"
         >
-          <UIcon :name="framework.icon" class="w-3.5 h-3.5" />
+          <UIcon
+            :name="framework.icon"
+            class="w-3.5 h-3.5"
+          />
           {{ framework.label }}
         </NuxtLink>
       </div>

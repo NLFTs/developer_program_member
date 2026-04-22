@@ -78,10 +78,19 @@ const values = [
         <!-- Stats -->
         <section class="mb-16">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div v-for="stat in stats" :key="stat.label">
-              <div class="text-3xl font-bold text-white mb-2">{{ stat.value }}</div>
-              <div class="text-sm text-neutral-400">{{ stat.label }}</div>
-              <div class="text-xs text-neutral-500 mt-1">{{ stat.note }}</div>
+            <div
+              v-for="stat in stats"
+              :key="stat.label"
+            >
+              <div class="text-3xl font-bold text-white mb-2">
+                {{ stat.value }}
+              </div>
+              <div class="text-sm text-neutral-400">
+                {{ stat.label }}
+              </div>
+              <div class="text-xs text-neutral-500 mt-1">
+                {{ stat.note }}
+              </div>
             </div>
           </div>
         </section>
@@ -90,7 +99,9 @@ const values = [
         <section class="mb-16">
           <div class="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+              <h2 class="text-3xl font-bold mb-6">
+                Our Mission
+              </h2>
               <p class="text-neutral-300 mb-4 leading-relaxed">
                 At NLFTs, we believe that great software starts with great developer tools. Our mission is to create an ecosystem of modern, efficient, and delightful tools that help developers build better applications faster.
               </p>
@@ -102,26 +113,43 @@ const values = [
               </p>
             </div>
             <div class="bg-neutral-900 rounded-lg p-8">
-              <h3 class="text-xl font-semibold mb-4">What We Do</h3>
+              <h3 class="text-xl font-semibold mb-4">
+                What We Do
+              </h3>
               <ul class="space-y-3 text-neutral-300">
                 <li class="flex items-center gap-3">
-                  <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
+                  <UIcon
+                    name="i-lucide-check"
+                    class="w-5 h-5 text-green-400"
+                  />
                   Build open-source developer tools
                 </li>
                 <li class="flex items-center gap-3">
-                  <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
+                  <UIcon
+                    name="i-lucide-check"
+                    class="w-5 h-5 text-green-400"
+                  />
                   Foster developer communities
                 </li>
                 <li class="flex items-center gap-3">
-                  <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
+                  <UIcon
+                    name="i-lucide-check"
+                    class="w-5 h-5 text-green-400"
+                  />
                   Provide educational resources
                 </li>
                 <li class="flex items-center gap-3">
-                  <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
+                  <UIcon
+                    name="i-lucide-check"
+                    class="w-5 h-5 text-green-400"
+                  />
                   Support emerging technologies
                 </li>
                 <li class="flex items-center gap-3">
-                  <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
+                  <UIcon
+                    name="i-lucide-check"
+                    class="w-5 h-5 text-green-400"
+                  />
                   Connect developers globally
                 </li>
               </ul>
@@ -131,49 +159,80 @@ const values = [
 
         <!-- Values -->
         <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">Our Values</h2>
+          <h2 class="text-3xl font-bold text-center mb-12">
+            Our Values
+          </h2>
           <div class="grid md:grid-cols-2 gap-8">
-            <div v-for="value in values" :key="value.title" class="border border-neutral-800 rounded-lg p-6">
+            <div
+              v-for="value in values"
+              :key="value.title"
+              class="border border-neutral-800 rounded-lg p-6"
+            >
               <div class="flex items-center gap-4 mb-4">
                 <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                  <UIcon :name="value.icon" class="w-5 h-5 text-blue-400" />
+                  <UIcon
+                    :name="value.icon"
+                    class="w-5 h-5 text-blue-400"
+                  />
                 </div>
-                <h3 class="text-lg font-semibold">{{ value.title }}</h3>
+                <h3 class="text-lg font-semibold">
+                  {{ value.title }}
+                </h3>
               </div>
-              <p class="text-neutral-400 leading-relaxed">{{ value.description }}</p>
+              <p class="text-neutral-400 leading-relaxed">
+                {{ value.description }}
+              </p>
             </div>
           </div>
         </section>
 
         <!-- Team -->
         <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+          <h2 class="text-3xl font-bold text-center mb-12">
+            Meet Our Team
+          </h2>
           <div class="grid md:grid-cols-3 gap-8">
-            <div v-for="member in team" :key="member.name" class="text-center">
-              <img 
-                :src="member.avatar" 
+            <div
+              v-for="member in team"
+              :key="member.name"
+              class="text-center"
+            >
+              <img
+                :src="member.avatar"
                 :alt="member.name"
                 class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                 loading="lazy"
-              />
-              <h3 class="text-lg font-semibold mb-1">{{ member.name }}</h3>
-              <p class="text-blue-400 text-sm mb-3">{{ member.role }}</p>
-              <p class="text-neutral-400 text-sm leading-relaxed">{{ member.bio }}</p>
-              <p class="text-xs text-neutral-500 mt-2">{{ member.note }}</p>
+              >
+              <h3 class="text-lg font-semibold mb-1">
+                {{ member.name }}
+              </h3>
+              <p class="text-blue-400 text-sm mb-3">
+                {{ member.role }}
+              </p>
+              <p class="text-neutral-400 text-sm leading-relaxed">
+                {{ member.bio }}
+              </p>
+              <p class="text-xs text-neutral-500 mt-2">
+                {{ member.note }}
+              </p>
             </div>
           </div>
         </section>
 
         <!-- History -->
         <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">Our Journey</h2>
+          <h2 class="text-3xl font-bold text-center mb-12">
+            Our Journey
+          </h2>
           <div class="space-y-8">
             <div class="flex gap-6">
               <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center shrink-0">
                 <span class="text-blue-400 font-bold">2022</span>
               </div>
               <div>
-                <h3 class="text-lg font-semibold mb-2">The Beginning</h3>
+                <h3 class="text-lg font-semibold mb-2">
+                  The Beginning
+                </h3>
                 <p class="text-neutral-400">
                   NLFTs was founded with a simple idea: make developer tools that developers actually want to use. We started with a small team and big dreams.
                 </p>
@@ -184,7 +243,9 @@ const values = [
                 <span class="text-blue-400 font-bold">2023</span>
               </div>
               <div>
-                <h3 class="text-lg font-semibold mb-2">Community Growth</h3>
+                <h3 class="text-lg font-semibold mb-2">
+                  Community Growth
+                </h3>
                 <p class="text-neutral-400">
                   Our first open-source projects gained traction, and we launched the developer program to support our growing community of contributors.
                 </p>
@@ -195,7 +256,9 @@ const values = [
                 <span class="text-blue-400 font-bold">2024</span>
               </div>
               <div>
-                <h3 class="text-lg font-semibold mb-2">Global Impact</h3>
+                <h3 class="text-lg font-semibold mb-2">
+                  Global Impact
+                </h3>
                 <p class="text-neutral-400">
                   Today, NLFTs tools are used by thousands of developers worldwide, and our community continues to grow and innovate together.
                 </p>
@@ -206,13 +269,26 @@ const values = [
 
         <!-- CTA -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Join Our Mission</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Join Our Mission
+          </h2>
           <p class="text-neutral-400 mb-6">
             Ready to be part of something bigger? Join our community and help shape the future of developer tools.
           </p>
           <div class="flex flex-wrap justify-center gap-4">
-            <UButton label="Join Community" color="white" size="lg" to="/devlovers" />
-            <UButton label="Contribute" color="neutral" size="lg" external to="https://github.com/nlfts" />
+            <UButton
+              label="Join Community"
+              color="white"
+              size="lg"
+              to="/devlovers"
+            />
+            <UButton
+              label="Contribute"
+              color="neutral"
+              size="lg"
+              external
+              to="https://github.com/nlfts"
+            />
           </div>
         </section>
       </div>

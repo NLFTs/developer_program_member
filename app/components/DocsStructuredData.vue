@@ -9,15 +9,15 @@ const structuredData = {
     {
       '@type': 'Organization',
       '@id': `${siteUrl}/#organization`,
-      name: 'NLFTs Developer Program',
-      url: siteUrl,
-      logo: {
+      'name': 'NLFTs Developer Program',
+      'url': siteUrl,
+      'logo': {
         '@type': 'ImageObject',
-        url: `${siteUrl}/logo.png`,
-        width: 512,
-        height: 512
+        'url': `${siteUrl}/logo.png`,
+        'width': 512,
+        'height': 512
       },
-      sameAs: [
+      'sameAs': [
         'https://github.com/nlfts',
         'https://twitter.com/nlfts',
         'https://discord.gg/nlfts'
@@ -27,17 +27,17 @@ const structuredData = {
     {
       '@type': 'WebSite',
       '@id': `${siteUrl}/#website`,
-      url: siteUrl,
-      name: 'NLFTs Developer Program',
-      description: 'Complete documentation and resources for developers',
-      publisher: {
+      'url': siteUrl,
+      'name': 'NLFTs Developer Program',
+      'description': 'Complete documentation and resources for developers',
+      'publisher': {
         '@id': `${siteUrl}/#organization`
       },
-      potentialAction: {
+      'potentialAction': {
         '@type': 'SearchAction',
-        target: {
+        'target': {
           '@type': 'EntryPoint',
-          urlTemplate: `${siteUrl}/search?q={search_term_string}`
+          'urlTemplate': `${siteUrl}/search?q={search_term_string}`
         },
         'query-input': 'required name=search_term_string'
       }
@@ -46,51 +46,51 @@ const structuredData = {
     {
       '@type': 'TechArticle',
       '@id': `${siteUrl}/docs/getting-started#article`,
-      headline: 'NLFTs Developer Documentation - Getting Started',
-      description: 'Complete guide to getting started with NLFTs API. Includes authentication, endpoints, code examples, and best practices.',
-      url: `${siteUrl}/docs/getting-started`,
-      datePublished: '2026-04-20',
-      dateModified: new Date().toISOString(),
-      author: {
+      'headline': 'NLFTs Developer Documentation - Getting Started',
+      'description': 'Complete guide to getting started with NLFTs API. Includes authentication, endpoints, code examples, and best practices.',
+      'url': `${siteUrl}/docs/getting-started`,
+      'datePublished': '2026-04-20',
+      'dateModified': new Date().toISOString(),
+      'author': {
         '@id': `${siteUrl}/#organization`
       },
-      publisher: {
+      'publisher': {
         '@id': `${siteUrl}/#organization`
       },
-      mainEntityOfPage: {
+      'mainEntityOfPage': {
         '@type': 'WebPage',
         '@id': `${siteUrl}/docs/getting-started`
       },
-      articleSection: 'Documentation',
-      keywords: 'NLFTs, API, documentation, developer guide, integration, SDK, REST API',
-      about: {
+      'articleSection': 'Documentation',
+      'keywords': 'NLFTs, API, documentation, developer guide, integration, SDK, REST API',
+      'about': {
         '@type': 'Thing',
-        name: 'API Documentation',
-        description: 'Technical documentation for NLFTs API integration'
+        'name': 'API Documentation',
+        'description': 'Technical documentation for NLFTs API integration'
       }
     },
     // Breadcrumb
     {
       '@type': 'BreadcrumbList',
       '@id': `${siteUrl}/docs/getting-started#breadcrumb`,
-      itemListElement: [
+      'itemListElement': [
         {
           '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: siteUrl
+          'position': 1,
+          'name': 'Home',
+          'item': siteUrl
         },
         {
           '@type': 'ListItem',
-          position: 2,
-          name: 'Documentation',
-          item: `${siteUrl}/docs`
+          'position': 2,
+          'name': 'Documentation',
+          'item': `${siteUrl}/docs`
         },
         {
           '@type': 'ListItem',
-          position: 3,
-          name: 'Getting Started',
-          item: `${siteUrl}/docs/getting-started`
+          'position': 3,
+          'name': 'Getting Started',
+          'item': `${siteUrl}/docs/getting-started`
         }
       ]
     },
@@ -98,21 +98,21 @@ const structuredData = {
     {
       '@type': 'FAQPage',
       '@id': `${siteUrl}/docs/getting-started#faq`,
-      mainEntity: [
+      'mainEntity': [
         {
           '@type': 'Question',
-          name: 'How do I get started with NLFTs API?',
-          acceptedAnswer: {
+          'name': 'How do I get started with NLFTs API?',
+          'acceptedAnswer': {
             '@type': 'Answer',
-            text: 'Visit our getting started guide at /docs/getting-started for complete documentation, code examples, and integration guides.'
+            'text': 'Visit our getting started guide at /docs/getting-started for complete documentation, code examples, and integration guides.'
           }
         },
         {
           '@type': 'Question',
-          name: 'Where can I find the API documentation?',
-          acceptedAnswer: {
+          'name': 'Where can I find the API documentation?',
+          'acceptedAnswer': {
             '@type': 'Answer',
-            text: 'Complete API documentation is available at /docs/getting-started with detailed endpoint references, authentication guides, and code examples.'
+            'text': 'Complete API documentation is available at /docs/getting-started with detailed endpoint references, authentication guides, and code examples.'
           }
         }
       ]

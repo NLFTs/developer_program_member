@@ -1,15 +1,19 @@
+interface GitHubUser {
+  [key: string]: unknown
+}
+
 export const useAuth = () => {
-  const user = useState<any>('auth-user', () => null)
+  const user = useState<GitHubUser | null>('auth-user', () => null)
   const isLoggedIn = computed(() => !!user.value)
 
   // Load user from localStorage on client side
   const loadUser = () => {
-    if (process.client) {
+    if (import.meta.client) {
       const stored = localStorage.getItem('github_user')
       if (stored) {
         try {
           user.value = JSON.parse(stored)
-        } catch (e) {
+        } catch {
           localStorage.removeItem('github_user')
           localStorage.removeItem('github_token')
         }
@@ -19,7 +23,7 @@ export const useAuth = () => {
 
   // Logout function
   const logout = () => {
-    if (process.client) {
+    if (import.meta.client) {
       localStorage.removeItem('github_user')
       localStorage.removeItem('github_token')
       user.value = null

@@ -19,15 +19,21 @@ useSeoMeta({
           <p class="text-xl text-neutral-400 max-w-2xl leading-relaxed">
             Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.
           </p>
-          <p class="text-sm text-neutral-500 mt-4">Effective Date: December 1, 2024</p>
+          <p class="text-sm text-neutral-500 mt-4">
+            Effective Date: December 1, 2024
+          </p>
         </section>
 
         <!-- Privacy Content -->
         <section class="prose prose-invert max-w-none space-y-8">
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">1. Information We Collect</h2>
-            
-            <h3 class="text-lg font-semibold mb-3">Personal Information</h3>
+            <h2 class="text-2xl font-bold mb-6">
+              1. Information We Collect
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-3">
+              Personal Information
+            </h3>
             <p class="text-neutral-400 mb-4">
               We collect information you provide directly to us, including:
             </p>
@@ -38,7 +44,9 @@ useSeoMeta({
               <li>• Payment information for premium services</li>
             </ul>
 
-            <h3 class="text-lg font-semibold mb-3">Usage Information</h3>
+            <h3 class="text-lg font-semibold mb-3">
+              Usage Information
+            </h3>
             <p class="text-neutral-400 mb-4">
               We automatically collect certain information about your use of our services:
             </p>
@@ -51,7 +59,9 @@ useSeoMeta({
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">2. How We Use Your Information</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              2. How We Use Your Information
+            </h2>
             <p class="text-neutral-400 mb-4">
               We use the information we collect to:
             </p>
@@ -66,7 +76,9 @@ useSeoMeta({
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">3. Information Sharing</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              3. Information Sharing
+            </h2>
             <p class="text-neutral-400 mb-4">
               We do not sell your personal information. We may share your information in the following circumstances:
             </p>
@@ -80,7 +92,9 @@ useSeoMeta({
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">4. Data Security</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              4. Data Security
+            </h2>
             <p class="text-neutral-400 mb-4">
               We implement appropriate security measures to protect your personal information:
             </p>
@@ -93,7 +107,9 @@ useSeoMeta({
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">5. Your Rights</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              5. Your Rights
+            </h2>
             <p class="text-neutral-400 mb-4">
               You have the following rights regarding your personal information:
             </p>
@@ -107,14 +123,18 @@ useSeoMeta({
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">6. Cookies and Tracking</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              6. Cookies and Tracking
+            </h2>
             <p class="text-neutral-400 mb-4">
               We use cookies and similar technologies to enhance your experience. You can control cookie settings through your browser preferences.
             </p>
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">7. Updates to This Policy</h2>
+            <h2 class="text-2xl font-bold mb-6">
+              7. Updates to This Policy
+            </h2>
             <p class="text-neutral-400 mb-4">
               We may update this privacy policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the effective date.
             </p>
@@ -123,11 +143,18 @@ useSeoMeta({
 
         <!-- Contact -->
         <section class="text-center mt-16 bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Questions About Privacy?</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Questions About Privacy?
+          </h2>
           <p class="text-neutral-400 mb-6">
             If you have any questions about this privacy policy or our data practices, please contact us.
           </p>
-          <UButton label="Contact Privacy Team" color="white" size="lg" to="/contact" />
+          <UButton
+            label="Contact Privacy Team"
+            color="white"
+            size="lg"
+            to="/contact"
+          />
         </section>
       </div>
     </UContainer>

@@ -16,9 +16,9 @@ const searchQuery = ref('')
 
 const filteredItems = computed(() => {
   if (!page.value) return []
-  return page.value.items.filter(item => {
-    const matchesSearch = item.name.toLowerCase().includes(searchQuery.value.toLowerCase()) || 
-                         item.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+  return page.value.items.filter((item) => {
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      || item.description.toLowerCase().includes(searchQuery.value.toLowerCase())
     const matchesCategory = selectedCategories.value.length === 0 || selectedCategories.value.includes(item.category)
     return matchesSearch && matchesCategory
   })
@@ -33,15 +33,19 @@ function toggleCategory(cat: string) {
   }
 }
 
+interface ProductItem {
+  [key: string]: unknown
+  slug?: string
+}
+
 function clearFilters() {
   selectedCategories.value = []
   searchQuery.value = ''
 }
 
-const { user, isLoggedIn } = useAuth()
-const router = useRouter()
+const { isLoggedIn } = useAuth()
 
-const handlePurchase = (item: any) => {
+const handlePurchase = (item: ProductItem) => {
   if (!isLoggedIn.value) {
     // If not logged in, redirect to login with a query param to return here
     return navigateTo({
@@ -49,14 +53,17 @@ const handlePurchase = (item: any) => {
       query: { redirect: `/product/${item.slug}` }
     })
   }
-  
+
   // If logged in, proceed to product page or purchase logic
   navigateTo(`/product/${item.slug}`)
 }
 </script>
 
 <template>
-  <UMain v-if="page" class="bg-black text-white py-16">
+  <UMain
+    v-if="page"
+    class="bg-black text-white py-16"
+  >
     <UContainer>
       <!-- Refined Header -->
       <section class="max-w-3xl mb-20">
@@ -77,21 +84,21 @@ const handlePurchase = (item: any) => {
               Filters
             </h3>
             <div class="space-y-3">
-              <button 
-                v-for="cat in page.categories" 
+              <button
+                v-for="cat in page.categories"
                 :key="cat"
-                @click="toggleCategory(cat)"
                 class="block text-sm transition-colors text-left w-full"
                 :class="selectedCategories.includes(cat) ? 'text-white' : 'text-neutral-500 hover:text-neutral-300'"
+                @click="toggleCategory(cat)"
               >
                 {{ cat }}
               </button>
             </div>
-            
-            <button 
+
+            <button
               v-if="selectedCategories.length > 0 || searchQuery"
-              @click="clearFilters" 
               class="mt-8 text-[10px] uppercase tracking-wider text-primary-500 hover:text-primary-400"
+              @click="clearFilters"
             >
               Reset All
             </button>
@@ -102,30 +109,36 @@ const handlePurchase = (item: any) => {
         <div class="flex-1">
           <!-- Search -->
           <div class="mb-12">
-            <input 
+            <input
               v-model="searchQuery"
-              type="text" 
-              placeholder="Search templates..." 
+              type="text"
+              placeholder="Search templates..."
               class="w-full bg-transparent border-b border-neutral-900 pb-4 text-sm focus:outline-none focus:border-neutral-700 transition-colors placeholder:text-neutral-700"
-            />
+            >
           </div>
 
           <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
-            <div 
-              v-for="item in filteredItems" 
+            <div
+              v-for="item in filteredItems"
               :key="item.slug"
               class="group block"
             >
               <!-- Image Container -->
               <div class="aspect-[16/10] overflow-hidden bg-neutral-900 rounded-sm mb-6 border border-neutral-900 group-hover:border-neutral-800 transition-colors">
-                <img 
-                  v-if="item.thumbnail" 
-                  :src="item.thumbnail" 
+                <img
+                  v-if="item.thumbnail"
+                  :src="item.thumbnail"
                   :alt="item.name"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out grayscale hover:grayscale-0"
-                />
-                <div v-else class="w-full h-full flex items-center justify-center text-neutral-800">
-                  <UIcon name="i-lucide-package" class="w-12 h-12" />
+                >
+                <div
+                  v-else
+                  class="w-full h-full flex items-center justify-center text-neutral-800"
+                >
+                  <UIcon
+                    name="i-lucide-package"
+                    class="w-12 h-12"
+                  />
                 </div>
               </div>
 
@@ -133,10 +146,15 @@ const handlePurchase = (item: any) => {
               <div class="space-y-3">
                 <div class="flex items-center justify-between">
                   <span class="text-[10px] font-mono text-neutral-600 uppercase tracking-widest">{{ item.category }}</span>
-                  <span v-if="item.priceType === 'paid'" class="text-[10px] font-mono text-white">{{ item.price }}</span>
+                  <span
+                    v-if="item.priceType === 'paid'"
+                    class="text-[10px] font-mono text-white"
+                  >{{ item.price }}</span>
                 </div>
-                
-                <h3 class="text-lg font-semibold tracking-tight">{{ item.name }}</h3>
+
+                <h3 class="text-lg font-semibold tracking-tight">
+                  {{ item.name }}
+                </h3>
                 <p class="text-sm text-neutral-500 leading-relaxed line-clamp-2">
                   {{ item.description }}
                 </p>
@@ -151,20 +169,23 @@ const handlePurchase = (item: any) => {
                     label="Buy Now"
                     @click="handlePurchase(item)"
                   />
-                  <NuxtLink 
+                  <NuxtLink
                     v-else
                     :to="`/product/${item.slug}`"
                     class="text-xs font-semibold py-2 px-4 bg-white text-black rounded-sm hover:bg-neutral-200 transition-colors"
                   >
                     Get Started
                   </NuxtLink>
-                  <a 
-                    :href="item.liveDemo" 
+                  <a
+                    :href="item.liveDemo"
                     target="_blank"
                     class="text-xs text-neutral-400 hover:text-white transition-colors flex items-center gap-1"
                   >
                     Demo
-                    <UIcon name="i-lucide-arrow-up-right" class="w-3 h-3" />
+                    <UIcon
+                      name="i-lucide-arrow-up-right"
+                      class="w-3 h-3"
+                    />
                   </a>
                 </div>
               </div>

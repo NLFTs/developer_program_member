@@ -1,7 +1,25 @@
+interface TokenResponse {
+  access_token?: string
+  [key: string]: unknown
+}
+
+interface GitHubUserData {
+  id?: number
+  login?: string
+  name?: string
+  avatar_url?: string
+  email?: string
+  bio?: string
+  location?: string
+  blog?: string
+  company?: string
+  [key: string]: unknown
+}
+
 export default defineEventHandler(async (event) => {
   const { code } = await readBody(event)
   const config = useRuntimeConfig()
-  
+
   if (!code) {
     throw createError({
       statusCode: 400,
@@ -11,7 +29,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     // Exchange code for access token
-    const tokenResponse = await $fetch('https://github.com/login/oauth/access_token', {
+    const tokenResponse = await $fetch<TokenResponse>('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -24,17 +42,17 @@ export default defineEventHandler(async (event) => {
       }
     })
 
-    const accessToken = (tokenResponse as any).access_token
+    const accessToken = tokenResponse?.access_token
 
     if (!accessToken) {
       throw new Error('Failed to get access token')
     }
 
     // Get user data from GitHub
-    const userData = await $fetch('https://api.github.com/user', {
+    const userData = await $fetch<GitHubUserData>('https://api.github.com/user', {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Accept': 'application/json'
+        Authorization: `Bearer ${accessToken}`,
+        Accept: 'application/json'
       }
     })
 
@@ -43,18 +61,18 @@ export default defineEventHandler(async (event) => {
       success: true,
       access_token: accessToken,
       user: {
-        id: (userData as any).id,
-        username: (userData as any).login,
-        name: (userData as any).name,
-        avatar: (userData as any).avatar_url,
-        email: (userData as any).email,
-        bio: (userData as any).bio,
-        location: (userData as any).location,
-        website: (userData as any).blog,
-        company: (userData as any).company
+        id: userData?.id,
+        username: userData?.login,
+        name: userData?.name,
+        avatar: userData?.avatar_url,
+        email: userData?.email,
+        bio: userData?.bio,
+        location: userData?.location,
+        website: userData?.blog,
+        company: userData?.company
       }
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error('GitHub OAuth error:', error)
     throw createError({
       statusCode: 500,

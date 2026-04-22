@@ -8,15 +8,8 @@ export default defineNuxtConfig({
     'nuxt-og-image'
   ],
 
-  colorMode: {
-    preference: 'dark',
-    fallback: 'dark',
-    classSuffix: ''
-  },
-
-  site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://developer.nlfts.com', // fallback
-    name: 'NLFTs Developer Program'
+  devtools: {
+    enabled: true
   },
 
   app: {
@@ -28,13 +21,13 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' },
-        
+
         // Primary Meta Tags
         { name: 'title', content: 'NLFTs Developer Program - Complete API Documentation' },
         { name: 'description', content: 'Complete documentation, guides, and resources for developers. Learn how to integrate NLFTs with our comprehensive API documentation at /docs/getting-started' },
         { name: 'keywords', content: 'NLFTs, API, documentation, developer, guide, tutorial, integration, SDK, REST API, GraphQL, developer program' },
         { name: 'author', content: 'NLFTs Developer Program' },
-        
+
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://nlfts.dev' },
@@ -43,24 +36,24 @@ export default defineNuxtConfig({
         { property: 'og:image', content: 'https://nlfts.dev/og-image.png' },
         { property: 'og:site_name', content: 'NLFTs Developer Program' },
         { property: 'og:locale', content: 'en_US' },
-        
+
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:url', content: 'https://nlfts.dev' },
         { name: 'twitter:title', content: 'NLFTs Developer Program' },
         { name: 'twitter:description', content: 'Complete API documentation at /docs/getting-started' },
         { name: 'twitter:image', content: 'https://nlfts.dev/og-image.png' },
-        
+
         // Additional SEO
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
         { name: 'googlebot', content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' },
         { name: 'bingbot', content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' },
-        
+
         // Mobile
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        
+
         // Theme
         { name: 'theme-color', content: '#020420' },
         { name: 'msapplication-TileColor', content: '#020420' }
@@ -75,11 +68,29 @@ export default defineNuxtConfig({
     }
   },
 
-  devtools: {
-    enabled: true
+  css: ['~/assets/css/main.css'],
+
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://developer.nlfts.com', // fallback
+    name: 'NLFTs Developer Program'
   },
 
-  css: ['~/assets/css/main.css'],
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+    classSuffix: ''
+  },
+
+  runtimeConfig: {
+    // Private keys (server-side only)
+    githubClientSecret: process.env.GITHUB_CLIENT_SECRET,
+
+    // Public keys (exposed to client)
+    public: {
+      githubClientId: process.env.GITHUB_CLIENT_ID,
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://nlfts.dev'
+    }
+  },
 
   routeRules: {
     '/docs': { redirect: '/docs/getting-started', prerender: false }
@@ -121,17 +132,6 @@ export default defineNuxtConfig({
         commaDangle: 'never',
         braceStyle: '1tbs'
       }
-    }
-  },
-
-  runtimeConfig: {
-    // Private keys (server-side only)
-    githubClientSecret: process.env.GITHUB_CLIENT_SECRET,
-    
-    // Public keys (exposed to client)
-    public: {
-      githubClientId: process.env.GITHUB_CLIENT_ID,
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://nlfts.dev'
     }
   }
 })

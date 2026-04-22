@@ -41,7 +41,10 @@ onMounted(() => {
           class="flex items-center gap-1.5 bg-red-600 hover:bg-red-500 transition-colors text-white text-xs font-semibold px-3 py-1.5 rounded-md whitespace-nowrap"
         >
           Gabung Sekarang
-          <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
+          <UIcon
+            name="i-lucide-arrow-right"
+            class="w-3 h-3"
+          />
         </NuxtLink>
 
         <!-- Close button -->
@@ -50,7 +53,10 @@ onMounted(() => {
           aria-label="Tutup banner"
           @click="dismiss"
         >
-          <UIcon name="i-lucide-x" class="w-4 h-4" />
+          <UIcon
+            name="i-lucide-x"
+            class="w-4 h-4"
+          />
         </button>
       </div>
     </div>

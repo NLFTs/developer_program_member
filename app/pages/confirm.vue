@@ -5,7 +5,7 @@ const router = useRouter()
 
 onMounted(async () => {
   const code = route.query.code as string
-  
+
   if (code) {
     try {
       // Exchange code for access token (you'll need a server endpoint for this)
@@ -14,12 +14,12 @@ onMounted(async () => {
         method: 'POST',
         body: { code }
       })
-      
+
       if (response && response.user) {
         // Store user data in localStorage (simple approach without database)
         localStorage.setItem('github_user', JSON.stringify(response.user))
         localStorage.setItem('github_token', response.access_token)
-        
+
         // Notify parent window if in popup
         if (window.opener && window.opener !== window) {
           window.opener.postMessage({ type: 'github-auth-success' }, window.location.origin)
@@ -49,7 +49,10 @@ onMounted(async () => {
     <div class="relative">
       <div class="w-16 h-16 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
       <div class="absolute inset-0 flex items-center justify-center">
-        <UIcon name="i-simple-icons-github" class="w-6 h-6 text-white/50" />
+        <UIcon
+          name="i-simple-icons-github"
+          class="w-6 h-6 text-white/50"
+        />
       </div>
     </div>
     <p class="mt-6 text-white/60 font-medium tracking-wide animate-pulse">

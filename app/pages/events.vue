@@ -15,7 +15,10 @@ defineOgImageComponent('Saas')
 </script>
 
 <template>
-  <div v-if="page" class="bg-black min-h-screen text-white">
+  <div
+    v-if="page"
+    class="bg-black min-h-screen text-white"
+  >
     <UPageHero
       :title="page.hero.title"
       :description="page.hero.description"
@@ -31,13 +34,18 @@ defineOgImageComponent('Saas')
         >
           <template #header>
             <div class="relative aspect-video -m-4 overflow-hidden">
-              <img 
-                :src="event.image" 
-                :alt="event.title" 
+              <img
+                :src="event.image"
+                :alt="event.title"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               >
               <div class="absolute top-4 left-4">
-                <UBadge color="sky" variant="solid" size="sm" class="font-bold">
+                <UBadge
+                  color="sky"
+                  variant="solid"
+                  size="sm"
+                  class="font-bold"
+                >
                   {{ event.date }}
                 </UBadge>
               </div>
@@ -52,7 +60,10 @@ defineOgImageComponent('Saas')
               {{ event.description }}
             </p>
             <div class="flex items-center gap-2 text-xs text-neutral-500">
-              <UIcon name="i-lucide-map-pin" class="w-4 h-4 text-sky-500" />
+              <UIcon
+                name="i-lucide-map-pin"
+                class="w-4 h-4 text-sky-500"
+              />
               {{ event.location }}
             </div>
           </div>

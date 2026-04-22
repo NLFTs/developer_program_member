@@ -75,32 +75,34 @@ const starterKits = [
         <!-- Starter Kits Grid -->
         <section class="mb-16">
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div 
-              v-for="kit in starterKits" 
+            <div
+              v-for="kit in starterKits"
               :key="kit.name"
               class="group border border-neutral-800 rounded-lg overflow-hidden hover:border-neutral-700 transition-all duration-300"
             >
               <!-- Image -->
               <div class="aspect-video overflow-hidden">
-                <img 
-                  :src="kit.image" 
+                <img
+                  :src="kit.image"
                   :alt="kit.name"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                />
+                >
               </div>
 
               <!-- Content -->
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">{{ kit.name }}</h3>
+                <h3 class="text-xl font-semibold mb-3">
+                  {{ kit.name }}
+                </h3>
                 <p class="text-neutral-400 text-sm mb-4 leading-relaxed">
                   {{ kit.description }}
                 </p>
 
                 <!-- Tech Stack -->
                 <div class="flex flex-wrap gap-2 mb-6">
-                  <span 
-                    v-for="tech in kit.tech" 
+                  <span
+                    v-for="tech in kit.tech"
                     :key="tech"
                     class="text-xs bg-neutral-800 text-neutral-300 px-2 py-1 rounded-full"
                   >
@@ -110,18 +112,18 @@ const starterKits = [
 
                 <!-- Actions -->
                 <div class="flex gap-3">
-                  <UButton 
-                    label="GitHub" 
-                    color="neutral" 
-                    size="sm" 
+                  <UButton
+                    label="GitHub"
+                    color="neutral"
+                    size="sm"
                     :to="kit.github"
                     external
                     class="flex-1"
                   />
-                  <UButton 
-                    label="Demo" 
-                    color="white" 
-                    size="sm" 
+                  <UButton
+                    label="Demo"
+                    color="white"
+                    size="sm"
                     :to="kit.demo"
                     external
                     class="flex-1"
@@ -134,13 +136,17 @@ const starterKits = [
 
         <!-- Getting Started -->
         <section class="mb-16">
-          <h2 class="text-2xl font-bold mb-8 text-center">How to Use Starter Kits</h2>
+          <h2 class="text-2xl font-bold mb-8 text-center">
+            How to Use Starter Kits
+          </h2>
           <div class="grid md:grid-cols-3 gap-8">
             <div class="text-center">
               <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <span class="text-blue-400 font-bold text-xl">1</span>
               </div>
-              <h3 class="font-semibold mb-2">Clone Repository</h3>
+              <h3 class="font-semibold mb-2">
+                Clone Repository
+              </h3>
               <p class="text-neutral-400 text-sm">
                 Clone the starter kit repository to your local machine using Git.
               </p>
@@ -149,7 +155,9 @@ const starterKits = [
               <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <span class="text-blue-400 font-bold text-xl">2</span>
               </div>
-              <h3 class="font-semibold mb-2">Install Dependencies</h3>
+              <h3 class="font-semibold mb-2">
+                Install Dependencies
+              </h3>
               <p class="text-neutral-400 text-sm">
                 Run npm install or yarn install to install all required dependencies.
               </p>
@@ -158,7 +166,9 @@ const starterKits = [
               <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <span class="text-blue-400 font-bold text-xl">3</span>
               </div>
-              <h3 class="font-semibold mb-2">Start Building</h3>
+              <h3 class="font-semibold mb-2">
+                Start Building
+              </h3>
               <p class="text-neutral-400 text-sm">
                 Customize the template and start building your amazing project.
               </p>
@@ -168,11 +178,18 @@ const starterKits = [
 
         <!-- CTA -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Need a Custom Starter Kit?</h2>
+          <h2 class="text-2xl font-bold mb-4">
+            Need a Custom Starter Kit?
+          </h2>
           <p class="text-neutral-400 mb-6">
             Can't find what you're looking for? We can create a custom starter kit tailored to your specific needs.
           </p>
-          <UButton label="Request Custom Kit" color="white" size="lg" to="/contact" />
+          <UButton
+            label="Request Custom Kit"
+            color="white"
+            size="lg"
+            to="/contact"
+          />
         </section>
       </div>
     </UContainer>
