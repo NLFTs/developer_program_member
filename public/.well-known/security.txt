@@ -1,0 +1,10 @@
+Contact: security@nlfts.dev
+Contact: https://nlfts.dev/contact
+Expires: 2027-12-31T23:59:59.000Z
+Encryption: https://nlfts.dev/pgp-key.txt
+Preferred-Languages: en
+Canonical: https://nlfts.dev/.well-known/security.txt
+
+# Security Policy
+# If you discover a security vulnerability, please report it responsibly.
+# We appreciate your efforts to improve our security.

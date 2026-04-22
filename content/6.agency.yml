@@ -7,15 +7,15 @@ agencies:
   - name: FTs Project Software labs
     description: Core R&D laboratory for Tux Framework. Focused on high-performance infrastructure and experimental software engineering.
     location: Indonesia
-    icon: i-lucide-cpu
+    icon: https://avatars.githubusercontent.com/u/252723835?s=200&v=4
     expertise:
       - Core Framework
       - Software R&D
       - Product Design
-  - name: Asia Code 2022
+  - name: ITK
     description: Digital excellence academy. Curating the next generation of engineers through precision-focused intensives.
     location: Asia
-    icon: i-lucide-award
+    icon: https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center
     expertise:
       - Academy
       - Bootcamp
@@ -23,7 +23,15 @@ agencies:
   - name: Grantara Nusantara
     description: Ecosystem architects. Building and managing influential community infrastructures on a national scale.
     location: Nusantara
-    icon: i-lucide-globe
+    icon: https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center
+    expertise:
+      - Community Management
+      - Event Organizing
+      - Developer Relations
+  - name: Vuxilabs
+    description: The Startup as a @NLFTs Company
+    location: Nusantara
+    icon: https://avatars.githubusercontent.com/u/264552738?s=200&v=4
     expertise:
       - Community Management
       - Event Organizing

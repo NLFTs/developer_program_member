@@ -69,12 +69,11 @@ const expertises = [
               <!-- Brand Mark -->
               <div class="aspect-square bg-neutral-900 overflow-hidden flex items-center justify-center rounded-sm">
                 <img 
-                  v-if="agency.icon.startsWith('/')" 
                   :src="agency.icon" 
                   :alt="agency.name"
                   class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500"
+                  loading="lazy"
                 />
-                <UIcon v-else :name="agency.icon" class="w-10 h-10 text-neutral-700" />
               </div>
 
               <!-- Main Info -->

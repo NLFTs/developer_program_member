@@ -1,0 +1,20 @@
+{
+  "name": "NLFTs Developer Program",
+  "short_name": "NLFTs",
+  "description": "Complete API documentation and developer resources for NLFTs",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020420",
+  "theme_color": "#020420",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["developer", "documentation", "api", "tools"],
+  "lang": "en",
+  "dir": "ltr"
+}
