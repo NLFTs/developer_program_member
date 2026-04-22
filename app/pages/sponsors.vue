@@ -2,7 +2,7 @@
   <UMain class="py-24">
     <UContainer>
       <UPageHeader
-        title="Sponsors"
+        title="Sponsor"
         description="Dukung pengembangan open source dan jadilah bagian dari perjalanan kami."
         class="text-center"
       />

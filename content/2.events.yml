@@ -1,34 +1,34 @@
-title: Events & Community
+title: Acara & Komunitas
 description: Bergabunglah dengan berbagai event eksklusif kami, mulai dari workshop hingga developer meetups.
 
 hero:
-  title: Upcoming Events
+  title: Acara Mendatang
   description: Jelajahi agenda terbaru kami dan tingkatkan skill Anda bersama komunitas NLFTs.
 
 events:
-  - title: NLFTs Workshop 2024
+  - title: Workshop NLFTs 2024
     description: Belajar mendalam tentang pengembangan modul terbuka dan integrasi cloud.
-    date: Oct 15, 2024
-    location: Online Webinar
+    date: 15 Okt 2024
+    location: Webinar Online
     image: https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=60
     link: /events/workshop-2024
   
   - title: Developer Meetup Jakarta
     description: Networking dan diskusi santai dengan para kontributor NLFTs.
-    date: Nov 2, 2024
+    date: 2 Nov 2024
     location: Jakarta, Indonesia
     image: https://images.unsplash.com/photo-1591115765373-520b7a21769b?w=800&auto=format&fit=crop&q=60
     link: /events/meetup-jkt
 
-  - title: Open Source Hackathon
+  - title: Hackathon Open Source
     description: Berkolaborasi dalam membangun fitur-fitur baru untuk ekosistem NLFTs.
-    date: Dec 12, 2024
-    location: Hybrid Event
+    date: 12 Des 2024
+    location: Event Hybrid
     image: https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=60
     link: /events/hackathon
 
 faq:
-  title: Frequently Asked Questions
+  title: Pertanyaan yang Sering Diajukan
   description: Semua yang perlu Anda ketahui tentang event kami.
   items:
     - label: Apakah event ini gratis?

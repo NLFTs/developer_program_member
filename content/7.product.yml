@@ -1,5 +1,5 @@
 title: Template dan Starter Kit
-description: Temukan template, starter kit, dan tema Next.js, Nuxt,js, Laravel, dll untuk mempercepat pembuatan aplikasi dan situs web Anda.
+description: Temukan template, starter kit, dan tema Next.js, Nuxt.js, Laravel, dll untuk mempercepat pembuatan aplikasi dan situs web Anda.
 categories:
   - AI
   - Starter
@@ -7,14 +7,14 @@ categories:
 items:
   - slug: portofolio-nuxt
     name: Portofolio Nuxt.js
-    description: Ultra-minimalist SaaS foundation. Clean architecture, integrated auth, and high-performance database.
+    description: Fondasi SaaS ultra-minimalis. Arsitektur bersih, autentikasi terintegrasi, dan database berkinerja tinggi.
     category: Starter
     priceType: free
     liveDemo: https://destkaa.nlfts.dev
     thumbnail: https://github.com/NLFTs/portofolio/raw/main/public/og.png
   - slug: ai-chatbot-template
     name: Chatbot AI
-    description: Sophisticated AI interface powered by Vercel SDK. Built for seamless user interactions and rapid scaling.
+    description: Antarmuka AI canggih yang didukung oleh Vercel SDK. Dibangun untuk interaksi pengguna yang mulus dan penskalaan cepat.
     category: AI
     priceType: paid
     price: Rp 149.000
@@ -22,7 +22,7 @@ items:
     thumbnail: /home/davingm/.gemini/antigravity/brain/45f31c62-effc-405c-aada-8b9eb0fa6eeb/ai_interface_premium_1773532643581.png
   - slug: ecommerce-hub
     name: E-commerce Hub
-    description: Next-generation online commerce kit. Precision design with optimized conversion flows and local payment support.
+    description: Kit perdagangan online generasi berikutnya. Desain presisi dengan alur konversi yang dioptimalkan dan dukungan pembayaran lokal.
     category: Ecommerce
     priceType: paid
     price: Rp 299.000
