@@ -16,13 +16,13 @@ export default defineNuxtConfig({
 
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://developer.nlfts.com', // fallback
-    name: 'NLFTs Developer Program'
+    name: 'Program Developer NLFTs'
   },
 
   app: {
     head: {
       htmlAttrs: {
-        lang: 'en'
+        lang: 'id'
       },
       meta: [
         { charset: 'utf-8' },
@@ -30,25 +30,25 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
         
         // Primary Meta Tags
-        { name: 'title', content: 'NLFTs Developer Program - Complete API Documentation' },
-        { name: 'description', content: 'Complete documentation, guides, and resources for developers. Learn how to integrate NLFTs with our comprehensive API documentation at /docs/getting-started' },
-        { name: 'keywords', content: 'NLFTs, API, documentation, developer, guide, tutorial, integration, SDK, REST API, GraphQL, developer program' },
-        { name: 'author', content: 'NLFTs Developer Program' },
+        { name: 'title', content: 'Program Developer NLFTs - Dokumentasi API Lengkap' },
+        { name: 'description', content: 'Dokumentasi lengkap, panduan, dan sumber daya untuk developer. Pelajari cara mengintegrasikan NLFTs dengan dokumentasi API komprehensif kami di /docs/getting-started' },
+        { name: 'keywords', content: 'NLFTs, API, dokumentasi, developer, panduan, tutorial, integrasi, SDK, REST API, GraphQL, program developer' },
+        { name: 'author', content: 'Program Developer NLFTs' },
         
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://nlfts.dev' },
-        { property: 'og:title', content: 'NLFTs Developer Program - Complete API Documentation' },
-        { property: 'og:description', content: 'Complete documentation and developer guides. Visit /docs/getting-started for full API reference.' },
+        { property: 'og:title', content: 'Program Developer NLFTs - Dokumentasi API Lengkap' },
+        { property: 'og:description', content: 'Dokumentasi lengkap dan panduan developer. Kunjungi /docs/getting-started untuk referensi API lengkap.' },
         { property: 'og:image', content: 'https://nlfts.dev/og-image.png' },
-        { property: 'og:site_name', content: 'NLFTs Developer Program' },
-        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:site_name', content: 'Program Developer NLFTs' },
+        { property: 'og:locale', content: 'id_ID' },
         
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:url', content: 'https://nlfts.dev' },
-        { name: 'twitter:title', content: 'NLFTs Developer Program' },
-        { name: 'twitter:description', content: 'Complete API documentation at /docs/getting-started' },
+        { name: 'twitter:title', content: 'Program Developer NLFTs' },
+        { name: 'twitter:description', content: 'Dokumentasi API lengkap di /docs/getting-started' },
         { name: 'twitter:image', content: 'https://nlfts.dev/og-image.png' },
         
         // Additional SEO

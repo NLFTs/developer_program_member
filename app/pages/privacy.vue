@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Privacy Policy - NLFTs Developer Program',
-  ogTitle: 'Privacy Policy - NLFTs Developer Program',
-  description: 'Privacy policy for NLFTs Developer Program. Learn how we collect, use, and protect your personal information.',
-  ogDescription: 'Privacy policy for NLFTs Developer Program. Learn how we collect, use, and protect your personal information.'
+  title: 'Kebijakan Privasi - Program Developer NLFTs',
+  ogTitle: 'Kebijakan Privasi - Program Developer NLFTs',
+  description: 'Kebijakan privasi untuk Program Developer NLFTs. Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.',
+  ogDescription: 'Kebijakan privasi untuk Program Developer NLFTs. Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.'
 })
 </script>
 
@@ -14,120 +14,97 @@ useSeoMeta({
         <!-- Header -->
         <section class="mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Privacy Policy
+            Kebijakan Privasi
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl leading-relaxed">
-            Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.
+            Privasi Anda penting bagi kami. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.
           </p>
-          <p class="text-sm text-neutral-500 mt-4">Effective Date: December 1, 2024</p>
+          <p class="text-sm text-neutral-500 mt-4">Tanggal Berlaku: 1 Desember 2024</p>
         </section>
 
         <!-- Privacy Content -->
         <section class="prose prose-invert max-w-none space-y-8">
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">1. Information We Collect</h2>
+            <h2 class="text-2xl font-bold mb-6">1. Informasi yang Kami Kumpulkan</h2>
             
-            <h3 class="text-lg font-semibold mb-3">Personal Information</h3>
+            <h3 class="text-lg font-semibold mb-3">Informasi Pribadi</h3>
             <p class="text-neutral-400 mb-4">
-              We collect information you provide directly to us, including:
+              Kami mengumpulkan informasi yang Anda berikan langsung kepada kami, termasuk:
             </p>
             <ul class="text-neutral-400 mb-6 space-y-2">
-              <li>• Name and email address when you create an account</li>
-              <li>• Profile information and preferences</li>
-              <li>• Communications with our support team</li>
-              <li>• Payment information for premium services</li>
+              <li>• Nama dan alamat email saat Anda membuat akun</li>
+              <li>• Informasi profil dan preferensi</li>
+              <li>• Komunikasi dengan tim dukungan kami</li>
+              <li>• Informasi pembayaran untuk layanan premium</li>
             </ul>
 
-            <h3 class="text-lg font-semibold mb-3">Usage Information</h3>
+            <h3 class="text-lg font-semibold mb-3">Informasi Penggunaan</h3>
             <p class="text-neutral-400 mb-4">
-              We automatically collect certain information about your use of our services:
+              Kami secara otomatis mengumpulkan informasi tertentu tentang penggunaan Anda terhadap layanan kami:
             </p>
             <ul class="text-neutral-400 mb-6 space-y-2">
-              <li>• Pages visited and features used</li>
-              <li>• Time spent on our platform</li>
-              <li>• Device and browser information</li>
-              <li>• IP address and location data</li>
-            </ul>
-          </div>
-
-          <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">2. How We Use Your Information</h2>
-            <p class="text-neutral-400 mb-4">
-              We use the information we collect to:
-            </p>
-            <ul class="text-neutral-400 mb-6 space-y-2">
-              <li>• Provide and improve our services</li>
-              <li>• Process transactions and send confirmations</li>
-              <li>• Send important updates and notifications</li>
-              <li>• Provide customer support</li>
-              <li>• Analyze usage patterns and optimize performance</li>
-              <li>• Prevent fraud and ensure security</li>
+              <li>• Halaman yang dikunjungi dan fitur yang digunakan</li>
+              <li>• Waktu yang dihabiskan di platform kami</li>
+              <li>• Informasi perangkat dan browser</li>
+              <li>• Alamat IP dan data lokasi</li>
             </ul>
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">3. Information Sharing</h2>
+            <h2 class="text-2xl font-bold mb-6">2. Bagaimana Kami Menggunakan Informasi Anda</h2>
             <p class="text-neutral-400 mb-4">
-              We do not sell your personal information. We may share your information in the following circumstances:
+              Kami menggunakan informasi yang kami kumpulkan untuk:
             </p>
             <ul class="text-neutral-400 mb-6 space-y-2">
-              <li>• With your consent</li>
-              <li>• With service providers who help us operate our platform</li>
-              <li>• To comply with legal obligations</li>
-              <li>• To protect our rights and prevent fraud</li>
-              <li>• In connection with a business transfer</li>
+              <li>• Menyediakan dan meningkatkan layanan kami</li>
+              <li>• Memproses transaksi dan mengirim konfirmasi</li>
+              <li>• Mengirim pembaruan penting dan notifikasi</li>
+              <li>• Menyediakan dukungan pelanggan</li>
+              <li>• Menganalisis pola penggunaan dan mengoptimalkan performa</li>
+              <li>• Mencegah penipuan dan memastikan keamanan</li>
             </ul>
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">4. Data Security</h2>
+            <h2 class="text-2xl font-bold mb-6">3. Berbagi Informasi</h2>
             <p class="text-neutral-400 mb-4">
-              We implement appropriate security measures to protect your personal information:
+              Kami tidak menjual informasi pribadi Anda. Kami dapat berbagi informasi Anda dalam keadaan berikut:
             </p>
             <ul class="text-neutral-400 mb-6 space-y-2">
-              <li>• Encryption of data in transit and at rest</li>
-              <li>• Regular security audits and updates</li>
-              <li>• Access controls and authentication</li>
-              <li>• Secure data centers and infrastructure</li>
+              <li>• Dengan persetujuan Anda</li>
+              <li>• Dengan penyedia layanan yang membantu kami mengoperasikan platform kami</li>
+              <li>• Untuk mematuhi kewajiban hukum</li>
+              <li>• Untuk melindungi hak kami dan mencegah penipuan</li>
+              <li>• Sehubungan dengan transfer bisnis</li>
             </ul>
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">5. Your Rights</h2>
+            <h2 class="text-2xl font-bold mb-6">4. Keamanan Data</h2>
             <p class="text-neutral-400 mb-4">
-              You have the following rights regarding your personal information:
+              Kami menerapkan langkah-langkah keamanan yang sesuai untuk melindungi informasi pribadi Anda:
             </p>
             <ul class="text-neutral-400 mb-6 space-y-2">
-              <li>• Access and review your personal data</li>
-              <li>• Correct inaccurate information</li>
-              <li>• Delete your account and data</li>
-              <li>• Export your data</li>
-              <li>• Opt out of marketing communications</li>
+              <li>• Enkripsi data dalam transit dan saat istirahat</li>
+              <li>• Audit keamanan dan pembaruan rutin</li>
+              <li>• Kontrol akses dan autentikasi</li>
+              <li>• Pusat data aman dan infrastruktur</li>
             </ul>
           </div>
 
           <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">6. Cookies and Tracking</h2>
+            <h2 class="text-2xl font-bold mb-6">5. Hak Anda</h2>
             <p class="text-neutral-400 mb-4">
-              We use cookies and similar technologies to enhance your experience. You can control cookie settings through your browser preferences.
+              Anda memiliki hak-hak berikut mengenai informasi pribadi Anda:
             </p>
+            <ul class="text-neutral-400 mb-6 space-y-2">
+              <li>• Hak untuk mengakses data pribadi Anda</li>
+              <li>• Hak untuk memperbaiki data yang tidak akurat</li>
+              <li>• Hak untuk menghapus data Anda</li>
+              <li>• Hak untuk membatasi pemrosesan</li>
+              <li>• Hak untuk portabilitas data</li>
+            </ul>
           </div>
-
-          <div class="border border-neutral-800 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-6">7. Updates to This Policy</h2>
-            <p class="text-neutral-400 mb-4">
-              We may update this privacy policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the effective date.
-            </p>
-          </div>
-        </section>
-
-        <!-- Contact -->
-        <section class="text-center mt-16 bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Questions About Privacy?</h2>
-          <p class="text-neutral-400 mb-6">
-            If you have any questions about this privacy policy or our data practices, please contact us.
-          </p>
-          <UButton label="Contact Privacy Team" color="white" size="lg" to="/contact" />
         </section>
       </div>
     </UContainer>

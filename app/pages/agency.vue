@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('agency', () => queryCollection('agency').first())
 
-const title = page.value?.title || 'Agencies'
-const description = page.value?.description || 'Strategic partners for world-class development.'
+const title = page.value?.title || 'Agensi'
+const description = page.value?.description || 'Mitra strategis untuk pengembangan kelas dunia.'
 
 useSeoMeta({
   title,
@@ -12,11 +12,11 @@ useSeoMeta({
 })
 
 const expertises = [
-  'Software & SaaS',
-  'Academy & Bootcamp',
-  'Community Management',
-  'Core Framework',
-  'UI/UX Design',
+  'Perangkat Lunak & SaaS',
+  'Akademi & Bootcamp',
+  'Manajemen Komunitas',
+  'Framework Inti',
+  'Desain UI/UX',
   'Developer Relations'
 ]
 </script>
@@ -44,7 +44,7 @@ const expertises = [
         <aside class="space-y-10">
           <div>
             <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-6 font-mono">
-              Expertise
+              Keahlian
             </h3>
             <ul class="space-y-3">
               <li 
@@ -78,44 +78,43 @@ const expertises = [
 
               <!-- Main Info -->
               <div class="space-y-3">
-                <div class="flex items-center gap-3">
-                  <h4 class="text-xl font-bold tracking-tight">{{ agency.name }}</h4>
-                  <span class="text-[10px] font-mono text-neutral-700 uppercase tracking-widest border border-neutral-900 px-2 py-0.5 rounded-sm">Verified</span>
-                </div>
-                <p class="text-neutral-500 text-sm leading-relaxed max-w-lg">
-                  {{ agency.description }}
-                </p>
+                <h2 class="text-lg font-semibold group-hover:text-white transition-colors">{{ agency.name }}</h2>
+                <p class="text-sm text-neutral-400 leading-relaxed">{{ agency.description }}</p>
                 <div class="flex flex-wrap gap-2 pt-2">
                   <span 
                     v-for="exp in agency.expertise" 
                     :key="exp"
-                    class="text-[9px] font-mono text-neutral-500 uppercase tracking-tighter"
+                    class="text-xs bg-neutral-900 text-neutral-400 px-2 py-1 rounded"
                   >
-                    / {{ exp }}
+                    {{ exp }}
                   </span>
                 </div>
               </div>
 
-              <!-- Meta & Action -->
-              <div class="flex flex-col md:items-end justify-between h-full space-y-4">
-                <div class="text-xs text-neutral-600 flex items-center gap-1.5 font-mono uppercase tracking-widest">
-                  <UIcon name="i-lucide-map-pin" class="w-3 h-3" />
-                  {{ agency.location }}
-                </div>
-                <UButton
-                  label="Inquiry"
-                  variant="ghost"
-                  class="text-xs font-semibold py-2 px-6 rounded-sm border border-neutral-800 text-white hover:bg-white hover:text-black transition-all"
-                  to="/contact"
-                />
+              <!-- Location -->
+              <div class="text-right">
+                <p class="text-xs font-mono text-neutral-500 uppercase tracking-wider">{{ agency.location }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </UContainer>
+
+    <!-- CTA -->
+    <UContainer class="mt-24">
+      <div class="text-center bg-neutral-900 rounded-lg p-12">
+        <h2 class="text-2xl font-bold mb-4">Ingin Menjadi Partner?</h2>
+        <p class="text-neutral-400 mb-6 max-w-2xl mx-auto">
+          Jika Anda adalah agensi atau studio dengan keahlian dalam ekosistem kami, kami ingin mendengar dari Anda.
+        </p>
+        <UButton 
+          :label="page.cta?.label || 'Hubungi Kami'" 
+          :to="page.cta?.to || '/contact'"
+          color="white"
+          size="lg"
+        />
+      </div>
+    </UContainer>
   </UMain>
 </template>
-
-<style scoped>
-</style>

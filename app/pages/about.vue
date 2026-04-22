@@ -1,61 +1,61 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'About NLFTs - Developer Program',
-  ogTitle: 'About NLFTs - Developer Program',
-  description: 'Learn about NLFTs mission to empower developers worldwide with innovative tools, frameworks, and community-driven solutions.',
-  ogDescription: 'Learn about NLFTs mission to empower developers worldwide with innovative tools, frameworks, and community-driven solutions.'
+  title: 'Tentang NLFTs - Program Developer',
+  ogTitle: 'Tentang NLFTs - Program Developer',
+  description: 'Pelajari tentang misi NLFTs untuk memberdayakan developer di seluruh dunia dengan alat inovatif, framework, dan solusi berbasis komunitas.',
+  ogDescription: 'Pelajari tentang misi NLFTs untuk memberdayakan developer di seluruh dunia dengan alat inovatif, framework, dan solusi berbasis komunitas.'
 })
 
 const stats = [
-  { label: 'Active Developers', value: '10,000+', note: '(Example)' },
-  { label: 'Open Source Projects', value: '50+', note: '(Example)' },
-  { label: 'Countries Reached', value: '75+', note: '(Example)' },
-  { label: 'GitHub Stars', value: '25,000+', note: '(Example)' }
+  { label: 'Developer Aktif', value: '10,000+', note: '(Contoh)' },
+  { label: 'Proyek Open Source', value: '50+', note: '(Contoh)' },
+  { label: 'Negara yang Dijangkau', value: '75+', note: '(Contoh)' },
+  { label: 'GitHub Stars', value: '25,000+', note: '(Contoh)' }
 ]
 
 const team = [
   {
     name: 'Alex Chen',
-    role: 'Founder & CEO',
-    bio: 'Former senior engineer at major tech companies, passionate about developer experience.',
+    role: 'Pendiri & CEO',
+    bio: 'Mantan insinyur senior di perusahaan teknologi besar, bersemangat tentang pengalaman developer.',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-    note: '(Example)'
+    note: '(Contoh)'
   },
   {
     name: 'Sarah Kim',
     role: 'CTO',
-    bio: 'Full-stack developer with expertise in modern web technologies and architecture.',
+    bio: 'Developer full-stack dengan keahlian dalam teknologi web modern dan arsitektur.',
     avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-    note: '(Example)'
+    note: '(Contoh)'
   },
   {
     name: 'Marcus Johnson',
-    role: 'Head of Community',
-    bio: 'Developer advocate focused on building inclusive and supportive developer communities.',
+    role: 'Kepala Komunitas',
+    bio: 'Advokat developer yang fokus membangun komunitas developer yang inklusif dan mendukung.',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-    note: '(Example)'
+    note: '(Contoh)'
   }
 ]
 
 const values = [
   {
-    title: 'Open Source First',
-    description: 'We believe in the power of open source to drive innovation and create better tools for everyone.',
+    title: 'Open Source Pertama',
+    description: 'Kami percaya pada kekuatan open source untuk mendorong inovasi dan menciptakan alat yang lebih baik untuk semua orang.',
     icon: 'i-lucide-heart'
   },
   {
-    title: 'Developer Experience',
-    description: 'Every tool we build is designed with developer happiness and productivity in mind.',
+    title: 'Pengalaman Developer',
+    description: 'Setiap alat yang kami bangun dirancang dengan kebahagiaan dan produktivitas developer dalam pikiran.',
     icon: 'i-lucide-smile'
   },
   {
-    title: 'Community Driven',
-    description: 'Our community shapes our roadmap and helps us build tools that developers actually need.',
+    title: 'Berbasis Komunitas',
+    description: 'Komunitas kami membentuk roadmap kami dan membantu kami membangun alat yang benar-benar dibutuhkan developer.',
     icon: 'i-lucide-users'
   },
   {
-    title: 'Quality & Performance',
-    description: 'We maintain high standards for code quality, performance, and reliability in everything we ship.',
+    title: 'Kualitas & Performa',
+    description: 'Kami mempertahankan standar tinggi untuk kualitas kode, performa, dan keandalan dalam semua yang kami luncurkan.',
     icon: 'i-lucide-zap'
   }
 ]
@@ -68,10 +68,10 @@ const values = [
         <!-- Header -->
         <section class="text-center mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            About NLFTs
+            Tentang NLFTs
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            We're on a mission to empower developers worldwide with innovative tools, frameworks, and community-driven solutions that make building software more enjoyable and efficient.
+            Kami memiliki misi untuk memberdayakan developer di seluruh dunia dengan alat inovatif, framework, dan solusi berbasis komunitas yang membuat membangun software lebih menyenangkan dan efisien.
           </p>
         </section>
 
@@ -90,39 +90,39 @@ const values = [
         <section class="mb-16">
           <div class="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+              <h2 class="text-3xl font-bold mb-6">Misi Kami</h2>
               <p class="text-neutral-300 mb-4 leading-relaxed">
-                At NLFTs, we believe that great software starts with great developer tools. Our mission is to create an ecosystem of modern, efficient, and delightful tools that help developers build better applications faster.
+                Di NLFTs, kami percaya bahwa software yang hebat dimulai dengan alat developer yang hebat. Misi kami adalah menciptakan ekosistem alat modern, efisien, dan menyenangkan yang membantu developer membangun aplikasi yang lebih baik lebih cepat.
               </p>
               <p class="text-neutral-300 mb-4 leading-relaxed">
-                We're not just building tools – we're building a community. A place where developers can learn, share, and grow together while pushing the boundaries of what's possible in web development.
+                Kami tidak hanya membangun alat – kami membangun komunitas. Tempat di mana developer dapat belajar, berbagi, dan berkembang bersama sambil mendorong batas-batas dari apa yang mungkin dalam pengembangan web.
               </p>
               <p class="text-neutral-300 leading-relaxed">
-                From our open-source frameworks to our developer program, everything we do is designed to make the developer experience more productive and enjoyable.
+                Dari framework open-source kami hingga program developer kami, semua yang kami lakukan dirancang untuk membuat pengalaman developer lebih produktif dan menyenangkan.
               </p>
             </div>
             <div class="bg-neutral-900 rounded-lg p-8">
-              <h3 class="text-xl font-semibold mb-4">What We Do</h3>
+              <h3 class="text-xl font-semibold mb-4">Apa yang Kami Lakukan</h3>
               <ul class="space-y-3 text-neutral-300">
                 <li class="flex items-center gap-3">
                   <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
-                  Build open-source developer tools
+                  Membangun alat developer open-source
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
-                  Foster developer communities
+                  Memupuk komunitas developer
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
-                  Provide educational resources
+                  Menyediakan sumber daya pendidikan
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
-                  Support emerging technologies
+                  Mendukung teknologi yang berkembang
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon name="i-lucide-check" class="w-5 h-5 text-green-400" />
-                  Connect developers globally
+                  Menghubungkan developer secara global
                 </li>
               </ul>
             </div>
@@ -131,7 +131,7 @@ const values = [
 
         <!-- Values -->
         <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">Our Values</h2>
+          <h2 class="text-3xl font-bold text-center mb-12">Nilai-Nilai Kami</h2>
           <div class="grid md:grid-cols-2 gap-8">
             <div v-for="value in values" :key="value.title" class="border border-neutral-800 rounded-lg p-6">
               <div class="flex items-center gap-4 mb-4">
@@ -147,7 +147,7 @@ const values = [
 
         <!-- Team -->
         <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+          <h2 class="text-3xl font-bold text-center mb-12">Bertemu Tim Kami</h2>
           <div class="grid md:grid-cols-3 gap-8">
             <div v-for="member in team" :key="member.name" class="text-center">
               <img 
@@ -166,16 +166,16 @@ const values = [
 
         <!-- History -->
         <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">Our Journey</h2>
+          <h2 class="text-3xl font-bold text-center mb-12">Perjalanan Kami</h2>
           <div class="space-y-8">
             <div class="flex gap-6">
               <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center shrink-0">
                 <span class="text-blue-400 font-bold">2022</span>
               </div>
               <div>
-                <h3 class="text-lg font-semibold mb-2">The Beginning</h3>
+                <h3 class="text-lg font-semibold mb-2">Awal Mula</h3>
                 <p class="text-neutral-400">
-                  NLFTs was founded with a simple idea: make developer tools that developers actually want to use. We started with a small team and big dreams.
+                  NLFTs didirikan dengan ide sederhana: membuat alat developer yang benar-benar ingin digunakan developer. Kami memulai dengan tim kecil dan mimpi besar.
                 </p>
               </div>
             </div>
@@ -184,9 +184,9 @@ const values = [
                 <span class="text-blue-400 font-bold">2023</span>
               </div>
               <div>
-                <h3 class="text-lg font-semibold mb-2">Community Growth</h3>
+                <h3 class="text-lg font-semibold mb-2">Pertumbuhan Komunitas</h3>
                 <p class="text-neutral-400">
-                  Our first open-source projects gained traction, and we launched the developer program to support our growing community of contributors.
+                  Proyek open-source pertama kami mendapat perhatian, dan kami meluncurkan program developer untuk mendukung komunitas kontributor kami yang terus berkembang.
                 </p>
               </div>
             </div>
@@ -195,9 +195,9 @@ const values = [
                 <span class="text-blue-400 font-bold">2024</span>
               </div>
               <div>
-                <h3 class="text-lg font-semibold mb-2">Global Impact</h3>
+                <h3 class="text-lg font-semibold mb-2">Dampak Global</h3>
                 <p class="text-neutral-400">
-                  Today, NLFTs tools are used by thousands of developers worldwide, and our community continues to grow and innovate together.
+                  Saat ini, alat NLFTs digunakan oleh ribuan developer di seluruh dunia, dan komunitas kami terus berkembang dan berinovasi bersama.
                 </p>
               </div>
             </div>
@@ -206,13 +206,13 @@ const values = [
 
         <!-- CTA -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
-          <h2 class="text-2xl font-bold mb-4">Join Our Mission</h2>
+          <h2 class="text-2xl font-bold mb-4">Bergabunglah dengan Misi Kami</h2>
           <p class="text-neutral-400 mb-6">
-            Ready to be part of something bigger? Join our community and help shape the future of developer tools.
+            Siap menjadi bagian dari sesuatu yang lebih besar? Bergabunglah dengan komunitas kami dan bantu membentuk masa depan alat developer.
           </p>
           <div class="flex flex-wrap justify-center gap-4">
-            <UButton label="Join Community" color="white" size="lg" to="/devlovers" />
-            <UButton label="Contribute" color="neutral" size="lg" external to="https://github.com/nlfts" />
+            <UButton label="Bergabung dengan Komunitas" color="white" size="lg" to="/devlovers" />
+            <UButton label="Berkontribusi" color="neutral" size="lg" external to="https://github.com/nlfts" />
           </div>
         </section>
       </div>

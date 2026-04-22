@@ -1,18 +1,18 @@
-title: Ship Your [SaaS]{class="text-primary"} at light speed
-description: Build production-ready SaaS applications with Nuxt UI's powerful components, authentication flows, and enterprise features. The same component library trusted by the entire Nuxt ecosystem.
+title: Luncurkan [SaaS]{class="text-primary"} Anda dengan Kecepatan Cahaya
+description: Bangun aplikasi SaaS siap produksi dengan komponen Nuxt UI yang kuat, alur autentikasi, dan fitur enterprise. Perpustakaan komponen yang sama dipercaya oleh seluruh ekosistem Nuxt.
 seo:
-  title: Nuxt SaaS Template
-  description: Create stunning, fast and production-ready SaaS applications with Nuxt UI. 100+ Vue components, authentication, dark mode, and enterprise features built on Tailwind CSS.
+  title: Template Nuxt SaaS
+  description: Buat aplikasi SaaS yang menakjubkan, cepat, dan siap produksi dengan Nuxt UI. 100+ komponen Vue, autentikasi, dark mode, dan fitur enterprise dibangun di atas Tailwind CSS.
 navigation: false
 hero:
   links:
-    - label: Get started
+    - label: Mulai
       icon: i-lucide-arrow-right
       trailing: true
       to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
       target: _blank
       size: xl
-    - label: Use this template
+    - label: Gunakan template ini
       icon: i-simple-icons-github
       size: xl
       color: neutral
@@ -20,130 +20,130 @@ hero:
       to: https://github.com/nuxt-ui-templates/saas
       target: _blank
 sections:
-  - title: Powered by Nuxt UI Components
-    description: Access the complete Nuxt UI component library with 100+ beautifully styled, accessible, and customizable Vue components. Everything you need to build professional SaaS applications.
+  - title: Didukung oleh Komponen Nuxt UI
+    description: Akses perpustakaan komponen Nuxt UI lengkap dengan 100+ komponen Vue yang bergaya indah, dapat diakses, dan dapat disesuaikan. Semua yang Anda butuhkan untuk membangun aplikasi SaaS profesional.
     id: features
     orientation: horizontal
     features:
-      - name: 100+ UI Components
-        description: From buttons to modals, data tables to forms - all styled with Tailwind CSS and accessible out of the box.
+      - name: 100+ Komponen UI
+        description: Dari tombol hingga modal, tabel data hingga formulir - semuanya bergaya dengan Tailwind CSS dan dapat diakses langsung.
         icon: i-lucide-package
-      - name: Authentication Ready
-        description: Pre-built login, signup, and password reset flows. Just connect your backend and start onboarding users.
+      - name: Autentikasi Siap
+        description: Alur login, signup, dan reset kata sandi yang sudah dibangun. Cukup hubungkan backend Anda dan mulai onboarding pengguna.
         icon: i-lucide-shield
-      - name: TypeScript First
-        description: Full TypeScript support with auto-completion, type safety, and IntelliSense for every component and composable.
+      - name: TypeScript Pertama
+        description: Dukungan TypeScript penuh dengan auto-completion, type safety, dan IntelliSense untuk setiap komponen dan composable.
         icon: i-lucide-code-2
-  - title: Built for Modern SaaS
-    description: Everything you need to launch and scale your SaaS. From beautiful marketing pages to complex dashboards, ship faster with production-ready patterns.
+  - title: Dibangun untuk SaaS Modern
+    description: Semua yang Anda butuhkan untuk meluncurkan dan menskalakan SaaS Anda. Dari halaman pemasaran yang indah hingga dashboard kompleks, kirim lebih cepat dengan pola siap produksi.
     orientation: horizontal
     reverse: true
     features:
-      - name: Edge Performance
-        description: Optimized for Core Web Vitals with automatic code splitting, lazy loading, and SSR/SSG support.
+      - name: Performa Edge
+        description: Dioptimalkan untuk Core Web Vitals dengan pemisahan kode otomatis, lazy loading, dan dukungan SSR/SSG.
         icon: i-lucide-zap
-      - name: Dark Mode Ready
-        description: Automatic theme switching with smooth transitions. Respects system preferences and remembers user choice.
+      - name: Dark Mode Siap
+        description: Pengalihan tema otomatis dengan transisi mulus. Menghormati preferensi sistem dan mengingat pilihan pengguna.
         icon: i-lucide-moon
-      - name: Global Ready
-        description: Built-in i18n support for 50+ languages with RTL/LTR layouts and @nuxt/fonts integration.
+      - name: Siap Global
+        description: Dukungan i18n bawaan untuk 50+ bahasa dengan tata letak RTL/LTR dan integrasi @nuxt/fonts.
         icon: i-lucide-globe
 features:
-  title: Everything You Need to Ship
-  description: Stop building from scratch. Focus on your unique features while Nuxt UI handles the foundations with battle-tested components and patterns.
+  title: Semua yang Anda Butuhkan untuk Mengirim
+  description: Berhenti membangun dari awal. Fokus pada fitur unik Anda sementara Nuxt UI menangani fondasi dengan komponen dan pola yang telah teruji.
   items:
-    - title: Beautiful Design System
-      description: Semantic color aliases, comprehensive design tokens, and Tailwind Variants for consistent, customizable styling.
+    - title: Sistem Desain Indah
+      description: Alias warna semantik, token desain komprehensif, dan Tailwind Variants untuk styling yang konsisten dan dapat disesuaikan.
       icon: i-lucide-palette
-    - title: Accessible by Default
-      description: Built on Reka UI for robust accessibility. WCAG compliant components that work for everyone, everywhere.
+    - title: Dapat Diakses Secara Default
+      description: Dibangun di atas Reka UI untuk aksesibilitas yang kuat. Komponen yang sesuai dengan WCAG yang bekerja untuk semua orang, di mana saja.
       icon: i-lucide-accessibility
-    - title: Developer Experience
-      description: Auto-imports, hot module replacement, and comprehensive documentation. Build faster with less friction.
+    - title: Pengalaman Developer
+      description: Auto-imports, hot module replacement, dan dokumentasi komprehensif. Bangun lebih cepat dengan lebih sedikit gesekan.
       icon: i-lucide-terminal
-    - title: SEO Optimized
-      description: Server-side rendering, automatic meta tags, sitemap generation, and Open Graph images out of the box.
+    - title: Dioptimalkan SEO
+      description: Server-side rendering, meta tag otomatis, pembuatan sitemap, dan gambar Open Graph langsung dari kotak.
       icon: i-lucide-search
-    - title: Production Ready
-      description: Error handling, loading states, form validation, and security best practices built into every component.
+    - title: Siap Produksi
+      description: Penanganan kesalahan, status loading, validasi formulir, dan best practices keamanan dibangun ke dalam setiap komponen.
       icon: i-lucide-check-circle
-    - title: Infinitely Customizable
-      description: Override any style with the ui prop, customize globally with AppConfig, or use Tailwind classes directly.
+    - title: Dapat Disesuaikan Tanpa Batas
+      description: Ganti gaya apa pun dengan prop ui, sesuaikan secara global dengan AppConfig, atau gunakan kelas Tailwind secara langsung.
       icon: i-lucide-settings
 testimonials:
-  headline: Trusted by Developers
-  title: Join Thousands Building with Nuxt UI
-  description: See why developers choose Nuxt UI to ship their SaaS applications faster and with more confidence.
+  headline: Dipercaya oleh Developer
+  title: Bergabunglah dengan Ribuan yang Membangun dengan Nuxt UI
+  description: Lihat mengapa developer memilih Nuxt UI untuk mengirim aplikasi SaaS mereka lebih cepat dan dengan lebih percaya diri.
   items:
-    - quote: Nuxt UI transformed how we build. The component quality is exceptional - everything just works with perfect TypeScript support, accessibility, and dark mode built in.
+    - quote: Nuxt UI mengubah cara kami membangun. Kualitas komponen luar biasa - semuanya berfungsi dengan sempurna dengan dukungan TypeScript, aksesibilitas, dan dark mode bawaan.
       user:
         name: Sarah Chen
-        description: CTO at TechScale Solutions
+        description: CTO di TechScale Solutions
         avatar:
           src: https://i.pravatar.cc/120?img=1
-    - quote: We shipped our MVP in 2 weeks instead of 2 months. The authentication flows and form components saved us countless hours of development time.
+    - quote: Kami mengirim MVP kami dalam 2 minggu bukan 2 bulan. Alur autentikasi dan komponen formulir menghemat kami berjam-jam waktu pengembangan.
       user:
         name: Marcus Rodriguez
-        description: VP of Engineering at DataFlow
+        description: VP of Engineering di DataFlow
         avatar:
           src: https://i.pravatar.cc/120?img=7
-    - quote: The design system with AppConfig is brilliant. We maintain brand consistency across all our products while leveraging the full component library.
+    - quote: Sistem desain dengan AppConfig sangat brilian. Kami mempertahankan konsistensi merek di semua produk kami sambil memanfaatkan perpustakaan komponen lengkap.
       user:
         name: David Kumar
-        description: Security Director at SecureStack
+        description: Security Director di SecureStack
         avatar:
           src: https://i.pravatar.cc/120?img=3
-    - quote: Perfect Lighthouse scores out of the box. Our Core Web Vitals improved dramatically just by switching to Nuxt UI components.
+    - quote: Skor Lighthouse sempurna langsung dari kotak. Core Web Vitals kami meningkat secara dramatis hanya dengan beralih ke komponen Nuxt UI.
       user:
         name: Emily Zhang
-        description: Lead Architect at ScaleForce
+        description: Lead Architect di ScaleForce
         avatar:
           src: https://i.pravatar.cc/120?img=5
-    - quote: The Tailwind Variants system makes customization so intuitive. We can override any component style while keeping the functionality intact.
+    - quote: Sistem Tailwind Variants membuat kustomisasi sangat intuitif. Kami dapat mengganti gaya komponen apa pun sambil mempertahankan fungsionalitasnya.
       user:
         name: James Wilson
-        description: DevOps Lead at CloudPro
+        description: DevOps Lead di CloudPro
         avatar:
           src: https://i.pravatar.cc/120?img=8
-    - quote: From the SaaS template to production in days. The pre-built layouts, navigation, and content structure accelerated our launch.
+    - quote: Dari template SaaS hingga produksi dalam beberapa hari. Tata letak yang sudah dibangun sebelumnya, navigasi, dan struktur konten mempercepat peluncuran kami.
       user:
         name: Lisa Patel
-        description: CEO at AutoScale
+        description: CEO di AutoScale
         avatar:
           src: https://i.pravatar.cc/120?img=9
-    - quote: Reka UI foundation means accessibility is never an afterthought. We achieved WCAG compliance without any custom work.
+    - quote: Fondasi Reka UI berarti aksesibilitas tidak pernah menjadi pemikiran kedua. Kami mencapai kepatuhan WCAG tanpa pekerjaan kustom apa pun.
       user:
         name: Michael Torres
-        description: Frontend Lead at AccessFirst
+        description: Frontend Lead di AccessFirst
         avatar:
           src: https://i.pravatar.cc/120?img=11
-    - quote: The documentation is outstanding. Every component has clear examples, and the community on Discord is incredibly helpful.
+    - quote: Dokumentasinya luar biasa. Setiap komponen memiliki contoh yang jelas, dan komunitas di Discord sangat membantu.
       user:
         name: Rachel Kim
-        description: Performance Engineer at APIHub
+        description: Performance Engineer di APIHub
         avatar:
           src: https://i.pravatar.cc/120?img=10
-    - quote: We replaced three different UI libraries with Nuxt UI. The consistency and quality across all components is unmatched.
+    - quote: Kami mengganti tiga perpustakaan UI berbeda dengan Nuxt UI. Konsistensi dan kualitas di semua komponen tidak tertandingi.
       user:
         name: Thomas Weber
-        description: UI Architecture Lead at DesignScale
+        description: UI Architecture Lead di DesignScale
         avatar:
           src: https://i.pravatar.cc/120?img=12
-    - quote: The integration with Nuxt modules is seamless. Color mode, fonts, icons - everything works together perfectly.
+    - quote: Integrasi dengan modul Nuxt sangat mulus. Color mode, fonts, icons - semuanya bekerja bersama dengan sempurna.
       user:
         name: Sophia Martinez
-        description: Integration Specialist at TechFlow
+        description: Integration Specialist di TechFlow
         avatar:
           src: https://i.pravatar.cc/120?img=14
 cta:
-  title: Ready to build an amazing SaaS?
-  description: Join thousands of developers building with Nuxt and Nuxt UI. Get this template and start shipping today.
+  title: Siap membangun SaaS yang menakjubkan?
+  description: Bergabunglah dengan ribuan developer yang membangun dengan Nuxt dan Nuxt UI. Dapatkan template ini dan mulai mengirim hari ini.
   links:
-    - label: Start building
+    - label: Mulai membangun
       to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt'
       target: _blank
       trailingIcon: i-lucide-arrow-right
-    - label: View on GitHub
+    - label: Lihat di GitHub
       to: 'https://github.com/nuxt-ui-templates/saas'
       target: _blank
       variant: subtle

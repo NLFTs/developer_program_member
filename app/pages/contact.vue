@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Contact Us - NLFTs Developer Program',
-  ogTitle: 'Contact Us - NLFTs Developer Program',
-  description: 'Get in touch with the NLFTs team. We\'re here to help with questions, support, and partnership opportunities.',
-  ogDescription: 'Get in touch with the NLFTs team. We\'re here to help with questions, support, and partnership opportunities.'
+  title: 'Hubungi Kami - Program Developer NLFTs',
+  ogTitle: 'Hubungi Kami - Program Developer NLFTs',
+  description: 'Hubungi tim NLFTs. Kami siap membantu dengan pertanyaan, dukungan, dan peluang kemitraan.',
+  ogDescription: 'Hubungi tim NLFTs. Kami siap membantu dengan pertanyaan, dukungan, dan peluang kemitraan.'
 })
 
 const form = reactive({
@@ -15,11 +15,11 @@ const form = reactive({
 })
 
 const contactTypes = [
-  { value: 'general', label: 'General Inquiry' },
-  { value: 'support', label: 'Technical Support' },
-  { value: 'partnership', label: 'Partnership' },
-  { value: 'enterprise', label: 'Enterprise Sales' },
-  { value: 'press', label: 'Press & Media' }
+  { value: 'general', label: 'Pertanyaan Umum' },
+  { value: 'support', label: 'Dukungan Teknis' },
+  { value: 'partnership', label: 'Kemitraan' },
+  { value: 'enterprise', label: 'Penjualan Enterprise' },
+  { value: 'press', label: 'Pers & Media' }
 ]
 
 const isSubmitting = ref(false)
@@ -36,7 +36,7 @@ const submitForm = async () => {
   })
   
   // Show success message (in real app, handle actual submission)
-  alert('Thank you for your message! We\'ll get back to you soon.')
+  alert('Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda.')
 }
 </script>
 
@@ -47,27 +47,27 @@ const submitForm = async () => {
         <!-- Header -->
         <section class="text-center mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Contact Us
+            Hubungi Kami
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            Have questions or want to get in touch? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Ada pertanyaan atau ingin menghubungi kami? Kami ingin mendengar dari Anda. Kirimkan pesan dan kami akan merespons sesegera mungkin.
           </p>
         </section>
 
         <div class="grid lg:grid-cols-2 gap-12">
           <!-- Contact Form -->
           <div>
-            <h2 class="text-2xl font-bold mb-6">Send us a message</h2>
+            <h2 class="text-2xl font-bold mb-6">Kirimkan pesan kepada kami</h2>
             <form @submit.prevent="submitForm" class="space-y-6">
               <div class="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium mb-2">Name</label>
+                  <label class="block text-sm font-medium mb-2">Nama</label>
                   <input 
                     v-model="form.name"
                     type="text" 
                     required
                     class="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                    placeholder="Your name"
+                    placeholder="Nama Anda"
                   />
                 </div>
                 <div>
@@ -77,7 +77,7 @@ const submitForm = async () => {
                     type="email" 
                     required
                     class="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                    placeholder="your@email.com"
+                    placeholder="email@anda.com"
                   />
                 </div>
               </div>

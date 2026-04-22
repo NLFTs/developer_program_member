@@ -5,34 +5,34 @@ cta:
   to: /contact
 agencies:
   - name: FTs Project Software labs
-    description: Core R&D laboratory for Tux Framework. Focused on high-performance infrastructure and experimental software engineering.
+    description: Laboratorium R&D inti untuk Tux Framework. Fokus pada infrastruktur berkinerja tinggi dan rekayasa perangkat lunak eksperimental.
     location: Indonesia
     icon: https://avatars.githubusercontent.com/u/252723835?s=200&v=4
     expertise:
-      - Core Framework
-      - Software R&D
-      - Product Design
+      - Framework Inti
+      - R&D Perangkat Lunak
+      - Desain Produk
   - name: ITK
-    description: Digital excellence academy. Curating the next generation of engineers through precision-focused intensives.
+    description: Akademi keunggulan digital. Mengkurasi generasi insinyur berikutnya melalui intensif yang berfokus pada presisi.
     location: Asia
     icon: https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center
     expertise:
-      - Academy
+      - Akademi
       - Bootcamp
-      - Talent Matching
+      - Pencocokan Bakat
   - name: Grantara Nusantara
-    description: Ecosystem architects. Building and managing influential community infrastructures on a national scale.
+    description: Arsitek ekosistem. Membangun dan mengelola infrastruktur komunitas yang berpengaruh pada skala nasional.
     location: Nusantara
     icon: https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center
     expertise:
-      - Community Management
-      - Event Organizing
+      - Manajemen Komunitas
+      - Penyelenggaraan Acara
       - Developer Relations
   - name: Vuxilabs
-    description: The Startup as a @NLFTs Company
+    description: Startup sebagai @NLFTs Company
     location: Nusantara
     icon: https://avatars.githubusercontent.com/u/264552738?s=200&v=4
     expertise:
-      - Community Management
-      - Event Organizing
+      - Manajemen Komunitas
+      - Penyelenggaraan Acara
       - Developer Relations
