@@ -88,6 +88,30 @@ const contributors = [
 
 const visibleTestimonials = communityTestimonials.slice(0, 3)
 
+const partners = [
+  {
+    name: 'GRANTARA',
+    logo: 'https://media-cgk2-2.cdn.whatsapp.net/v/t61.24694-24/534335063_1146668670685976_7454437243289052207_n.jpg?ccb=11-4&oh=01_Q5Aa4QGMZ68YQC5ef5L0NjS-04T2RsTKWLXf5XKKR6h84HaXGQ&oe=69F2B5CB&_nc_sid=5e03e0&_nc_cat=102',
+    url: 'https://grantara.com'
+  },
+  {
+    name: 'ITK',
+    logo: 'https://media-cgk2-2.cdn.whatsapp.net/v/t61.24694-24/615265201_1416316086629363_3896669329718364255_n.jpg?ccb=11-4&oh=01_Q5Aa4QGA98YDhJbvWOfqxY0tmeDffGV1wtcVetBpINCAWo6Tzw&oe=69ED9FDF&_nc_sid=5e03e0&_nc_cat=111',
+    url: 'https://itk.ac.id'
+  },
+  {
+    name: 'Vuxilabs',
+    logo: 'https://avatars.githubusercontent.com/u/264552738?s=200&v=4',
+    url: 'https://vuxilabs.com'
+  },
+  {
+    name: 'FTs Project 2024',
+    logo: 'https://avatars.githubusercontent.com/u/252723835?s=200&v=4',
+    url: '#'
+  },
+  
+]
+
 setup(() => {
   // GSAP animations - only on desktop for performance
   const mm = gsap.matchMedia()
@@ -156,222 +180,270 @@ setup(() => {
     // Auto-scroll loop removed per user request for unfriendly desktop scroll
     // Native scroll is preserved for better UX
   }
+
+  // Partners section animations
+  const partnersSection = document.querySelector('#partners')
+  if (partnersSection) {
+    gsap.set('.partner-logo-container', { opacity: 0, y: 30 })
+    
+    gsap.to('.partner-logo-container', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#partners',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    })
+  }
 })
 </script>
 
 <template>
-  <div class="hero">
-    <div class="hero-inner">
-      <h1 class="hero-title">Developer</h1>
-
-      <p class="hero-sub">NLFTs Program Member</p>
-
-      <p class="hero-desc">
-        Program eksklusif untuk para developer yang ingin berkontribusi, berkolaborasi, dan membangun produk berkelas dunia bersama komunitas terbaik
-      </p>
-
-      <div class="hero-actions">
-        <NuxtLink 
-          to="/product" 
-          class="hero-btn hero-btn-primary"
-        >
-          Get Started
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </NuxtLink>
-        <a href="#live-demo" class="hero-btn hero-btn-ghost">
-          Live Demo
-        </a>
+  <div>
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">Developer</h1>
+        <p class="hero-sub">NLFTs Program Member</p>
+        <p class="hero-desc">
+          Program eksklusif untuk para developer yang ingin berkontribusi, berkolaborasi, dan membangun produk berkelas dunia bersama komunitas terbaik
+        </p>
+        <div class="hero-actions">
+          <NuxtLink to="/product" class="hero-btn hero-btn-primary">
+            Get Started
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </NuxtLink>
+          <a href="#live-demo" class="hero-btn hero-btn-ghost">Live Demo</a>
+        </div>
+        <p class="hero-meta">NLFTs &bull; Fts Project 2024 &bull; Grantara</p>
       </div>
-
-      <p class="hero-meta">NLFTs &bull; Fts Project 2024 &bull; Grantara </p>
     </div>
-  </div>
+    
+    <div class="section-divider" />
+    
+    <!-- Community Section -->
+    <section class="community-section" id="community">
+      <UContainer>
+        <div class="community-head">
+          <div>
+            <p class="eyebrow">Loved by the community</p>
+            <h2>Jangan hanya percaya perkataan kami — dengarkan apa kata para developer</h2>
+          </div>
+          <div class="community-stats">
+            <div class="stat-card" v-for="stat in communityStats" :key="stat.label">
+              <p class="stat-value">{{ stat.value }}</p>
+              <p class="stat-label">{{ stat.label }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="community-grid">
+          <article v-for="testimonial in visibleTestimonials" :key="testimonial.author" class="testimonial-card">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-meta">
+              <span class="author">{{ testimonial.author }}</span>
+              <span class="handle">{{ testimonial.handle }}</span>
+            </div>
+          </article>
+        </div>
+      </UContainer>
+    </section>
 
-  <div class="section-divider" />
+    <!-- Contributors Section -->
+    <section class="contributors-section py-20 lg:py-32 border-t border-white/5 overflow-hidden relative" id="contributors">
+      <UContainer>
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <!-- Avatar Grid -->
+          <div class="grid grid-cols-4 sm:grid-cols-6 gap-3 lg:gap-4 order-2 lg:order-1 reveal-grid">
+            <a
+              v-for="member in contributors"
+              :key="member.id"
+              :href="member.isEmpty ? undefined : member.html_url"
+              target="_blank"
+              class="contributor-avatar relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-white/10 transition-all duration-300 hover:scale-110 hover:z-20 hover:border-white/30 cursor-crosshair"
+              :class="{ 'opacity-40 cursor-default': member.isEmpty }"
+            >
+              <template v-if="!member.isEmpty">
+                <img 
+                  :src="member.avatar_url" 
+                  :alt="member.login"
+                  class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none select-none"
+                  loading="lazy"
+                  draggable="false"
+                  @contextmenu.prevent
+                />
+                <!-- Privacy Overlay - Blocks right click and drag -->
+                <div class="absolute inset-0 z-20" @contextmenu.prevent />
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10" />
+                
+                <!-- Tooltip with username -->
+                <div class="absolute bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30">
+                  {{ member.login }}
+                </div>
+              </template>
+              <div v-else class="w-full h-full flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-white/10" />
+              </div>
+            </a>
+          </div>
 
-  <section class="community-section" id="community">
-    <UContainer>
-      <div class="community-head">
-        <div>
-          <p class="eyebrow">Loved by the community</p>
-          <h2>
-        Jangan hanya percaya perkataan kami — dengarkan apa kata para developer
+          <!-- Right Content -->
+          <div class="flex flex-col items-start gap-8 order-1 lg:order-2 reveal-content">
+            <div class="space-y-4">
+              <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1] tracking-tighter">
+                Built by developers around the world
+              </h2>
+              <p class="text-lg sm:text-xl text-neutral-400 max-w-lg leading-relaxed">
+                Hundreds of contributors making NLFTs better every day. Join us and build the future of open modules.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-8">
+              <UButton
+                label="Members"
+                icon="i-lucide-arrow-right"
+                trailing
+                size="xl"
+                color="neutral"
+                class="rounded-full px-8 py-4 font-bold transition-transform hover:scale-105"
+              />
+              
+              <div class="flex items-center gap-6">
+                <a href="https://discord.gg/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Discord">
+                  <UIcon name="i-simple-icons-discord" class="w-8 h-8" />
+                </a>
+                <a href="https://x.com/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="X">
+                  <UIcon name="i-simple-icons-x" class="w-7 h-7" />
+                </a>
+                <a href="#" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Share">
+                  <UIcon name="i-lucide-share-2" class="w-8 h-8" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </UContainer>
+      
+      <!-- Decorative background glow -->
+      <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40 lg:opacity-60" />
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="showcase-section py-20 lg:py-32 bg-[#020205] relative overflow-hidden" id="showcase">
+      <UContainer>
+        <div class="flex flex-col items-center text-center mb-16 gap-6">
+          <p class="text-xs font-bold tracking-[0.3em] uppercase text-emerald-500">Showcase</p>
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter max-w-3xl">
+            Real-world Web Applications built with NLFTs
+          </h2>
+          <UButton
+            label="View all websites"
+            color="neutral"
+            variant="solid"
+            size="lg"
+            class="rounded-lg px-8 py-3 bg-white text-black font-bold hover:bg-neutral-200 transition-colors"
+          />
+        </div>
+
+        <div class="showcase-slider-wrapper relative group/slider -mx-4 sm:mx-0">
+          <!-- Center-focused native slider -->
+          <div class="showcase-scroll-container flex overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]" data-lenis-prevent>
+            <NuxtLink 
+              v-for="item in showcasesItems" 
+              :key="item.name"
+              :to="'/product/' + item.slug"
+              class="flex-none w-full sm:w-[60vw] lg:w-[50vw]"
+            >
+              <div class="showcase-card group cursor-pointer">
+                <div class="relative aspect-[16/9] overflow-hidden rounded-none sm:rounded-3xl border-y sm:border border-white/10 bg-neutral-900 shadow-2xl transition-all duration-700 group-hover:border-white/20 sm:group-hover:-translate-y-4">
+                  <img 
+                    :src="item.thumbnail" 
+                    :alt="item.name"
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 scale-75 group-hover:scale-100">
+                    <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                      <UIcon name="i-lucide-arrow-up-right" class="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+
+                  <!-- Card Info Overlay (Always visible on mobile) -->
+                  <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-10">
+                    <div class="flex flex-col gap-0 sm:gap-1">
+                      <span class="text-[10px] sm:text-xs font-bold text-emerald-500 uppercase tracking-widest">{{ item.category }}</span>
+                      <h3 class="text-xl sm:text-3xl font-black text-white tracking-tighter">{{ item.name }}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </NuxtLink>
+          </div>
+
+          <!-- Enhanced Navigation Buttons -->
+          <button class="showcase-prev hidden xl:flex absolute left-8 top-1/2 -translate-y-12 w-14 h-14 rounded-full border border-white/10 bg-black/60 backdrop-blur-xl items-center justify-center text-white hover:bg-white hover:text-black transition-all z-20 cursor-pointer active:scale-90 shadow-2xl">
+            <UIcon name="i-lucide-chevron-left" class="w-8 h-8" />
+          </button>
+          <button class="showcase-next hidden xl:flex absolute right-8 top-1/2 -translate-y-12 w-14 h-14 rounded-full border border-white/10 bg-black/60 backdrop-blur-xl items-center justify-center text-white hover:bg-white hover:text-black transition-all z-20 cursor-pointer active:scale-90 shadow-2xl">
+            <UIcon name="i-lucide-chevron-right" class="w-8 h-8" />
+          </button>
+        </div>
+      </UContainer>
+
+      <!-- Background Decoration -->
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section py-16 lg:py-24 bg-black relative overflow-hidden" id="partners">
+      <UContainer>
+        <div class="flex flex-col items-center text-center mb-12 gap-4">
+          <p class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">Trusted by</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            Leading organizations worldwide
           </h2>
         </div>
-        <div class="community-stats">
-          <div class="stat-card" v-for="stat in communityStats" :key="stat.label">
-            <p class="stat-value">{{ stat.value }}</p>
-            <p class="stat-label">{{ stat.label }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="community-grid">
-        <article
-          v-for="testimonial in visibleTestimonials"
-          :key="testimonial.author"
-          class="testimonial-card"
-        >
-          <p class="testimonial-quote">“{{ testimonial.quote }}”</p>
-          <div class="testimonial-meta">
-            <span class="author">{{ testimonial.author }}</span>
-            <span class="handle">{{ testimonial.handle }}</span>
-          </div>
-        </article>
-      </div>
-    </UContainer>
-  </section>
-
-  <section class="contributors-section py-20 lg:py-32 border-t border-white/5 overflow-hidden relative" id="contributors">
-    <UContainer>
-      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-        <!-- Avatar Grid -->
-        <div class="grid grid-cols-4 sm:grid-cols-6 gap-3 lg:gap-4 order-2 lg:order-1 reveal-grid">
-          <a
-            v-for="member in contributors"
-            :key="member.id"
-            :href="member.isEmpty ? undefined : member.html_url"
+        <div class="partners-grid">
+          <a 
+            v-for="partner in partners" 
+            :key="partner.name"
+            :href="partner.url"
             target="_blank"
-            class="contributor-avatar relative aspect-square group overflow-hidden rounded-xl bg-neutral-900 border border-white/10 transition-all duration-300 hover:scale-110 hover:z-20 hover:border-white/30 cursor-crosshair"
-            :class="{ 'opacity-40 cursor-default': member.isEmpty }"
+            rel="noopener noreferrer"
+            class="partner-logo-container group"
           >
-            <template v-if="!member.isEmpty">
+            <div class="partner-logo-image-wrapper">
               <img 
-                :src="member.avatar_url" 
-                :alt="member.login"
-                class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none select-none"
+                :src="partner.logo" 
+                :alt="partner.name"
+                class="partner-logo-image"
                 loading="lazy"
-                draggable="false"
-                @contextmenu.prevent
               />
-              <!-- Privacy Overlay - Blocks right click and drag -->
-              <div class="absolute inset-0 z-20" @contextmenu.prevent />
-              
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10" />
-              
-              <!-- Tooltip with username -->
-              <div class="absolute bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30">
-                {{ member.login }}
-              </div>
-            </template>
-            <div v-else class="w-full h-full flex items-center justify-center">
-              <div class="w-2 h-2 rounded-full bg-white/10" />
             </div>
+            <p class="partner-name">{{ partner.name }}</p>
           </a>
         </div>
-
-        <!-- Right Content -->
-        <div class="flex flex-col items-start gap-8 order-1 lg:order-2 reveal-content">
-          <div class="space-y-4">
-            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1] tracking-tighter">
-              Built by developers around the world
-            </h2>
-            <p class="text-lg sm:text-xl text-neutral-400 max-w-lg leading-relaxed">
-              Hundreds of contributors making NLFTs better every day. Join us and build the future of open modules.
-            </p>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-8">
-            <UButton
-              label="Members"
-              icon="i-lucide-arrow-right"
-              trailing
-              size="xl"
-              color="neutral"
-              class="rounded-full px-8 py-4 font-bold transition-transform hover:scale-105"
-            />
-            
-            <div class="flex items-center gap-6">
-              <a href="https://discord.gg/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Discord">
-                <UIcon name="i-simple-icons-discord" class="w-8 h-8" />
-              </a>
-              <a href="https://x.com/nlfts" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="X">
-                <UIcon name="i-simple-icons-x" class="w-7 h-7" />
-              </a>
-              <a href="#" class="text-neutral-500 hover:text-white transition-all hover:scale-110 active:scale-90" aria-label="Share">
-                <UIcon name="i-lucide-share-2" class="w-8 h-8" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </UContainer>
-    
-    <!-- Decorative background glow -->
-    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40 lg:opacity-60" />
-  </section>
-
-  <section class="showcase-section py-20 lg:py-32 bg-[#020205] relative overflow-hidden" id="showcase">
-    <UContainer>
-      <div class="flex flex-col items-center text-center mb-16 gap-6">
-        <p class="text-xs font-bold tracking-[0.3em] uppercase text-emerald-500">Showcase</p>
-        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter max-w-3xl">
-          Real-world Web Applications built with NLFTs
-        </h2>
-        <UButton
-          label="View all websites"
-          color="neutral"
-          variant="solid"
-          size="lg"
-          class="rounded-lg px-8 py-3 bg-white text-black font-bold hover:bg-neutral-200 transition-colors"
-        />
-      </div>
-
-      <div class="showcase-slider-wrapper relative group/slider -mx-4 sm:mx-0">
-        <!-- Center-focused native slider -->
-        <div class="showcase-scroll-container flex overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]" data-lenis-prevent>
-          <NuxtLink 
-            v-for="item in showcasesItems" 
-            :key="item.name"
-            :to="'/product/' + item.slug"
-            class="flex-none w-full sm:w-[60vw] lg:w-[50vw]"
-          >
-            <div class="showcase-card group cursor-pointer">
-              <div class="relative aspect-[16/9] overflow-hidden rounded-none sm:rounded-3xl border-y sm:border border-white/10 bg-neutral-900 shadow-2xl transition-all duration-700 group-hover:border-white/20 sm:group-hover:-translate-y-4">
-                <img 
-                  :src="item.thumbnail" 
-                  :alt="item.name"
-                  class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-                
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 scale-75 group-hover:scale-100">
-                  <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center">
-                    <UIcon name="i-lucide-arrow-up-right" class="w-8 h-8 text-white" />
-                  </div>
-                </div>
-
-                <!-- Card Info Overlay (Always visible on mobile) -->
-                <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-10">
-                  <div class="flex flex-col gap-0 sm:gap-1">
-                    <span class="text-[10px] sm:text-xs font-bold text-emerald-500 uppercase tracking-widest">{{ item.category }}</span>
-                    <h3 class="text-xl sm:text-3xl font-black text-white tracking-tighter">{{ item.name }}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
-
-        <!-- Enhanced Navigation Buttons -->
-        <button class="showcase-prev hidden xl:flex absolute left-8 top-1/2 -translate-y-12 w-14 h-14 rounded-full border border-white/10 bg-black/60 backdrop-blur-xl items-center justify-center text-white hover:bg-white hover:text-black transition-all z-20 cursor-pointer active:scale-90 shadow-2xl">
-          <UIcon name="i-lucide-chevron-left" class="w-8 h-8" />
-        </button>
-        <button class="showcase-next hidden xl:flex absolute right-8 top-1/2 -translate-y-12 w-14 h-14 rounded-full border border-white/10 bg-black/60 backdrop-blur-xl items-center justify-center text-white hover:bg-white hover:text-black transition-all z-20 cursor-pointer active:scale-90 shadow-2xl">
-          <UIcon name="i-lucide-chevron-right" class="w-8 h-8" />
-        </button>
-      </div>
-    </UContainer>
-
-    <!-- Background Decoration -->
-    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-  </section>
+      </UContainer>
+    </section>
+  </div>
 </template>
 
 <style scoped>
+.section-divider {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0;
+  opacity: 0.6;
+}
+
 .hero {
   position: relative;
   min-height: 100svh;
@@ -381,7 +453,6 @@ setup(() => {
   justify-content: center;
   padding: calc(var(--header-height) + 2rem) 1rem 3rem;
   background-color: #000;
-  /* Minimal Tech Background */
   background-image: 
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
   background-size: 100% 100%, 80px 80px, 80px 80px;
@@ -397,7 +468,6 @@ setup(() => {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  /* Very subtle accent vectors */
   background: 
     radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
@@ -421,17 +491,6 @@ setup(() => {
   }
 }
 
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
 .hero-inner {
   position: relative;
   z-index: 10;
@@ -444,7 +503,6 @@ setup(() => {
   padding-top: 2rem;
 }
 
-/* Title */
 .hero-title {
   font-size: clamp(2.5rem, 12vw, 8rem);
   font-weight: 700;
@@ -458,7 +516,6 @@ setup(() => {
   user-select: none;
 }
 
-/* Tagline */
 .hero-sub {
   font-size: clamp(0.8rem, 1.8vw, 1rem);
   font-weight: 500;
@@ -468,7 +525,6 @@ setup(() => {
   margin: 0 0 1.5rem;
 }
 
-/* Description */
 .hero-desc {
   max-width: 540px;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
@@ -478,7 +534,6 @@ setup(() => {
   margin: 0 0 2.5rem;
 }
 
-/* Actions */
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -519,19 +574,11 @@ setup(() => {
   border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Meta */
 .hero-meta {
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.25;
-}
-
-.section-divider {
-  width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  margin: 0;
-  opacity: 0.6;
 }
 
 .community-section {
@@ -597,18 +644,6 @@ setup(() => {
   z-index: 1;
 }
 
-.community-grid::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4rem;
-  background: linear-gradient(180deg, rgba(5,5,10,0), rgba(5,5,10,0.65));
-  pointer-events: none;
-  z-index: 2;
-}
-
 .testimonial-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -617,13 +652,6 @@ setup(() => {
   min-height: 180px;
   box-shadow: 0 25px 35px rgba(0, 0, 0, 0.45);
   transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-@media (max-width: 640px) {
-  .testimonial-card {
-    min-height: 140px;
-    padding: 1.25rem;
-  }
 }
 
 .testimonial-card:hover {
@@ -651,6 +679,92 @@ setup(() => {
   color: #fff;
 }
 
+.partners-section {
+  position: relative;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
+}
+
+@media (min-width: 640px) {
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .partners-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3rem 2rem;
+  }
+}
+
+.partner-logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 120px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.partner-logo-container:hover {
+  transform: translateY(-4px);
+}
+
+.partner-logo-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.partner-logo-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.6) contrast(1.2);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.partner-logo-container:hover .partner-logo-image {
+  filter: grayscale(0%) brightness(1) contrast(1);
+  transform: scale(1.1);
+}
+
+.partner-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  width: 100%;
+}
+
+.partner-logo-container:hover .partner-name {
+  color: rgba(255, 255, 255, 0.8);
+}
 
 /* Contributors Section Animation States */
 @media (min-width: 1024px) {
@@ -664,20 +778,6 @@ setup(() => {
     transform: scale(0.6) translateY(20px);
     will-change: transform, opacity;
   }
-}
-/* Showcase Section Styles */
-.showcase-slider :deep(.swiper-pagination-bullet) {
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  opacity: 1;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-}
-
-.showcase-slider :deep(.swiper-pagination-bullet-active) {
-  width: 24px;
-  background: #10b981; /* emerald-500 */
 }
 
 /* Showcase Manual Slider Styles */

@@ -90,11 +90,28 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        '/'
+        '/',
+        '/about',
+        '/product',
+        '/product/modules',
+        '/docs',
+        '/docs/getting-started',
+        '/blog',
+        '/events',
+        '/agency',
+        '/careers',
+        '/devlovers',
+        '/enterprise',
+        '/starter-kits',
+        '/sponsors',
+        '/contact',
+        '/legal',
+        '/privacy',
+        '/status'
       ],
       crawlLinks: true,
       failOnError: false,
-      ignore: ['/contact', '/getting-started/installation']
+      ignore: ['/admin', '/api/private']
     }
   },
 
