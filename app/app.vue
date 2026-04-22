@@ -11,21 +11,21 @@ useHead({
     { rel: 'icon', href: '/favicon.ico' }
   ],
   htmlAttrs: {
-    lang: 'en'
+    lang: 'id'
   }
 })
 
 useSeoMeta({
-  titleTemplate: '%s - NLFTs Developer Program',
-  title: 'NLFTs Developer Program Member',
-  description: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
-  ogTitle: 'NLFTs Developer Program Member',
-  ogDescription: 'Bergabunglah dengan program eksklusif NLFTs Developer Member. Temukan modul, komponen, dan komunitas developer terbuka kami.',
+  titleTemplate: '%s - Program Developer NLFTs',
+  title: 'Anggota Program Developer NLFTs',
+  description: 'Bergabunglah dengan program eksklusif Anggota Developer NLFTs. Temukan modul, komponen, dan komunitas developer terbuka kami.',
+  ogTitle: 'Anggota Program Developer NLFTs',
+  ogDescription: 'Bergabunglah dengan program eksklusif Anggota Developer NLFTs. Temukan modul, komponen, dan komunitas developer terbuka kami.',
   ogImage: '/og-image.png',
   twitterImage: '/og-image.png',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'NLFTs Developer Program Member',
-  twitterDescription: 'Bergabunglah dengan program eksklusif NLFTs Developer Member.'
+  twitterTitle: 'Anggota Program Developer NLFTs',
+  twitterDescription: 'Bergabunglah dengan program eksklusif Anggota Developer NLFTs.'
 })
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
@@ -36,11 +36,11 @@ const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSe
 })
 
 const links = [{
-  label: 'Docs',
+  label: 'Dokumentasi',
   icon: 'i-lucide-book',
   to: '/docs/nuxt/getting-started'
 }, {
-  label: 'Events',
+  label: 'Acara',
   icon: 'i-lucide-calendar',
   to: '/events'
 }, {
@@ -48,7 +48,7 @@ const links = [{
   icon: 'i-lucide-pencil',
   to: '/blog'
 }, {
-  label: 'Changelog',
+  label: 'Riwayat Perubahan',
   icon: 'i-lucide-history',
   to: '/changelog'
 }]

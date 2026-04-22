@@ -48,44 +48,23 @@ defineOgImageComponent('Saas')
             <h3 class="text-xl font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">
               {{ event.title }}
             </h3>
-            <p class="text-neutral-400 text-sm line-clamp-2">
+            <p class="text-neutral-400 text-sm">
               {{ event.description }}
             </p>
-            <div class="flex items-center gap-2 text-xs text-neutral-500">
-              <UIcon name="i-lucide-map-pin" class="w-4 h-4 text-sky-500" />
+            <div class="flex items-center gap-2 text-sm text-neutral-500">
+              <UIcon name="i-lucide-map-pin" class="w-4 h-4" />
               {{ event.location }}
             </div>
-          </div>
-
-          <template #footer>
-            <UButton
+            <UButton 
+              label="Pelajari Lebih Lanjut" 
               :to="event.link"
-              block
               color="sky"
-              variant="soft"
-              label="Learn More"
-              trailing-icon="i-lucide-arrow-right"
-              class="group-hover:bg-sky-500 group-hover:text-white transition-all"
+              size="sm"
+              class="w-full"
             />
-          </template>
+          </div>
         </UCard>
       </div>
     </UContainer>
-
-    <UPageSection
-      :title="page.faq.title"
-      :description="page.faq.description"
-      class="border-t border-white/5"
-    >
-      <UAccordion
-        :items="page.faq.items"
-        class="max-w-3xl mx-auto"
-        variant="ghost"
-        :ui="{
-          trigger: 'text-lg font-semibold text-white/90 hover:text-sky-400 py-4',
-          body: 'text-neutral-400 pb-6'
-        }"
-      />
-    </UPageSection>
   </div>
 </template>

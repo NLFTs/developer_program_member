@@ -22,44 +22,44 @@ const handleLogout = () => {
 }
 
 const items = [
-  { label: 'Product', to: '/product' },
-  { label: 'Events', to: '/events', hasMega: true },
-  { label: 'Resources', to: '/docs/getting-started', hasMega: true },
+  { label: 'Produk', to: '/product' },
+  { label: 'Acara', to: '/events', hasMega: true },
+  { label: 'Sumber Daya', to: '/docs/getting-started', hasMega: true },
   { label: 'Blog', to: '/blog' }
 ]
 
 const megaMenuData = {
-  Events: {
+  Acara: {
     upcoming: [
-      { date: '22 APR', title: 'NLFTs Workshop Jakarta', desc: 'SCBD, Jakarta Selatan' },
-      { date: '23 APR', title: 'Open Source Forum', desc: 'Online Webinar' },
+      { date: '22 APR', title: 'Workshop NLFTs Jakarta', desc: 'SCBD, Jakarta Selatan' },
+      { date: '23 APR', title: 'Forum Open Source', desc: 'Webinar Online' },
       { date: '24 APR', title: 'Dev Meetup Bandung', desc: 'Dago, Bandung' },
       { date: '30 APR', title: 'Community Talk Surabaya', desc: 'Ciputra World, Surabaya' }
     ],
     featured: [
       { 
         image: 'https://media.istockphoto.com/id/2205848062/photo/gedung-sate-satay-building-an-iconic-place-in-bandung-city-indonesia.webp?a=1&b=1&s=612x612&w=0&k=20&c=dei-qIgEcSMgzTo2Hk77VLaa2-h_MbiDaEL0cspJV_o=', 
-        title: 'NLFTs in Bandung', 
-        date: 'MAY 26-27 2026', 
+        title: 'NLFTs di Bandung', 
+        date: 'MEI 26-27 2026', 
         location: 'BANDUNG ID' 
       },
       { 
         image: 'https://images.unsplash.com/photo-1707378174003-418d6262d355?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVndSUyMGpvZ2phfGVufDB8fDB8fHww', 
-        title: 'NLFTs In Jogja', 
+        title: 'NLFTs di Jogja', 
         date: 'JUN 18-19 2026', 
         location: 'YOGYAKARTA ID' 
       }
     ]
   },
-  Resources: {
+  'Sumber Daya': {
     categories: [
       {
-        title: 'Getting Started',
+        title: 'Memulai',
         to: '/docs/getting-started',
         icon: 'i-lucide-rocket',
         desc: 'Mulai perjalanan development Anda',
         items: [
-          { label: 'Introduction', to: '/docs/getting-started' },
+          { label: 'Pengenalan', to: '/docs/getting-started' },
           { label: 'Protokol', to: '/docs/getting-started/protokol' },
           { label: 'Lisensi', to: '/docs/getting-started/lisensi' }
         ]
@@ -70,7 +70,7 @@ const megaMenuData = {
         icon: 'i-lucide-code',
         desc: 'Pelajari HTML dari dasar hingga mahir',
         items: [
-          { label: 'Getting Started', to: '/docs/html/getting-started' },
+          { label: 'Memulai', to: '/docs/html/getting-started' },
           { label: 'Pustaka', to: '/docs/html/pustaka' }
         ]
       },
@@ -80,8 +80,8 @@ const megaMenuData = {
         icon: 'i-lucide-palette',
         desc: 'Styling dan design dengan CSS',
         items: [
-          { label: 'Fundamentals', to: '/docs/css/fundamentals' },
-          { label: 'Advanced', to: '/docs/css/advanced' }
+          { label: 'Dasar', to: '/docs/css/fundamentals' },
+          { label: 'Lanjutan', to: '/docs/css/advanced' }
         ]
       },
       {
@@ -90,7 +90,7 @@ const megaMenuData = {
         icon: 'i-lucide-zap',
         desc: 'Programming dengan JavaScript',
         items: [
-          { label: 'Basics', to: '/docs/js/basics' },
+          { label: 'Dasar', to: '/docs/js/basics' },
           { label: 'ES6+', to: '/docs/js/es6' }
         ]
       },

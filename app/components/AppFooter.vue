@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const columns = [{
-  label: 'Products',
+  label: 'Produk',
   children: [{
-    label: 'Modules',
+    label: 'Modul',
     to: '/product/modules'
   }, {
     label: 'Cloud',
@@ -11,34 +11,34 @@ const columns = [{
     label: 'Deployment',
     to: '/product/deployment'
   }, {
-    label: 'Analytics',
+    label: 'Analitik',
     to: '/product/analytics'
   }]
 }, {
-  label: 'Resources',
+  label: 'Sumber Daya',
   children: [{
-    label: 'Documentation',
+    label: 'Dokumentasi',
     to: '/docs/nuxt/getting-started'
   }, {
-    label: 'Starter Kits',
+    label: 'Starter Kit',
     to: '/starter-kits'
   }, {
-    label: 'Developer Hub',
+    label: 'Hub Developer',
     to: '/devlovers'
   }, {
-    label: 'Events',
+    label: 'Acara',
     to: '/events'
   }]
 }, {
-  label: 'Company',
+  label: 'Perusahaan',
   children: [{
-    label: 'About NLFTs',
+    label: 'Tentang NLFTs',
     to: '/about'
   }, {
-    label: 'Agency',
+    label: 'Agensi',
     to: '/agency'
   }, {
-    label: 'Sponsors',
+    label: 'Sponsor',
     to: '/sponsors'
   }, {
     label: 'Blog',
@@ -56,7 +56,7 @@ const columns = [{
           <AppLogo />
           
           <p class="text-neutral-400 text-lg sm:text-xl font-medium leading-relaxed max-w-sm">
-            The professional standard for building modern open modules and scalable cloud applications.
+            Standar profesional untuk membangun modul terbuka modern dan aplikasi cloud yang dapat diskalakan.
           </p>
 
           <div class="flex items-center gap-6">
@@ -73,9 +73,9 @@ const columns = [{
 
           <div class="flex flex-wrap items-center gap-6 text-[10px] sm:text-xs font-bold text-neutral-600 uppercase tracking-[0.2em] pt-4">
             <span>© {{ new Date().getFullYear() }} NLFTs</span>
-            <NuxtLink to="/legal" class="hover:text-white transition-colors">Legal</NuxtLink>
+            <NuxtLink to="/legal" class="hover:text-white transition-colors">Hukum</NuxtLink>
             <NuxtLink to="/status" class="hover:text-white transition-colors">Status</NuxtLink>
-            <NuxtLink to="/privacy" class="hover:text-white transition-colors">Privacy</NuxtLink>
+            <NuxtLink to="/privacy" class="hover:text-white transition-colors">Privasi</NuxtLink>
           </div>
         </div>
 

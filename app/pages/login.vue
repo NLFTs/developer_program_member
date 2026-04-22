@@ -45,9 +45,9 @@ const handleLogin = async () => {
   )
   
   if (popup) {
-    popup.document.title = 'Authenticating...'
+    popup.document.title = 'Mengautentikasi...'
   } else {
-    alert('Please allow popups for this website to sign in.')
+    alert('Silakan izinkan popup untuk situs web ini untuk masuk.')
     isLoading.value = false
   }
   
@@ -82,71 +82,73 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020420] py-12 px-4 sm:px-6 lg:px-8">
-    <!-- Premium Background Effects -->
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full bg-glow" />
-      <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full bg-glow" />
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
-    </div>
-
-    <!-- Login Card -->
-    <div class="login-card relative w-full max-w-md">
-      <div class="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl" />
-      
-      <div class="relative p-8 sm:p-12 flex flex-col items-center text-center">
-        <!-- Logo/Icon -->
-        <div class="mb-8 p-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-white/10">
-          <UIcon name="i-simple-icons-github" class="w-12 h-12 text-white" />
+  <UMain class="bg-black text-white py-24 min-h-screen flex items-center">
+    <UContainer>
+      <div class="max-w-md mx-auto">
+        <!-- Glow effects -->
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+          <div class="bg-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
         </div>
 
-        <h1 class="text-3xl font-extrabold text-white tracking-tight mb-2 font-display">
-          Welcome Back
-        </h1>
-        <p class="text-white/50 text-sm mb-10 max-w-[280px]">
-          Sign in with GitHub to access the NLFTs Developer Program.
-        </p>
+        <!-- Login Card -->
+        <div class="login-card">
+          <!-- Header -->
+          <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-2">Selamat Datang</h1>
+            <p class="text-neutral-400">Masuk ke akun NLFTs Anda</p>
+          </div>
 
-        <!-- GitHub Login Button -->
-        <UButton
-          size="xl"
-          color="white"
-          variant="solid"
-          class="w-full justify-center group relative overflow-hidden rounded-xl py-4 font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
-          :loading="isLoading"
-          @click="handleLogin"
-        >
-          <template #leading>
-            <UIcon name="i-simple-icons-github" class="w-5 h-5 mr-2" />
-          </template>
-          Continue with GitHub
-          
-          <!-- Subtle Inner Shine -->
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
-        </UButton>
+          <!-- Login Form -->
+          <div class="space-y-6">
+            <!-- GitHub Login -->
+            <UButton
+              label="Masuk dengan GitHub"
+              icon="i-simple-icons-github"
+              size="lg"
+              color="white"
+              class="w-full"
+              :loading="isLoading"
+              @click="handleLogin"
+            />
 
-        <div class="mt-8 pt-8 border-t border-white/5 w-full">
-          <p class="text-white/30 text-xs">
-            By signing in, you agree to our 
-            <NuxtLink to="/terms" class="text-white/60 hover:text-white transition-colors underline underline-offset-4">Terms of Service</NuxtLink> 
-            and 
-            <NuxtLink to="/privacy" class="text-white/60 hover:text-white transition-colors underline underline-offset-4">Privacy Policy</NuxtLink>.
-          </p>
+            <!-- Divider -->
+            <div class="relative">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-neutral-700"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-black text-neutral-400">atau</span>
+              </div>
+            </div>
+
+            <!-- Email Login (placeholder) -->
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium mb-2">Email</label>
+                <input 
+                  type="email" 
+                  placeholder="email@anda.com"
+                  class="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Kata Sandi</label>
+                <input 
+                  type="password" 
+                  placeholder="••••••••"
+                  class="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                />
+              </div>
+              <UButton label="Masuk" color="white" class="w-full" />
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="mt-8 text-center text-sm text-neutral-400">
+            <p>Belum punya akun? <NuxtLink to="/signup" class="text-blue-400 hover:text-blue-300">Daftar di sini</NuxtLink></p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Additional Ambient Elements -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white/20">
-      <UIcon name="i-simple-icons-nuxtdotjs" class="w-5 h-5" />
-      <UIcon name="i-simple-icons-github" class="w-5 h-5" />
-      <UIcon name="i-simple-icons-tailwindcss" class="w-5 h-5" />
-    </div>
-  </div>
+    </UContainer>
+  </UMain>
 </template>
-
-<style scoped>
-.font-display {
-  font-family: 'Outfit', sans-serif;
-}
-</style>

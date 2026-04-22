@@ -10,13 +10,13 @@ defineProps({
 
 useHead({
   htmlAttrs: {
-    lang: 'en'
+    lang: 'id'
   }
 })
 
 useSeoMeta({
-  title: 'Page not found',
-  description: 'We are sorry but this page could not be found.'
+  title: 'Halaman tidak ditemukan',
+  description: 'Kami mohon maaf tetapi halaman ini tidak dapat ditemukan.'
 })
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
@@ -27,11 +27,11 @@ const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSe
 })
 
 const links = [{
-  label: 'Docs',
+  label: 'Dokumentasi',
   icon: 'i-lucide-book',
   to: '/docs/getting-started'
 }, {
-  label: 'Pricing',
+  label: 'Harga',
   icon: 'i-lucide-credit-card',
   to: '/pricing'
 }, {
@@ -48,23 +48,15 @@ const links = [{
     <UMain>
       <UContainer>
         <UPage>
-          <UError :error="error" />
+          <UPageError :error="error" />
+
+          <template #right>
+            <UDocSearch :files="files" :links="links" />
+          </template>
         </UPage>
       </UContainer>
     </UMain>
 
     <AppFooter />
-
-    <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        shortcut="meta_k"
-        :navigation="navigation"
-        :links="links"
-        :fuse="{ resultLimit: 42 }"
-      />
-    </ClientOnly>
-
-    <UToaster />
   </div>
 </template>

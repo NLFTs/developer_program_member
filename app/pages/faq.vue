@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('faq', () => queryCollection('faq').first())
 
-const title = page.value?.title || 'Frequently Asked Questions'
-const description = page.value?.description || 'Everything you need to know about the program.'
+const title = page.value?.title || 'Pertanyaan yang Sering Diajukan'
+const description = page.value?.description || 'Semua yang perlu Anda ketahui tentang program.'
 
 useSeoMeta({
   title,
@@ -71,28 +71,3 @@ defineOgImageComponent('Saas')
     </UContainer>
   </UMain>
 </template>
-
-<style scoped>
-.text-highlighted {
-  color: var(--ui-text-highlighted);
-}
-
-.text-muted {
-  color: var(--ui-text-muted);
-}
-
-.border-default {
-  border-color: var(--ui-border-default);
-}
-
-/* Glassmorphism effect for FAQ items */
-.faq-item {
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.01);
-}
-
-/* Ensure smooth transition for horizontal movement on hover */
-.faq-trigger {
-  will-change: transform;
-}
-</style>
