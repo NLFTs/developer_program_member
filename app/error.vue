@@ -19,7 +19,7 @@ useSeoMeta({
   description: 'Kami mohon maaf tetapi halaman ini tidak dapat ditemukan.'
 })
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
+const { data: _navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
   transform: data => data.find(item => item.path === '/docs')?.children || []
 })
 const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('docs'), {
@@ -51,7 +51,10 @@ const links = [{
           <UPageError :error="error" />
 
           <template #right>
-            <UDocSearch :files="files" :links="links" />
+            <UDocSearch
+              :files="files"
+              :links="links"
+            />
           </template>
         </UPage>
       </UContainer>
