@@ -7,10 +7,10 @@ useSeoMeta({
 })
 
 const stats = [
-  { label: 'Active Developers', value: '10,000+' },
-  { label: 'Open Source Projects', value: '50+' },
-  { label: 'Countries Reached', value: '75+' },
-  { label: 'GitHub Stars', value: '25,000+' }
+  { label: 'Active Developers', value: '10,000+', note: '(Example)' },
+  { label: 'Open Source Projects', value: '50+', note: '(Example)' },
+  { label: 'Countries Reached', value: '75+', note: '(Example)' },
+  { label: 'GitHub Stars', value: '25,000+', note: '(Example)' }
 ]
 
 const team = [
@@ -18,19 +18,22 @@ const team = [
     name: 'Alex Chen',
     role: 'Founder & CEO',
     bio: 'Former senior engineer at major tech companies, passionate about developer experience.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    note: '(Example)'
   },
   {
     name: 'Sarah Kim',
     role: 'CTO',
     bio: 'Full-stack developer with expertise in modern web technologies and architecture.',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    note: '(Example)'
   },
   {
     name: 'Marcus Johnson',
     role: 'Head of Community',
     bio: 'Developer advocate focused on building inclusive and supportive developer communities.',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    note: '(Example)'
   }
 ]
 
@@ -78,6 +81,7 @@ const values = [
             <div v-for="stat in stats" :key="stat.label">
               <div class="text-3xl font-bold text-white mb-2">{{ stat.value }}</div>
               <div class="text-sm text-neutral-400">{{ stat.label }}</div>
+              <div class="text-xs text-neutral-500 mt-1">{{ stat.note }}</div>
             </div>
           </div>
         </section>
@@ -155,6 +159,7 @@ const values = [
               <h3 class="text-lg font-semibold mb-1">{{ member.name }}</h3>
               <p class="text-blue-400 text-sm mb-3">{{ member.role }}</p>
               <p class="text-neutral-400 text-sm leading-relaxed">{{ member.bio }}</p>
+              <p class="text-xs text-neutral-500 mt-2">{{ member.note }}</p>
             </div>
           </div>
         </section>

@@ -369,5 +369,47 @@ setup(() => {
         </button>
       </div>
     </template>
+
+    <!-- Mobile Menu Panel -->
+    <div 
+      v-if="isMobileMenuOpen"
+      class="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/5 lg:hidden z-[199]"
+    >
+      <nav class="flex flex-col divide-y divide-white/5">
+        <NuxtLink 
+          v-for="item in items"
+          :key="item.label"
+          :to="item.to"
+          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          @click="isMobileMenuOpen = false"
+        >
+          {{ item.label }}
+        </NuxtLink>
+        
+        <NuxtLink 
+          to="/about"
+          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          @click="isMobileMenuOpen = false"
+        >
+          About
+        </NuxtLink>
+
+        <NuxtLink 
+          to="/careers"
+          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          @click="isMobileMenuOpen = false"
+        >
+          Careers
+        </NuxtLink>
+
+        <NuxtLink 
+          to="/contact"
+          class="px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+          @click="isMobileMenuOpen = false"
+        >
+          Contact
+        </NuxtLink>
+      </nav>
+    </div>
   </UHeader>
 </template>

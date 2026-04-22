@@ -9,6 +9,28 @@ interface ShowcaseItem {
 defineProps<{
   showcasesItems: ShowcaseItem[]
 }>()
+
+const scrollContainer = ref<HTMLElement | null>(null)
+
+const scrollPrev = () => {
+  if (scrollContainer.value) {
+    scrollContainer.value.scrollBy({ left: -400, behavior: 'smooth' })
+  }
+}
+
+const scrollNext = () => {
+  if (scrollContainer.value) {
+    scrollContainer.value.scrollBy({ left: 400, behavior: 'smooth' })
+  }
+}
+
+onMounted(() => {
+  const prevBtn = document.querySelector('.showcase-prev') as HTMLButtonElement
+  const nextBtn = document.querySelector('.showcase-next') as HTMLButtonElement
+  
+  if (prevBtn) prevBtn.addEventListener('click', scrollPrev)
+  if (nextBtn) nextBtn.addEventListener('click', scrollNext)
+})
 </script>
 
 <template>
@@ -30,7 +52,7 @@ defineProps<{
 
       <div class="showcase-slider-wrapper relative group/slider -mx-4 sm:mx-0">
         <!-- Center-focused native slider -->
-        <div class="showcase-scroll-container flex overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]" data-lenis-prevent>
+        <div ref="scrollContainer" class="showcase-scroll-container flex overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]" data-lenis-prevent>
           <NuxtLink 
             v-for="item in showcasesItems" 
             :key="item.name"

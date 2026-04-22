@@ -36,7 +36,7 @@ useSeoMeta({
               <p class="text-neutral-300 mb-4">
                 Lead the development of our core framework components and developer tools. Experience with Vue.js, Nuxt.js, and TypeScript required.
               </p>
-              <UButton label="Apply Now" color="white" size="sm" />
+              <UButton label="Apply Now" color="white" size="sm" to="/contact" />
             </div>
 
             <div class="border border-neutral-800 rounded-lg p-6 hover:border-neutral-700 transition-colors">
@@ -50,7 +50,7 @@ useSeoMeta({
               <p class="text-neutral-300 mb-4">
                 Build relationships with our developer community, create technical content, and represent NLFTs at conferences and events.
               </p>
-              <UButton label="Apply Now" color="white" size="sm" />
+              <UButton label="Apply Now" color="white" size="sm" to="/contact" />
             </div>
 
             <div class="border border-neutral-800 rounded-lg p-6 hover:border-neutral-700 transition-colors">

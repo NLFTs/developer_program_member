@@ -18,15 +18,15 @@ Allow: /starter-kits/
 Allow: /contact/
 Allow: /sponsors/
 
-# Block admin and private areas (if any)
-Disallow: /admin/
-Disallow: /_nuxt/
-Disallow: /api/private/
-
 # Allow search engines to crawl assets
 Allow: /images/
 Allow: /css/
 Allow: /js/
+Allow: /_nuxt/
+
+# Block admin and private areas (if any)
+Disallow: /admin/
+Disallow: /api/private/
 
 # Sitemap location
 Sitemap: https://nlfts.dev/sitemap.xml

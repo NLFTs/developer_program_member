@@ -1,5 +1,6 @@
 export default defineEventHandler(async (event) => {
-  const baseUrl = 'https://nlfts.dev'
+  const config = useRuntimeConfig()
+  const baseUrl = config.public.siteUrl || 'https://nlfts.dev'
   
   // Static pages with their priorities and change frequencies
   const staticPages = [

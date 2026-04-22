@@ -91,12 +91,12 @@ const visibleTestimonials = communityTestimonials.slice(0, 3)
 const partners = [
   {
     name: 'GRANTARA',
-    logo: 'https://media-cgk2-2.cdn.whatsapp.net/v/t61.24694-24/534335063_1146668670685976_7454437243289052207_n.jpg?ccb=11-4&oh=01_Q5Aa4QGMZ68YQC5ef5L0NjS-04T2RsTKWLXf5XKKR6h84HaXGQ&oe=69F2B5CB&_nc_sid=5e03e0&_nc_cat=102',
+    logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center',
     url: 'https://grantara.com'
   },
   {
     name: 'ITK',
-    logo: 'https://media-cgk2-2.cdn.whatsapp.net/v/t61.24694-24/615265201_1416316086629363_3896669329718364255_n.jpg?ccb=11-4&oh=01_Q5Aa4QGA98YDhJbvWOfqxY0tmeDffGV1wtcVetBpINCAWo6Tzw&oe=69ED9FDF&_nc_sid=5e03e0&_nc_cat=111',
+    logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center',
     url: 'https://itk.ac.id'
   },
   {
