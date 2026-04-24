@@ -1,150 +1,111 @@
-title: Luncurkan [SaaS]{class="text-primary"} Anda dengan Kecepatan Cahaya
-description: Bangun aplikasi SaaS siap produksi dengan komponen Nuxt UI yang kuat, alur autentikasi, dan fitur enterprise. Perpustakaan komponen yang sama dipercaya oleh seluruh ekosistem Nuxt.
+title: Dokumentasi [NLFTs]{class="text-primary"} Developer Program
+description: Panduan komprehensif untuk mengintegrasikan layanan, API, dan komponen antarmuka NLFTs. Dibangun oleh dan untuk developer.
 seo:
-  title: Template Nuxt SaaS
-  description: Buat aplikasi SaaS yang menakjubkan, cepat, dan siap produksi dengan Nuxt UI. 100+ komponen Vue, autentikasi, dark mode, dan fitur enterprise dibangun di atas Tailwind CSS.
+  title: NLFTs Developer Program
+  description: Pelajari cara membangun aplikasi generasi berikutnya dengan ekosistem alat, pustaka, dan API canggih dari NLFTs.
 navigation: false
 hero:
   links:
-    - label: Mulai
+    - label: Mulai Membaca Docs
       icon: i-lucide-arrow-right
       trailing: true
-      to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
-      target: _blank
+      to: /docs/getting-started
       size: xl
-    - label: Gunakan template ini
+    - label: Repositori GitHub
       icon: i-simple-icons-github
       size: xl
       color: neutral
       variant: subtle
-      to: https://github.com/nuxt-ui-templates/saas
+      to: https://github.com/NLFTs
       target: _blank
 sections:
-  - title: Didukung oleh Komponen Nuxt UI
-    description: Akses perpustakaan komponen Nuxt UI lengkap dengan 100+ komponen Vue yang bergaya indah, dapat diakses, dan dapat disesuaikan. Semua yang Anda butuhkan untuk membangun aplikasi SaaS profesional.
+  - title: Didukung oleh Teknologi Modern
+    description: Akses pustaka komponen yang dioptimalkan dan referensi API terlengkap. Semua yang Anda butuhkan untuk mengembangkan produk yang efisien, skalabel, dan tangguh.
     id: features
     orientation: horizontal
     features:
-      - name: 100+ Komponen UI
-        description: Dari tombol hingga modal, tabel data hingga formulir - semuanya bergaya dengan Tailwind CSS dan dapat diakses langsung.
+      - name: Komponen Tingkat Lanjut
+        description: Menggabungkan keandalan dan estetika. Komponen kami dirancang untuk responsivitas tinggi dan aksesibilitas maksimal.
         icon: i-lucide-package
-      - name: Autentikasi Siap
-        description: Alur login, signup, dan reset kata sandi yang sudah dibangun. Cukup hubungkan backend Anda dan mulai onboarding pengguna.
+      - name: Autentikasi & Keamanan
+        description: Integrasi autentikasi yang mulus untuk menjaga integritas data tanpa mengorbankan pengalaman pengguna.
         icon: i-lucide-shield
-      - name: TypeScript Pertama
-        description: Dukungan TypeScript penuh dengan auto-completion, type safety, dan IntelliSense untuk setiap komponen dan composable.
+      - name: Siap TypeScript
+        description: Dukungan penuh TypeScript memberikan tipe aman yang membantu meminimalkan bug sejak tahap penulisan kode.
         icon: i-lucide-code-2
-  - title: Dibangun untuk SaaS Modern
-    description: Semua yang Anda butuhkan untuk meluncurkan dan menskalakan SaaS Anda. Dari halaman pemasaran yang indah hingga dashboard kompleks, kirim lebih cepat dengan pola siap produksi.
+  - title: Dibangun untuk Masa Depan
+    description: Kami memahami bahwa standar terus berkembang. NLFTs menghadirkan solusi yang dirancang agar tetap relevan dan beradaptasi dengan inovasi masa depan.
     orientation: horizontal
     reverse: true
     features:
-      - name: Performa Edge
-        description: Dioptimalkan untuk Core Web Vitals dengan pemisahan kode otomatis, lazy loading, dan dukungan SSR/SSG.
+      - name: Performa Optimal
+        description: Dioptimalkan dengan caching canggih dan asinkronisasi proses untuk respons data yang nyaris instan.
         icon: i-lucide-zap
-      - name: Dark Mode Siap
-        description: Pengalihan tema otomatis dengan transisi mulus. Menghormati preferensi sistem dan mengingat pilihan pengguna.
+      - name: Adaptif & Fleksibel
+        description: Mendukung skema desain dinamis, transisi mulus, dan preferensi tema lokal seperti dark mode.
         icon: i-lucide-moon
-      - name: Siap Global
-        description: Dukungan i18n bawaan untuk 50+ bahasa dengan tata letak RTL/LTR dan integrasi @nuxt/fonts.
+      - name: Aksesibilitas Global
+        description: Infrastruktur disiapkan untuk lalu lintas skala global dengan lokalisasi (i18n) terintegrasi secara bawaan.
         icon: i-lucide-globe
 features:
-  title: Semua yang Anda Butuhkan untuk Mengirim
-  description: Berhenti membangun dari awal. Fokus pada fitur unik Anda sementara Nuxt UI menangani fondasi dengan komponen dan pola yang telah teruji.
+  title: Fondasi Ekosistem Anda
+  description: Tinggalkan kode boilerplate. Fokus pada logika bisnis Anda sementara NLFTs menyediakan abstraksi, utilitas, dan dokumentasi mendalam.
   items:
-    - title: Sistem Desain Indah
-      description: Alias warna semantik, token desain komprehensif, dan Tailwind Variants untuk styling yang konsisten dan dapat disesuaikan.
+    - title: Desain Sistem Konsisten
+      description: Variabel terpusat, tipografi bersih, dan palet warna yang harmonis untuk memberikan kesan premium.
       icon: i-lucide-palette
-    - title: Dapat Diakses Secara Default
-      description: Dibangun di atas Reka UI untuk aksesibilitas yang kuat. Komponen yang sesuai dengan WCAG yang bekerja untuk semua orang, di mana saja.
-      icon: i-lucide-accessibility
+    - title: Panduan Langkah-demi-Langkah
+      description: Dokumentasi yang kaya akan contoh kasus nyata yang akan mempercepat kurva pembelajaran tim Anda.
+      icon: i-lucide-book-open
     - title: Pengalaman Developer
-      description: Auto-imports, hot module replacement, dan dokumentasi komprehensif. Bangun lebih cepat dengan lebih sedikit gesekan.
+      description: Hot-reloading, auto-imports, dan perkakas bawaan membuat rutinitas harian Anda menjadi lebih minim gesekan.
       icon: i-lucide-terminal
-    - title: Dioptimalkan SEO
-      description: Server-side rendering, meta tag otomatis, pembuatan sitemap, dan gambar Open Graph langsung dari kotak.
+    - title: SEO Ramah Mesin Pencari
+      description: Rendering statis maupun sisi server (SSR) yang telah disetel untuk visibilitas maksimal.
       icon: i-lucide-search
-    - title: Siap Produksi
-      description: Penanganan kesalahan, status loading, validasi formulir, dan best practices keamanan dibangun ke dalam setiap komponen.
+    - title: Stabilitas Terjamin
+      description: Melewati berbagai pengujian ketat sebelum mencapai tahap produksi. Aman dari kerentanan umum.
       icon: i-lucide-check-circle
-    - title: Dapat Disesuaikan Tanpa Batas
-      description: Ganti gaya apa pun dengan prop ui, sesuaikan secara global dengan AppConfig, atau gunakan kelas Tailwind secara langsung.
+    - title: Arsitektur Ekstensibel
+      description: Bebas menentukan arsitektur. Gunakan hanya modul yang Anda perlukan dan abaikan sisanya.
       icon: i-lucide-settings
 testimonials:
-  headline: Dipercaya oleh Developer
-  title: Bergabunglah dengan Ribuan yang Membangun dengan Nuxt UI
-  description: Lihat mengapa developer memilih Nuxt UI untuk mengirim aplikasi SaaS mereka lebih cepat dan dengan lebih percaya diri.
+  headline: Testimoni Developer
+  title: Membantu Ratusan Tim Bergerak Cepat
+  description: Lihat bagaimana integrasi dengan sistem NLFTs telah membantu para developer dari berbagai tingkat keahlian.
   items:
-    - quote: Nuxt UI mengubah cara kami membangun. Kualitas komponen luar biasa - semuanya berfungsi dengan sempurna dengan dukungan TypeScript, aksesibilitas, dan dark mode bawaan.
+    - quote: Ekosistem NLFTs benar-benar mengagumkan. Struktur API-nya logis dan kami dapat menyingkat waktu produksi prototipe secara signifikan tanpa menurunkan kualitas antarmuka.
       user:
-        name: Sarah Chen
-        description: CTO di TechScale Solutions
-        avatar:
-          src: https://i.pravatar.cc/120?img=1
-    - quote: Kami mengirim MVP kami dalam 2 minggu bukan 2 bulan. Alur autentikasi dan komponen formulir menghemat kami berjam-jam waktu pengembangan.
-      user:
-        name: Marcus Rodriguez
-        description: VP of Engineering di DataFlow
-        avatar:
-          src: https://i.pravatar.cc/120?img=7
-    - quote: Sistem desain dengan AppConfig sangat brilian. Kami mempertahankan konsistensi merek di semua produk kami sambil memanfaatkan perpustakaan komponen lengkap.
-      user:
-        name: David Kumar
-        description: Security Director di SecureStack
-        avatar:
-          src: https://i.pravatar.cc/120?img=3
-    - quote: Skor Lighthouse sempurna langsung dari kotak. Core Web Vitals kami meningkat secara dramatis hanya dengan beralih ke komponen Nuxt UI.
-      user:
-        name: Emily Zhang
-        description: Lead Architect di ScaleForce
-        avatar:
-          src: https://i.pravatar.cc/120?img=5
-    - quote: Sistem Tailwind Variants membuat kustomisasi sangat intuitif. Kami dapat mengganti gaya komponen apa pun sambil mempertahankan fungsionalitasnya.
-      user:
-        name: James Wilson
-        description: DevOps Lead di CloudPro
-        avatar:
-          src: https://i.pravatar.cc/120?img=8
-    - quote: Dari template SaaS hingga produksi dalam beberapa hari. Tata letak yang sudah dibangun sebelumnya, navigasi, dan struktur konten mempercepat peluncuran kami.
-      user:
-        name: Lisa Patel
-        description: CEO di AutoScale
-        avatar:
-          src: https://i.pravatar.cc/120?img=9
-    - quote: Fondasi Reka UI berarti aksesibilitas tidak pernah menjadi pemikiran kedua. Kami mencapai kepatuhan WCAG tanpa pekerjaan kustom apa pun.
-      user:
-        name: Michael Torres
-        description: Frontend Lead di AccessFirst
+        name: Budi Prakoso
+        description: Lead Frontend Engineer
         avatar:
           src: https://i.pravatar.cc/120?img=11
-    - quote: Dokumentasinya luar biasa. Setiap komponen memiliki contoh yang jelas, dan komunitas di Discord sangat membantu.
+    - quote: Saya menemukan banyak dokumentasi yang tidak jelas di luar sana, namun NLFTs menyediakan panduan teknis yang presisi. Integrasi selesai dalam hitungan jam.
       user:
-        name: Rachel Kim
-        description: Performance Engineer di APIHub
+        name: Siti Nurhaliza
+        description: Fullstack Developer
         avatar:
-          src: https://i.pravatar.cc/120?img=10
-    - quote: Kami mengganti tiga perpustakaan UI berbeda dengan Nuxt UI. Konsistensi dan kualitas di semua komponen tidak tertandingi.
+          src: https://i.pravatar.cc/120?img=5
+    - quote: Dengan komponen yang telah mendukung aksesibilitas dan performa kelas atas, tim kami lebih fokus merancang alur bisnis ketimbang memperbaiki bug styling.
       user:
-        name: Thomas Weber
-        description: UI Architecture Lead di DesignScale
+        name: Andi Wijaya
+        description: Software Architect
         avatar:
-          src: https://i.pravatar.cc/120?img=12
-    - quote: Integrasi dengan modul Nuxt sangat mulus. Color mode, fonts, icons - semuanya bekerja bersama dengan sempurna.
+          src: https://i.pravatar.cc/120?img=8
+    - quote: Sebagai developer independen, saya sangat tertolong oleh utilitas yang ditawarkan. Komunitasnya juga aktif dan selalu ada saat saya menemui jalan buntu.
       user:
-        name: Sophia Martinez
-        description: Integration Specialist di TechFlow
+        name: Rina Melati
+        description: Indie Hacker
         avatar:
-          src: https://i.pravatar.cc/120?img=14
+          src: https://i.pravatar.cc/120?img=9
 cta:
-  title: Siap membangun SaaS yang menakjubkan?
-  description: Bergabunglah dengan ribuan developer yang membangun dengan Nuxt dan Nuxt UI. Dapatkan template ini dan mulai mengirim hari ini.
+  title: Siap Membangun dengan NLFTs?
+  description: Jangan mulai dari nol. Pelajari dokumentasi kami, unduh paketnya, dan bergabunglah dengan revolusi pengembangan web.
   links:
-    - label: Mulai membangun
-      to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt'
-      target: _blank
+    - label: Baca Dokumentasi
+      to: /docs/getting-started
       trailingIcon: i-lucide-arrow-right
-    - label: Lihat di GitHub
-      to: 'https://github.com/nuxt-ui-templates/saas'
-      target: _blank
+    - label: Kunjungi Repositori
+      to: https://github.com/NLFTs
       variant: subtle
       icon: i-simple-icons-github
