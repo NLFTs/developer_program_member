@@ -426,14 +426,14 @@ setup(() => {
         <div class="showcase-slider-wrapper relative group/slider -mx-4 sm:mx-0">
           <!-- Center-focused native slider -->
           <div
-            class="showcase-scroll-container flex overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]"
+            class="showcase-scroll-container flex items-start overflow-x-auto scrollbar-hide gap-0 sm:gap-10 pb-12 px-0 sm:px-[20%]"
             data-lenis-prevent
           >
             <NuxtLink
               v-for="item in showcasesItems"
               :key="item.name"
               :to="'/product/' + item.slug"
-              class="flex-none w-full sm:w-[60vw] lg:w-[50vw]"
+              class="flex-none w-full sm:w-[60vw] lg:w-[50vw] max-w-[800px]"
             >
               <div class="showcase-card group cursor-pointer">
                 <div class="relative aspect-[16/9] overflow-hidden rounded-none sm:rounded-3xl border-y sm:border border-white/10 bg-neutral-900 shadow-2xl transition-all duration-700 group-hover:border-white/20 sm:group-hover:-translate-y-4">
@@ -535,12 +535,12 @@ setup(() => {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  height: clamp(600px, 100vh, 900px);
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: calc(var(--header-height) + 2rem) 1rem 3rem;
+  padding: 64px 24px 32px;
   background-color: #000;
   background-image:
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
@@ -574,9 +574,12 @@ setup(() => {
   z-index: 2;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 768px) {
   .hero {
-    padding: calc(var(--header-height) + 4rem) 1.5rem 3rem;
+    height: 100svh;
+    min-height: 600px;
+    max-height: none;
+    padding: 80px 20px 40px;
   }
 }
 
@@ -589,7 +592,6 @@ setup(() => {
   text-align: center;
   max-width: 860px;
   width: 100%;
-  padding-top: 2rem;
 }
 
 .hero-title {

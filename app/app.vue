@@ -65,6 +65,8 @@ provide('navigation', navigation)
         <NuxtPage />
       </NuxtLayout>
 
+      <AppMobileMenu />
+
       <ClientOnly>
         <LazyUContentSearch
           :files="files"

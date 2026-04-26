@@ -1,12 +1,28 @@
 <script setup lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content'
+const { y } = useWindowScroll()
 const route = useRoute()
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
+
+const currentDocsNavigation = computed(() => {
+  const currentFramework = route.path.split('/')[2]
+  if (!currentFramework || !navigation?.value) return []
+  return navigation.value.find(item => item.path === `/docs/${currentFramework}`)?.children || []
+})
+
+const frameworks = [
+  { label: 'Nuxt', to: '/docs/nuxt/getting-started', icon: 'i-simple-icons-nuxtdotjs' },
+  { label: 'Laravel', to: '/docs/laravel/getting-started', icon: 'i-simple-icons-laravel' },
+  { label: 'Next.js', to: '/docs/nextjs/getting-started', icon: 'i-simple-icons-nextdotjs' },
+  { label: 'HTML/CSS/JS', to: '/docs/html/getting-started', icon: 'i-lucide-code' }
+]
 
 // Use new auth composable (no database)
 const { user, isLoggedIn, logout } = useAuth()
 
 const isUserMenuOpen = ref(false)
 const userMenuRef = ref(null)
-const isMobileMenuOpen = ref(false)
+const { isOpen: isMobileMenuOpen, toggle: toggleMobileMenu } = useMobileMenu()
 
 onClickOutside(userMenuRef, () => {
   isUserMenuOpen.value = false
@@ -193,55 +209,7 @@ const openSearch = () => {
 }
 
 const { gsap, setup } = useGsap()
-const expandedMobileItems = ref<Set<string>>(new Set())
-
-const toggleMobileSubmenu = (label: string) => {
-  if (expandedMobileItems.value.has(label)) {
-    expandedMobileItems.value.delete(label)
-  } else {
-    expandedMobileItems.value.add(label)
-  }
-}
-
-watch(isUserMenuOpen, (isOpen) => {
-  if (isOpen) {
-    nextTick(() => {
-      gsap.fromTo('.user-dropdown-menu',
-        { opacity: 0, y: -10, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: 'power2.out' }
-      )
-    })
-  }
-})
-
-watch(isMobileMenuOpen, (isOpen) => {
-  if (isOpen) {
-    nextTick(() => {
-      gsap.fromTo('.mobile-menu-panel',
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-      )
-      gsap.staggerFromTo('.mobile-menu-item',
-        { opacity: 0, x: -20 },
-        { opacity: 1, x: 0, duration: 0.2, ease: 'power2.out' },
-        0.05
-      )
-    })
-  } else {
-    expandedMobileItems.value.clear()
-  }
-})
-
-// Animate submenu expansion
-watch(expandedMobileItems, () => {
-  nextTick(() => {
-    gsap.to('.mobile-submenu', {
-      duration: 0.3,
-      ease: 'power2.out',
-      stagger: 0.05
-    })
-  })
-}, { deep: true })
+// Submenu expansion logic for mobile is now handled in AppMobileMenu component
 
 setup(() => {
   gsap.from('.navbar-glow', {
@@ -254,15 +222,34 @@ setup(() => {
 </script>
 
 <template>
-  <UHeader class="border-b border-white/5 bg-background/90 relative z-[200]">
+  <UHeader
+    :class="[
+      'border-b transition-all duration-500 sticky top-0 z-[200] min-h-[64px]',
+      y > 50 ? 'bg-black/80 backdrop-blur-3xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.8)]' : 'bg-background/90 border-white/5'
+    ]"
+  >
     <!-- Ambient Blue Glow Line (Downward Shine) -->
-    <div class="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50 origin-center navbar-glow">
+    <div
+      class="absolute -bottom-px left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50 origin-center navbar-glow"
+    >
+      <!-- Main glowing line -->
+      <div class="absolute inset-0 bg-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
+      
       <!-- Intense center beam -->
-      <div class="absolute inset-0 bg-blue-300 blur-[1px] opacity-100" />
+      <div class="absolute inset-0 bg-white blur-[1px] opacity-100" />
 
-      <!-- Downward light cast (The 'Bus' effect) -->
-      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[90%] h-[30px] bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent blur-md pointer-events-none" />
-      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[70%] h-[60px] bg-gradient-to-b from-blue-400/20 to-transparent blur-2xl pointer-events-none" />
+      <!-- Primary Downward light cast (Wide) -->
+      <div
+        class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[95%] h-[50px] bg-gradient-to-b from-blue-500/80 via-blue-500/20 to-transparent blur-xl pointer-events-none transition-all duration-700"
+      />
+      
+      <!-- Secondary Downward light cast (Focused) -->
+      <div
+        class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[80%] h-[100px] bg-gradient-to-b from-blue-400/40 via-blue-500/10 to-transparent blur-3xl pointer-events-none"
+      />
+
+      <!-- Extra intense center glow -->
+      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[40%] h-[30px] bg-blue-500/50 blur-lg pointer-events-none" />
     </div>
 
     <template #left>
@@ -274,21 +261,21 @@ setup(() => {
       </NuxtLink>
     </template>
 
-    <!-- Custom Desktop Nav with Mega Menu Trigger -->
-    <div class="hidden lg:flex items-center gap-8 ml-8">
+    <!-- [DESKTOP] Nav Section -->
+    <div class="hidden lg:flex items-center gap-6 ml-8">
       <div
         v-for="item in items"
         :key="item.label"
-        class="relative py-4"
+        class="relative py-2 group"
         @mouseenter="handleMouseEnter(item.label, item.hasMega)"
         @mouseleave="handleMouseLeave"
       >
         <NuxtLink
           :to="item.to"
-          class="text-sm font-bold transition-all flex items-center gap-1.5"
+          class="text-sm font-bold transition-all flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/5"
           :class="[
             route.path.startsWith(item.to) ? 'text-white' : 'text-white/50 hover:text-white',
-            activeMegaMenu === item.label ? 'text-white translate-y-[-1px]' : ''
+            activeMegaMenu === item.label ? 'text-white bg-white/5' : ''
           ]"
         >
           {{ item.label }}
@@ -421,170 +408,69 @@ setup(() => {
         </ClientOnly>
 
         <button
-          class="p-2 text-zinc-400 hover:text-white transition-colors lg:hidden ml-2"
-          @click="isMobileMenuOpen = !isMobileMenuOpen"
+          class="custom-hamburger p-2 text-zinc-400 hover:text-white transition-colors lg:hidden ml-2"
+          @click="toggleMobileMenu"
         >
           <Icon
             v-if="!isMobileMenuOpen"
-            name="heroicons:bars-3"
-            class="w-6 h-6"
+            name="heroicons:bars-3-bottom-right"
+            class="w-7 h-7"
           />
           <Icon
             v-else
             name="heroicons:x-mark"
-            class="w-6 h-6"
+            class="w-7 h-7"
           />
         </button>
       </div>
     </template>
 
-    <!-- Mobile Menu Panel -->
-    <div
-      v-if="isMobileMenuOpen"
-      class="mobile-menu-panel absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/5 lg:hidden z-[199] max-h-[calc(100vh-80px)] overflow-y-auto"
-    >
-      <nav class="flex flex-col divide-y divide-white/5">
-        <!-- Main Navigation Items with Expandable Submenus -->
-        <div
-          v-for="item in items"
-          :key="item.label"
-          class="mobile-menu-item"
-        >
-          <button
-            v-if="item.hasMega"
-            class="w-full px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors flex items-center justify-between"
-            @click="toggleMobileSubmenu(item.label)"
-          >
-            <span>{{ item.label }}</span>
-            <UIcon
-              name="i-lucide-chevron-down"
-              class="w-4 h-4 transition-transform duration-300"
-              :class="expandedMobileItems.has(item.label) ? 'rotate-180' : ''"
-            />
-          </button>
-          <NuxtLink
-            v-else
-            :to="item.to"
-            class="block px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-            @click="isMobileMenuOpen = false"
-          >
-            {{ item.label }}
-          </NuxtLink>
-
-          <!-- Expandable Submenu for Events and Resources -->
-          <div
-            v-if="item.hasMega && expandedMobileItems.has(item.label)"
-            class="mobile-submenu bg-white/5 border-t border-white/5 transition-all duration-300 ease-out"
-          >
-            <!-- Events Submenu -->
-            <div
-              v-if="item.label === 'Events'"
-              class="divide-y divide-white/5"
-            >
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Upcoming Events
-                </p>
-                <div class="space-y-2">
-                  <div
-                    v-for="event in megaMenuData.Events.upcoming"
-                    :key="event.title"
-                    class="text-xs"
-                  >
-                    <p class="text-white/80 font-semibold">
-                      {{ event.title }}
-                    </p>
-                    <p class="text-white/40 text-xs">
-                      {{ event.date }} • {{ event.desc }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Featured Events
-                </p>
-                <div class="space-y-3">
-                  <NuxtLink
-                    v-for="event in megaMenuData.Events.featured"
-                    :key="event.title"
-                    :to="`/events?featured=${event.title}`"
-                    class="block text-xs hover:opacity-80 transition-opacity"
-                    @click="isMobileMenuOpen = false"
-                  >
-                    <p class="text-white/80 font-semibold">{{ event.title }}</p>
-                    <p class="text-white/40">{{ event.date }} • {{ event.location }}</p>
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
-
-            <!-- Resources Submenu -->
-            <div
-              v-if="item.label === 'Resources'"
-              class="divide-y divide-white/5"
-            >
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Categories
-                </p>
-                <div class="space-y-2">
-                  <NuxtLink
-                    v-for="category in megaMenuData.Resources.categories"
-                    :key="category.title"
-                    :to="category.to"
-                    class="block text-xs text-white/60 hover:text-white transition-colors py-1"
-                    @click="isMobileMenuOpen = false"
-                  >
-                    {{ category.title }}
-                  </NuxtLink>
-                </div>
-              </div>
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Company
-                </p>
-                <div class="space-y-2">
-                  <NuxtLink
-                    v-for="link in megaMenuData.Resources.company"
-                    :key="link.label"
-                    :to="link.to"
-                    class="block text-xs text-white/60 hover:text-white transition-colors py-1"
-                    @click="isMobileMenuOpen = false"
-                  >
-                    {{ link.label }}
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Additional Links -->
-        <NuxtLink
-          to="/about"
-          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
-        >
-          About
-        </NuxtLink>
-
-        <NuxtLink
-          to="/careers"
-          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
-        >
-          Careers
-        </NuxtLink>
-
-        <NuxtLink
-          to="/contact"
-          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
-        >
-          Contact
-        </NuxtLink>
-      </nav>
-    </div>
+    <!-- Mobile Menu is now handled globally in app.vue via AppMobileMenu component -->
   </UHeader>
 </template>
+
+<style scoped>
+/* Hide the redundant UPage mobile menu button and other auto-generated buttons */
+:global(.u-page-mobile-menu-button),
+:global([aria-label="Open Menu"]),
+:global(.lg\:hidden:not(.custom-hamburger):not(.custom-mobile-menu)),
+:global(button[aria-label="Open Menu"]) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Ensure our custom hamburger is only visible on mobile and positioned correctly */
+@media (max-width: 1023px) {
+  .custom-hamburger {
+    display: flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 50;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-hamburger {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+</style>
