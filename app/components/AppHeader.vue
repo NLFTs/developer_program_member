@@ -1,12 +1,28 @@
 <script setup lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content'
+const { y } = useWindowScroll()
 const route = useRoute()
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
+
+const currentDocsNavigation = computed(() => {
+  const currentFramework = route.path.split('/')[2]
+  if (!currentFramework || !navigation?.value) return []
+  return navigation.value.find(item => item.path === `/docs/${currentFramework}`)?.children || []
+})
+
+const frameworks = [
+  { label: 'Nuxt', to: '/docs/nuxt/getting-started', icon: 'i-simple-icons-nuxtdotjs' },
+  { label: 'Laravel', to: '/docs/laravel/getting-started', icon: 'i-simple-icons-laravel' },
+  { label: 'Next.js', to: '/docs/nextjs/getting-started', icon: 'i-simple-icons-nextdotjs' },
+  { label: 'HTML/CSS/JS', to: '/docs/html/getting-started', icon: 'i-lucide-code' }
+]
 
 // Use new auth composable (no database)
 const { user, isLoggedIn, logout } = useAuth()
 
 const isUserMenuOpen = ref(false)
 const userMenuRef = ref(null)
-const isMobileMenuOpen = ref(false)
+const { isOpen: isMobileMenuOpen, toggle: toggleMobileMenu } = useMobileMenu()
 
 onClickOutside(userMenuRef, () => {
   isUserMenuOpen.value = false
@@ -22,44 +38,44 @@ const handleLogout = () => {
 }
 
 const items = [
-  { label: 'Product', to: '/product' },
-  { label: 'Events', to: '/events', hasMega: true },
-  { label: 'Resources', to: '/docs/getting-started', hasMega: true },
+  { label: 'Produk', to: '/product' },
+  { label: 'Acara', to: '/events', hasMega: true },
+  { label: 'Sumber Daya', to: '/docs/getting-started', hasMega: true },
   { label: 'Blog', to: '/blog' }
 ]
 
 const megaMenuData = {
-  Events: {
+  Acara: {
     upcoming: [
       { date: '22 APR', title: 'NLFTs Workshop Jakarta', desc: 'SCBD, Jakarta Selatan' },
-      { date: '23 APR', title: 'Open Source Forum', desc: 'Online Webinar' },
+      { date: '23 APR', title: 'Open Source Forum', desc: 'Webinar Online' },
       { date: '24 APR', title: 'Dev Meetup Bandung', desc: 'Dago, Bandung' },
       { date: '30 APR', title: 'Community Talk Surabaya', desc: 'Ciputra World, Surabaya' }
     ],
     featured: [
       {
         image: 'https://media.istockphoto.com/id/2205848062/photo/gedung-sate-satay-building-an-iconic-place-in-bandung-city-indonesia.webp?a=1&b=1&s=612x612&w=0&k=20&c=dei-qIgEcSMgzTo2Hk77VLaa2-h_MbiDaEL0cspJV_o=',
-        title: 'NLFTs in Bandung',
-        date: 'MAY 26-27 2026',
+        title: 'NLFTs di Bandung',
+        date: '26-27 MEI 2026',
         location: 'BANDUNG ID'
       },
       {
         image: 'https://images.unsplash.com/photo-1707378174003-418d6262d355?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVndSUyMGpvZ2phfGVufDB8fDB8fHww',
-        title: 'NLFTs In Jogja',
-        date: 'JUN 18-19 2026',
+        title: 'NLFTs Di Jogja',
+        date: '18-19 JUNI 2026',
         location: 'YOGYAKARTA ID'
       }
     ]
   },
-  Resources: {
+  'Sumber Daya': {
     categories: [
       {
-        title: 'Getting Started',
+        title: 'Memulai',
         to: '/docs/getting-started',
         icon: 'i-lucide-rocket',
         desc: 'Mulai perjalanan development Anda',
         items: [
-          { label: 'Introduction', to: '/docs/getting-started' },
+          { label: 'Pendahuluan', to: '/docs/getting-started' },
           { label: 'Protokol', to: '/docs/getting-started/protokol' },
           { label: 'Lisensi', to: '/docs/getting-started/lisensi' }
         ]
@@ -70,7 +86,7 @@ const megaMenuData = {
         icon: 'i-lucide-code',
         desc: 'Pelajari HTML dari dasar hingga mahir',
         items: [
-          { label: 'Getting Started', to: '/docs/html/getting-started' },
+          { label: 'Memulai', to: '/docs/html/getting-started' },
           { label: 'Pustaka', to: '/docs/html/pustaka' }
         ]
       },
@@ -80,8 +96,8 @@ const megaMenuData = {
         icon: 'i-lucide-palette',
         desc: 'Styling dan design dengan CSS',
         items: [
-          { label: 'Fundamentals', to: '/docs/css/fundamentals' },
-          { label: 'Advanced', to: '/docs/css/advanced' }
+          { label: 'Dasar-dasar', to: '/docs/css/fundamentals' },
+          { label: 'Lanjutan', to: '/docs/css/advanced' }
         ]
       },
       {
@@ -90,7 +106,7 @@ const megaMenuData = {
         icon: 'i-lucide-zap',
         desc: 'Programming dengan JavaScript',
         items: [
-          { label: 'Basics', to: '/docs/js/basics' },
+          { label: 'Dasar-dasar', to: '/docs/js/basics' },
           { label: 'ES6+', to: '/docs/js/es6' }
         ]
       },
@@ -98,45 +114,45 @@ const megaMenuData = {
         title: 'TypeScript',
         to: '/docs/ts',
         icon: 'i-lucide-shield',
-        desc: 'Type-safe JavaScript development',
+        desc: 'Development JavaScript yang aman dengan tipe',
         items: [
-          { label: 'Introduction', to: '/docs/ts/introduction' },
-          { label: 'Advanced Types', to: '/docs/ts/advanced' }
+          { label: 'Pendahuluan', to: '/docs/ts/introduction' },
+          { label: 'Tipe Lanjutan', to: '/docs/ts/advanced' }
         ]
       },
       {
         title: 'Nuxt.js',
         to: '/docs/nuxt',
         icon: 'i-lucide-layers',
-        desc: 'Full-stack Vue.js framework',
+        desc: 'Framework Vue.js full-stack',
         items: [
-          { label: 'Setup', to: '/docs/nuxt/setup' },
-          { label: 'Components', to: '/docs/nuxt/components' }
+          { label: 'Persiapan', to: '/docs/nuxt/setup' },
+          { label: 'Komponen', to: '/docs/nuxt/components' }
         ]
       },
       {
         title: 'Laravel',
         to: '/docs/laravel',
         icon: 'i-lucide-server',
-        desc: 'PHP framework untuk web artisans'
+        desc: 'Framework PHP untuk artisan web'
       },
       {
         title: 'Next.js',
         to: '/docs/nextjs',
         icon: 'i-lucide-triangle',
-        desc: 'React framework untuk production'
+        desc: 'Framework React untuk produksi'
       },
       {
         title: 'MongoDB',
         to: '/docs/mongodb',
         icon: 'i-lucide-database',
-        desc: 'NoSQL database untuk modern apps'
+        desc: 'Database NoSQL untuk aplikasi modern'
       },
       {
         title: 'Java',
         to: '/docs/java',
         icon: 'i-lucide-coffee',
-        desc: 'Enterprise programming language'
+        desc: 'Bahasa pemrograman enterprise'
       }
     ],
     company: [
@@ -144,21 +160,22 @@ const megaMenuData = {
       { label: 'Agensi', to: '/agency', icon: 'i-lucide-briefcase' },
       { label: 'DevLovers', to: '/devlovers', icon: 'i-lucide-heart' },
       { label: 'Legal', to: '/legal', icon: 'i-lucide-scale' },
-      { label: 'Enterprise', to: '/enterprise', icon: 'i-lucide-building' }
+      { label: 'Enterprise', to: '/enterprise', icon: 'i-lucide-building' },
+      { label: 'Docs', to: '/docs', icon: 'i-lucide-book-open-text' }
     ],
     partners: [
-      'DevLovers Community',
+      'Komunitas DevLovers',
       'OpenFoundry',
       'CloudVortex',
-      'ModuleX Partners',
+      'Mitra ModuleX',
       'Sigma Design',
       'Redberry Apps'
     ],
     featured: {
       image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-      date: 'April 14, 2026',
-      title: 'How I Built an AI-Powered CRM with NLFTs in a Weekend',
-      desc: 'How a senior freelance developer built a full NL/*  */FTs MVP in under 48 hours using our new AI modules.'
+      date: '14 April 2026',
+      title: 'Bagaimana Saya Membangun CRM Berbasis AI dengan NLFTs dalam Akhir Pekan',
+      desc: 'Bagaimana seorang pengembang freelance senior membangun MVP NLFTs lengkap dalam waktu kurang dari 48 jam menggunakan modul AI baru kami.'
     },
     socials: [
       { icon: 'i-simple-icons-github', href: 'https://github.com/nlfts' },
@@ -193,55 +210,7 @@ const openSearch = () => {
 }
 
 const { gsap, setup } = useGsap()
-const expandedMobileItems = ref<Set<string>>(new Set())
-
-const toggleMobileSubmenu = (label: string) => {
-  if (expandedMobileItems.value.has(label)) {
-    expandedMobileItems.value.delete(label)
-  } else {
-    expandedMobileItems.value.add(label)
-  }
-}
-
-watch(isUserMenuOpen, (isOpen) => {
-  if (isOpen) {
-    nextTick(() => {
-      gsap.fromTo('.user-dropdown-menu',
-        { opacity: 0, y: -10, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: 'power2.out' }
-      )
-    })
-  }
-})
-
-watch(isMobileMenuOpen, (isOpen) => {
-  if (isOpen) {
-    nextTick(() => {
-      gsap.fromTo('.mobile-menu-panel',
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-      )
-      gsap.staggerFromTo('.mobile-menu-item',
-        { opacity: 0, x: -20 },
-        { opacity: 1, x: 0, duration: 0.2, ease: 'power2.out' },
-        0.05
-      )
-    })
-  } else {
-    expandedMobileItems.value.clear()
-  }
-})
-
-// Animate submenu expansion
-watch(expandedMobileItems, () => {
-  nextTick(() => {
-    gsap.to('.mobile-submenu', {
-      duration: 0.3,
-      ease: 'power2.out',
-      stagger: 0.05
-    })
-  })
-}, { deep: true })
+// Submenu expansion logic for mobile is now handled in AppMobileMenu component
 
 setup(() => {
   gsap.from('.navbar-glow', {
@@ -254,15 +223,34 @@ setup(() => {
 </script>
 
 <template>
-  <UHeader class="border-b border-white/5 bg-background/90 relative z-[200]">
+  <UHeader
+    :class="[
+      'border-b transition-all duration-500 sticky top-0 z-[200] min-h-[64px]',
+      y > 50 ? 'bg-black/80 backdrop-blur-3xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.8)]' : 'bg-background/90 border-white/5'
+    ]"
+  >
     <!-- Ambient Blue Glow Line (Downward Shine) -->
-    <div class="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50 origin-center navbar-glow">
+    <div
+      class="absolute -bottom-px left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent z-50 origin-center navbar-glow"
+    >
+      <!-- Main glowing line -->
+      <div class="absolute inset-0 bg-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
+      
       <!-- Intense center beam -->
-      <div class="absolute inset-0 bg-blue-300 blur-[1px] opacity-100" />
+      <div class="absolute inset-0 bg-white blur-[1px] opacity-100" />
 
-      <!-- Downward light cast (The 'Bus' effect) -->
-      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[90%] h-[30px] bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent blur-md pointer-events-none" />
-      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[70%] h-[60px] bg-gradient-to-b from-blue-400/20 to-transparent blur-2xl pointer-events-none" />
+      <!-- Primary Downward light cast (Wide) -->
+      <div
+        class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[95%] h-[50px] bg-gradient-to-b from-blue-500/80 via-blue-500/20 to-transparent blur-xl pointer-events-none transition-all duration-700"
+      />
+      
+      <!-- Secondary Downward light cast (Focused) -->
+      <div
+        class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[80%] h-[100px] bg-gradient-to-b from-blue-400/40 via-blue-500/10 to-transparent blur-3xl pointer-events-none"
+      />
+
+      <!-- Extra intense center glow -->
+      <div class="absolute top-[1px] left-1/2 -translate-x-1/2 w-[40%] h-[30px] bg-blue-500/50 blur-lg pointer-events-none" />
     </div>
 
     <template #left>
@@ -274,21 +262,21 @@ setup(() => {
       </NuxtLink>
     </template>
 
-    <!-- Custom Desktop Nav with Mega Menu Trigger -->
-    <div class="hidden lg:flex items-center gap-8 ml-8">
+    <!-- [DESKTOP] Nav Section -->
+    <div class="hidden lg:flex items-center gap-6 ml-8">
       <div
         v-for="item in items"
         :key="item.label"
-        class="relative py-4"
+        class="relative py-2 group"
         @mouseenter="handleMouseEnter(item.label, item.hasMega)"
         @mouseleave="handleMouseLeave"
       >
         <NuxtLink
           :to="item.to"
-          class="text-sm font-bold transition-all flex items-center gap-1.5"
+          class="text-sm font-bold transition-all flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/5"
           :class="[
             route.path.startsWith(item.to) ? 'text-white' : 'text-white/50 hover:text-white',
-            activeMegaMenu === item.label ? 'text-white translate-y-[-1px]' : ''
+            activeMegaMenu === item.label ? 'text-white bg-white/5' : ''
           ]"
         >
           {{ item.label }}
@@ -323,7 +311,7 @@ setup(() => {
             name="i-lucide-search"
             class="w-4 h-4"
           />
-          <span>Search</span>
+          <span>Cari</span>
           <span class="opacity-30 border border-white/20 rounded px-1.5 ml-1 font-mono">⌘K</span>
         </button>
 
@@ -354,7 +342,7 @@ setup(() => {
                 <!-- Account info -->
                 <div class="px-5 py-4 border-b border-white/5 bg-white/5">
                   <p class="text-[10px] uppercase tracking-[0.2em] font-bold mb-1 text-white/30">
-                    Authenticated
+                    Terautentikasi
                   </p>
                   <div class="flex items-center gap-1.5">
                     <p class="text-sm font-bold text-white truncate max-w-[200px]">
@@ -377,7 +365,7 @@ setup(() => {
                       name="i-lucide-book"
                       class="w-4 h-4"
                     />
-                    Documentation
+                    Dokumentasi
                   </NuxtLink>
                   <NuxtLink
                     to="/community"
@@ -388,7 +376,7 @@ setup(() => {
                       name="i-lucide-users"
                       class="w-4 h-4"
                     />
-                    Community
+                    Komunitas
                   </NuxtLink>
                 </div>
 
@@ -402,7 +390,7 @@ setup(() => {
                       name="i-lucide-log-out"
                       class="w-4 h-4"
                     />
-                    Sign out
+                    Keluar
                   </button>
                 </div>
               </div>
@@ -415,176 +403,75 @@ setup(() => {
               variant="solid"
               size="sm"
               class="hidden sm:flex rounded-full font-bold px-5"
-              label="Login"
+              label="Masuk"
             />
           </template>
         </ClientOnly>
 
         <button
-          class="p-2 text-zinc-400 hover:text-white transition-colors lg:hidden ml-2"
-          @click="isMobileMenuOpen = !isMobileMenuOpen"
+          class="custom-hamburger p-2 text-zinc-400 hover:text-white transition-colors lg:hidden ml-2"
+          @click="toggleMobileMenu"
         >
           <Icon
             v-if="!isMobileMenuOpen"
-            name="heroicons:bars-3"
-            class="w-6 h-6"
+            name="heroicons:bars-3-bottom-right"
+            class="w-7 h-7"
           />
           <Icon
             v-else
             name="heroicons:x-mark"
-            class="w-6 h-6"
+            class="w-7 h-7"
           />
         </button>
       </div>
     </template>
 
-    <!-- Mobile Menu Panel -->
-    <div
-      v-if="isMobileMenuOpen"
-      class="mobile-menu-panel absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/5 lg:hidden z-[199] max-h-[calc(100vh-80px)] overflow-y-auto"
-    >
-      <nav class="flex flex-col divide-y divide-white/5">
-        <!-- Main Navigation Items with Expandable Submenus -->
-        <div
-          v-for="item in items"
-          :key="item.label"
-          class="mobile-menu-item"
-        >
-          <button
-            v-if="item.hasMega"
-            class="w-full px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors flex items-center justify-between"
-            @click="toggleMobileSubmenu(item.label)"
-          >
-            <span>{{ item.label }}</span>
-            <UIcon
-              name="i-lucide-chevron-down"
-              class="w-4 h-4 transition-transform duration-300"
-              :class="expandedMobileItems.has(item.label) ? 'rotate-180' : ''"
-            />
-          </button>
-          <NuxtLink
-            v-else
-            :to="item.to"
-            class="block px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-            @click="isMobileMenuOpen = false"
-          >
-            {{ item.label }}
-          </NuxtLink>
-
-          <!-- Expandable Submenu for Events and Resources -->
-          <div
-            v-if="item.hasMega && expandedMobileItems.has(item.label)"
-            class="mobile-submenu bg-white/5 border-t border-white/5 transition-all duration-300 ease-out"
-          >
-            <!-- Events Submenu -->
-            <div
-              v-if="item.label === 'Events'"
-              class="divide-y divide-white/5"
-            >
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Upcoming Events
-                </p>
-                <div class="space-y-2">
-                  <div
-                    v-for="event in megaMenuData.Events.upcoming"
-                    :key="event.title"
-                    class="text-xs"
-                  >
-                    <p class="text-white/80 font-semibold">
-                      {{ event.title }}
-                    </p>
-                    <p class="text-white/40 text-xs">
-                      {{ event.date }} • {{ event.desc }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Featured Events
-                </p>
-                <div class="space-y-3">
-                  <NuxtLink
-                    v-for="event in megaMenuData.Events.featured"
-                    :key="event.title"
-                    :to="`/events?featured=${event.title}`"
-                    class="block text-xs hover:opacity-80 transition-opacity"
-                    @click="isMobileMenuOpen = false"
-                  >
-                    <p class="text-white/80 font-semibold">{{ event.title }}</p>
-                    <p class="text-white/40">{{ event.date }} • {{ event.location }}</p>
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
-
-            <!-- Resources Submenu -->
-            <div
-              v-if="item.label === 'Resources'"
-              class="divide-y divide-white/5"
-            >
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Categories
-                </p>
-                <div class="space-y-2">
-                  <NuxtLink
-                    v-for="category in megaMenuData.Resources.categories"
-                    :key="category.title"
-                    :to="category.to"
-                    class="block text-xs text-white/60 hover:text-white transition-colors py-1"
-                    @click="isMobileMenuOpen = false"
-                  >
-                    {{ category.title }}
-                  </NuxtLink>
-                </div>
-              </div>
-              <div class="px-4 py-3">
-                <p class="text-xs uppercase tracking-widest font-bold text-white/40 mb-3">
-                  Company
-                </p>
-                <div class="space-y-2">
-                  <NuxtLink
-                    v-for="link in megaMenuData.Resources.company"
-                    :key="link.label"
-                    :to="link.to"
-                    class="block text-xs text-white/60 hover:text-white transition-colors py-1"
-                    @click="isMobileMenuOpen = false"
-                  >
-                    {{ link.label }}
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Additional Links -->
-        <NuxtLink
-          to="/about"
-          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
-        >
-          About
-        </NuxtLink>
-
-        <NuxtLink
-          to="/careers"
-          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
-        >
-          Careers
-        </NuxtLink>
-
-        <NuxtLink
-          to="/contact"
-          class="mobile-menu-item px-4 py-3 text-sm font-bold text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          @click="isMobileMenuOpen = false"
-        >
-          Contact
-        </NuxtLink>
-      </nav>
-    </div>
+    <!-- Mobile Menu is now handled globally in app.vue via AppMobileMenu component -->
   </UHeader>
 </template>
+
+<style scoped>
+/* Hide the redundant UPage mobile menu button and other auto-generated buttons */
+:global(.u-page-mobile-menu-button),
+:global([aria-label="Open Menu"]),
+:global(.lg\:hidden:not(.custom-hamburger):not(.custom-mobile-menu)),
+:global(button[aria-label="Open Menu"]) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Ensure our custom hamburger is only visible on mobile and positioned correctly */
+@media (max-width: 1023px) {
+  .custom-hamburger {
+    display: flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 50;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-hamburger {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+</style>

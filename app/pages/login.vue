@@ -48,9 +48,9 @@ const handleLogin = async () => {
   )
 
   if (popup) {
-    popup.document.title = 'Authenticating...'
+    popup.document.title = 'Mengautentikasi...'
   } else {
-    alert('Please allow popups for this website to sign in.')
+    alert('Harap izinkan popup untuk situs web ini agar dapat masuk.')
     isLoading.value = false
   }
 
@@ -90,7 +90,7 @@ onMounted(() => {
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full bg-glow" />
       <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full bg-glow" />
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('data:image/svg+xml,%3Csvg%20viewBox=%220%200%20200%20200%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter%20id=%22noiseFilter%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.65%22%20numOctaves=%223%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-20 mix-blend-overlay" />
     </div>
 
     <!-- Login Card -->
@@ -107,10 +107,10 @@ onMounted(() => {
         </div>
 
         <h1 class="text-3xl font-extrabold text-white tracking-tight mb-2 font-display">
-          Welcome Back
+          Selamat Datang Kembali
         </h1>
         <p class="text-white/50 text-sm mb-10 max-w-[280px]">
-          Sign in with GitHub to access the NLFTs Developer Program.
+          Masuk dengan GitHub untuk mengakses Program Developer NLFTs.
         </p>
 
         <!-- GitHub Login Button -->
@@ -128,7 +128,7 @@ onMounted(() => {
               class="w-5 h-5 mr-2"
             />
           </template>
-          Continue with GitHub
+          Lanjutkan dengan GitHub
 
           <!-- Subtle Inner Shine -->
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
@@ -136,16 +136,16 @@ onMounted(() => {
 
         <div class="mt-8 pt-8 border-t border-white/5 w-full">
           <p class="text-white/30 text-xs">
-            By signing in, you agree to our
+            Dengan masuk, Anda menyetujui
             <NuxtLink
               to="/terms"
               class="text-white/60 hover:text-white transition-colors underline underline-offset-4"
-            >Terms of Service</NuxtLink>
-            and
+            >Ketentuan Layanan</NuxtLink>
+            dan
             <NuxtLink
               to="/privacy"
               class="text-white/60 hover:text-white transition-colors underline underline-offset-4"
-            >Privacy Policy</NuxtLink>.
+            >Kebijakan Privasi</NuxtLink>.
           </p>
         </div>
       </div>

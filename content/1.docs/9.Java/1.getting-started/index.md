@@ -385,7 +385,4 @@ Sekarang Anda sudah siap untuk mulai menulis dan menjalankan program Java menggu
 ::badge
 **Selamat belajar!** 🎉
 ::
-
----
-
-*Terinspirasi dari dokumentasi [Nuxt UI](https://ui.nuxt.com) dan template [SaaS](https://github.com/nuxt-ui-templates/saas).*
+

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('agency', () => queryCollection('agency').first())
 
-const title = page.value?.title || 'Agencies'
-const description = page.value?.description || 'Strategic partners for world-class development.'
+const title = page.value?.title || 'Agensi'
+const description = page.value?.description || 'Mitra strategis untuk pengembangan kelas dunia.'
 
 useSeoMeta({
   title,
@@ -47,7 +47,7 @@ const expertises = [
         <aside class="space-y-10">
           <div>
             <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-6 font-mono">
-              Expertise
+              Keahlian
             </h3>
             <ul class="space-y-3">
               <li
@@ -85,7 +85,7 @@ const expertises = [
                   <h4 class="text-xl font-bold tracking-tight">
                     {{ agency.name }}
                   </h4>
-                  <span class="text-[10px] font-mono text-neutral-700 uppercase tracking-widest border border-neutral-900 px-2 py-0.5 rounded-sm">Verified</span>
+                  <span class="text-[10px] font-mono text-neutral-700 uppercase tracking-widest border border-neutral-900 px-2 py-0.5 rounded-sm">Terverifikasi</span>
                 </div>
                 <p class="text-neutral-500 text-sm leading-relaxed max-w-lg">
                   {{ agency.description }}
@@ -111,7 +111,7 @@ const expertises = [
                   {{ agency.location }}
                 </div>
                 <UButton
-                  label="Inquiry"
+                  label="Ajukan Pertanyaan"
                   variant="ghost"
                   class="text-xs font-semibold py-2 px-6 rounded-sm border border-neutral-800 text-white hover:bg-white hover:text-black transition-all"
                   to="/contact"

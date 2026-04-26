@@ -26,6 +26,7 @@ const filteredNavigation = computed(() => {
                 <div class="mb-6">
                   <UContentSearchButton
                     :collapsed="false"
+                    label="Cari..."
                     class="w-full"
                   />
                 </div>

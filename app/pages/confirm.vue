@@ -56,7 +56,7 @@ onMounted(async () => {
       </div>
     </div>
     <p class="mt-6 text-white/60 font-medium tracking-wide animate-pulse">
-      Completing authentication...
+      Menyelesaikan autentikasi...
     </p>
   </div>
 </template>

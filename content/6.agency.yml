@@ -1,5 +1,5 @@
 title: Layanan Agensi FTs Project
-description: Apakah Anda mencari mitra terpercaya dengan keahlian dalam ekosistem Nuxt dan Tux? Lihat katalog agensi kami dan temukan yang sesuai dengan kebutuhan Anda.
+description: Apakah Anda mencari mitra terpercaya dengan keahlian dalam ekosistem fts Lihat katalog agensi kami dan temukan yang sesuai dengan kebutuhan Anda.
 cta:
   label: Menjadi Partner
   to: /contact
@@ -15,7 +15,7 @@ agencies:
   - name: ITK
     description: Akademi keunggulan digital. Mengkurasi generasi insinyur berikutnya melalui intensif yang berfokus pada presisi.
     location: Asia
-    icon: https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center
+    icon: ./brand/tik.png
     expertise:
       - Akademi
       - Bootcamp
@@ -23,7 +23,7 @@ agencies:
   - name: Grantara Nusantara
     description: Arsitek ekosistem. Membangun dan mengelola infrastruktur komunitas yang berpengaruh pada skala nasional.
     location: Nusantara
-    icon: https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center
+    icon: ./brand/grantara.png
     expertise:
       - Manajemen Komunitas
       - Penyelenggaraan Acara

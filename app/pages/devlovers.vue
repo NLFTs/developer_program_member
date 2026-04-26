@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'DevLovers Community - NLFTs Developer Program',
-  ogTitle: 'DevLovers Community - NLFTs Developer Program',
-  description: 'Join the DevLovers community - a passionate group of developers building the future with NLFTs tools and frameworks.',
-  ogDescription: 'Join the DevLovers community - a passionate group of developers building the future with NLFTs tools and frameworks.'
+  title: 'Komunitas DevLovers - Program Developer NLFTs',
+  ogTitle: 'Komunitas DevLovers - Program Developer NLFTs',
+  description: 'Bergabunglah dengan komunitas DevLovers - kelompok pengembang yang bersemangat membangun masa depan dengan alat dan kerangka kerja NLFTs.',
+  ogDescription: 'Bergabunglah dengan komunitas DevLovers - kelompok pengembang yang bersemangat membangun masa depan dengan alat dan kerangka kerja NLFTs.'
 })
 </script>
 
@@ -14,10 +14,10 @@ useSeoMeta({
         <!-- Header -->
         <section class="text-center mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            DevLovers Community
+            Komunitas DevLovers
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            A passionate community of developers who love building amazing things with modern tools and frameworks.
+            Komunitas pengembang yang bersemangat membangun hal-hal luar biasa dengan alat dan kerangka kerja modern.
           </p>
         </section>
 
@@ -29,7 +29,7 @@ useSeoMeta({
                 2,500+
               </div>
               <div class="text-sm text-neutral-400">
-                Active Members
+                Anggota Aktif
               </div>
             </div>
             <div>
@@ -37,7 +37,7 @@ useSeoMeta({
                 150+
               </div>
               <div class="text-sm text-neutral-400">
-                Projects Built
+                Proyek Selesai
               </div>
             </div>
             <div>
@@ -45,7 +45,7 @@ useSeoMeta({
                 50+
               </div>
               <div class="text-sm text-neutral-400">
-                Countries
+                Negara
               </div>
             </div>
             <div>
@@ -53,7 +53,7 @@ useSeoMeta({
                 24/7
               </div>
               <div class="text-sm text-neutral-400">
-                Support
+                Dukungan
               </div>
             </div>
           </div>
@@ -62,39 +62,39 @@ useSeoMeta({
         <!-- What We Do -->
         <section class="mb-16">
           <h2 class="text-2xl font-bold mb-8">
-            What We Do
+            Apa Yang Kami Lakukan
           </h2>
           <div class="grid md:grid-cols-2 gap-8">
             <div class="border border-neutral-800 rounded-lg p-6">
               <h3 class="text-lg font-semibold mb-4">
-                Weekly Meetups
+                Pertemuan Mingguan
               </h3>
               <p class="text-neutral-400">
-                Join our weekly virtual meetups where we discuss the latest in web development, share projects, and learn from each other.
+                Ikuti pertemuan virtual mingguan kami untuk membahas perkembangan web terbaru, berbagi proyek, dan saling belajar satu sama lain.
               </p>
             </div>
             <div class="border border-neutral-800 rounded-lg p-6">
               <h3 class="text-lg font-semibold mb-4">
-                Code Reviews
+                Tinjauan Kode
               </h3>
               <p class="text-neutral-400">
-                Get feedback on your code from experienced developers and help others improve their skills through collaborative reviews.
+                Dapatkan masukan untuk kode Anda dari pengembang berpengalaman dan bantu orang lain meningkatkan keterampilan mereka melalui tinjauan kolaboratif.
               </p>
             </div>
             <div class="border border-neutral-800 rounded-lg p-6">
               <h3 class="text-lg font-semibold mb-4">
-                Open Source Projects
+                Proyek Sumber Terbuka
               </h3>
               <p class="text-neutral-400">
-                Contribute to community-driven open source projects and build tools that benefit the entire developer ecosystem.
+                Berkontribusi pada proyek sumber terbuka komunitas dan bangun alat yang bermanfaat bagi seluruh ekosistem pengembang.
               </p>
             </div>
             <div class="border border-neutral-800 rounded-lg p-6">
               <h3 class="text-lg font-semibold mb-4">
-                Learning Resources
+                Sumber Belajar
               </h3>
               <p class="text-neutral-400">
-                Access curated learning materials, tutorials, and workshops designed to help you grow as a developer.
+                Akses materi pembelajaran, tutorial, dan workshop pilihan yang dirancang untuk membantu Anda berkembang sebagai pengembang.
               </p>
             </div>
           </div>
@@ -103,21 +103,21 @@ useSeoMeta({
         <!-- Join Community -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
           <h2 class="text-2xl font-bold mb-4">
-            Ready to Join?
+            Siap Bergabung?
           </h2>
           <p class="text-neutral-400 mb-6">
-            Connect with like-minded developers and start building amazing things together.
+            Terhubung dengan pengembang yang berpikiran sama dan mulai membangun hal-hal luar biasa bersama.
           </p>
           <div class="flex flex-wrap justify-center gap-4">
             <UButton
-              label="Join Discord"
+              label="Gabung Discord"
               color="white"
               size="lg"
               external
               to="https://discord.gg/nlfts"
             />
             <UButton
-              label="Follow on X"
+              label="Ikuti di X"
               color="neutral"
               size="lg"
               external
