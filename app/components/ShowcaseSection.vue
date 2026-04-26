@@ -41,13 +41,13 @@ onMounted(() => {
     <UContainer>
       <div class="flex flex-col items-center text-center mb-16 gap-6">
         <p class="text-xs font-bold tracking-[0.3em] uppercase text-emerald-500">
-          Showcase
+          Etalase
         </p>
         <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter max-w-3xl">
-          Real-world Web Applications built with NLFTs
+          Aplikasi Web nyata yang dibangun dengan NLFTs
         </h2>
         <UButton
-          label="View all websites"
+          label="Lihat semua website"
           color="neutral"
           variant="solid"
           size="lg"

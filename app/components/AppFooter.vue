@@ -1,44 +1,44 @@
 <script setup lang="ts">
 const columns = [{
-  label: 'Products',
+  label: 'Produk',
   children: [{
-    label: 'Modules',
+    label: 'Modul',
     to: '/product/modules'
   }, {
     label: 'Cloud',
     to: '/product/cloud'
   }, {
-    label: 'Deployment',
+    label: 'Penyebaran',
     to: '/product/deployment'
   }, {
-    label: 'Analytics',
+    label: 'Analitik',
     to: '/product/analytics'
   }]
 }, {
-  label: 'Resources',
+  label: 'Sumber Daya',
   children: [{
-    label: 'Documentation',
+    label: 'Dokumentasi',
     to: '/docs/nuxt/getting-started'
   }, {
-    label: 'Starter Kits',
+    label: 'Kit Pemula',
     to: '/starter-kits'
   }, {
-    label: 'Developer Hub',
+    label: 'Pusat Developer',
     to: '/devlovers'
   }, {
-    label: 'Events',
+    label: 'Acara',
     to: '/events'
   }]
 }, {
-  label: 'Company',
+  label: 'Perusahaan',
   children: [{
-    label: 'About NLFTs',
+    label: 'Tentang NLFTs Ltd',
     to: '/about'
   }, {
-    label: 'Agency',
+    label: 'Agensi',
     to: '/agency'
   }, {
-    label: 'Sponsors',
+    label: 'Sponsor',
     to: '/sponsors'
   }, {
     label: 'Blog',
@@ -56,10 +56,10 @@ const columns = [{
       <div class="grid lg:grid-cols-2 gap-20 lg:gap-32 mb-20 relative z-10">
         <!-- Brand Section -->
         <div class="flex flex-col items-start gap-8">
-          <AppLogo />
+          <AppLogo /> 
 
           <p class="text-neutral-400 text-lg sm:text-xl font-medium leading-relaxed max-w-sm">
-            The professional standard for building modern open modules and scalable cloud applications.
+            Profesional dalam menyediakan solusi teknologi modern untuk kebutuhan bisnis Anda.
           </p>
 
           <div class="flex items-center gap-6">
@@ -99,7 +99,7 @@ const columns = [{
           </div>
 
           <div class="flex flex-wrap items-center gap-6 text-[10px] sm:text-xs font-bold text-neutral-600 uppercase tracking-[0.2em] pt-4">
-            <span>© {{ new Date().getFullYear() }} NLFTs</span>
+            <span>© {{ new Date().getFullYear() }} NLFTs Ltd</span>
             <NuxtLink
               to="/legal"
               class="hover:text-white transition-colors"
@@ -111,7 +111,7 @@ const columns = [{
             <NuxtLink
               to="/privacy"
               class="hover:text-white transition-colors"
-            >Privacy</NuxtLink>
+            >Privasi</NuxtLink>
           </div>
         </div>
 

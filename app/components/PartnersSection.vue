@@ -18,10 +18,10 @@ defineProps<{
     <UContainer>
       <div class="flex flex-col items-center text-center mb-12 gap-4">
         <p class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">
-          Trusted by
+          Dipercaya oleh
         </p>
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-          Leading organizations worldwide
+          Organisasi terkemuka di seluruh dunia
         </h2>
       </div>
 
@@ -49,7 +49,7 @@ defineProps<{
       <!-- Subtle call to action -->
       <div class="flex justify-center mt-12">
         <p class="text-sm text-neutral-500">
-          Join our growing ecosystem of partners
+          Bergabunglah dengan ekosistem mitra kami yang terus berkembang
         </p>
       </div>
     </UContainer>

@@ -23,9 +23,9 @@ defineOgImageComponent('NuxtSeo', {
 const { gsap, setup } = useGsap()
 
 const communityStats = [
-  { label: 'Github Stars', value: '75+' },
-  { label: 'Weekly NPM downloads', value: '34+' },
-  { label: 'Community leaders', value: '98' }
+  { label: 'Bintang Github', value: '75+' },
+  { label: 'Unduhan NPM Mingguan', value: '34+' },
+  { label: 'Pemimpin Komunitas', value: '98' }
 ]
 
 const communityTestimonials = [
@@ -76,7 +76,7 @@ const contributorUrls = [
 const contributors = [
   ...contributorUrls.map((url, i) => ({
     id: i,
-    login: `Contributor`,
+    login: `Kontributor`,
     avatar_url: url,
     html_url: '#',
     isEmpty: false
@@ -88,13 +88,13 @@ const visibleTestimonials = communityTestimonials.slice(0, 3)
 const partners = [
   {
     name: 'GRANTARA',
-    logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center',
-    url: 'https://grantara.com'
+    logo: '/brand/grantara.png',
+    url: 'https://grabals-official.vercel.app/'
   },
   {
     name: 'ITK',
-    logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop&crop=center',
-    url: 'https://itk.ac.id'
+    logo: '/brand/tik.png',
+    url: 'https://itk.co'
   },
   {
     name: 'Vuxilabs',
@@ -104,7 +104,7 @@ const partners = [
   {
     name: 'FTs Project 2024',
     logo: 'https://avatars.githubusercontent.com/u/252723835?s=200&v=4',
-    url: '#'
+    url: 'fts.nlfts.dev'
   }
 
 ]
@@ -218,7 +218,7 @@ setup(() => {
             to="/product"
             class="hero-btn hero-btn-primary"
           >
-            Get Started
+            Mulai Sekarang
             <svg
               width="16"
               height="16"
@@ -235,7 +235,7 @@ setup(() => {
           <a
             href="#live-demo"
             class="hero-btn hero-btn-ghost"
-          >Live Demo</a>
+          >Demo Langsung</a>
         </div>
         <p class="hero-meta">
           NLFTs &bull; Fts Project 2024 &bull; Grantara
@@ -254,7 +254,7 @@ setup(() => {
         <div class="community-head">
           <div>
             <p class="eyebrow">
-              Loved by the community
+              Dicintai oleh komunitas
             </p>
             <h2>Jangan hanya percaya perkataan kami — dengarkan apa kata para developer</h2>
           </div>
@@ -343,16 +343,16 @@ setup(() => {
           <div class="flex flex-col items-start gap-8 order-1 lg:order-2 reveal-content">
             <div class="space-y-4">
               <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1] tracking-tighter">
-                Built by developers around the world
+                Dibangun oleh developer di seluruh dunia
               </h2>
               <p class="text-lg sm:text-xl text-neutral-400 max-w-lg leading-relaxed">
-                Hundreds of contributors making NLFTs better every day. Join us and build the future of open modules.
+                Ratusan kontributor membuat NLFTs lebih baik setiap hari. Bergabunglah dengan kami dan bangun masa depan modul terbuka.
               </p>
             </div>
 
             <div class="flex flex-wrap items-center gap-8">
               <UButton
-                label="Members"
+                label="Anggota"
                 icon="i-lucide-arrow-right"
                 trailing
                 size="xl"
@@ -412,10 +412,10 @@ setup(() => {
             Showcase
           </p>
           <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter max-w-3xl">
-            Real-world Web Applications built with NLFTs
+            Aplikasi Web nyata yang dibangun dengan NLFTs
           </h2>
           <UButton
-            label="View all websites"
+            label="Lihat semua website"
             color="neutral"
             variant="solid"
             size="lg"
@@ -494,10 +494,10 @@ setup(() => {
       <UContainer>
         <div class="flex flex-col items-center text-center mb-12 gap-4">
           <p class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">
-            Trusted by
+            Dipercaya oleh
           </p>
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-            Leading organizations worldwide
+            Organisasi terkemuka di seluruh dunia
           </h2>
         </div>
         <div class="partners-grid">

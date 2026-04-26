@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('products', () => queryCollection('products').first())
 
-const title = page.value?.title || 'Templates'
-const description = page.value?.description || 'Refined starters for modern applications.'
+const title = page.value?.title || 'Templat'
+const description = page.value?.description || 'Starter yang dipoles untuk aplikasi modern.'
 
 useSeoMeta({
   title,
@@ -81,7 +81,7 @@ const handlePurchase = (item: ProductItem) => {
         <aside class="space-y-10">
           <div>
             <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-6 font-mono">
-              Filters
+              Filter
             </h3>
             <div class="space-y-3">
               <button
@@ -100,7 +100,7 @@ const handlePurchase = (item: ProductItem) => {
               class="mt-8 text-[10px] uppercase tracking-wider text-primary-500 hover:text-primary-400"
               @click="clearFilters"
             >
-              Reset All
+              Atur Ulang Semua
             </button>
           </div>
         </aside>
@@ -112,7 +112,7 @@ const handlePurchase = (item: ProductItem) => {
             <input
               v-model="searchQuery"
               type="text"
-              placeholder="Search templates..."
+              placeholder="Cari templat..."
               class="w-full bg-transparent border-b border-neutral-900 pb-4 text-sm focus:outline-none focus:border-neutral-700 transition-colors placeholder:text-neutral-700"
             >
           </div>
@@ -166,7 +166,7 @@ const handlePurchase = (item: ProductItem) => {
                     size="xs"
                     color="white"
                     class="font-bold px-4 rounded-sm"
-                    label="Buy Now"
+                    label="Beli Sekarang"
                     @click="handlePurchase(item)"
                   />
                   <NuxtLink
@@ -174,7 +174,7 @@ const handlePurchase = (item: ProductItem) => {
                     :to="`/product/${item.slug}`"
                     class="text-xs font-semibold py-2 px-4 bg-white text-black rounded-sm hover:bg-neutral-200 transition-colors"
                   >
-                    Get Started
+                    Mulai Sekarang
                   </NuxtLink>
                   <a
                     :href="item.liveDemo"

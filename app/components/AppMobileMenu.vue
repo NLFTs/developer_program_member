@@ -13,9 +13,9 @@ const currentDocsNavigation = computed(() => {
 })
 
 const items = [
-  { label: 'Product', to: '/product' },
-  { label: 'Events', to: '/events', hasMega: true },
-  { label: 'Resources', to: '/docs/getting-started', hasMega: true },
+  { label: 'Produk', to: '/product' },
+  { label: 'Acara', to: '/events', hasMega: true },
+  { label: 'Sumber Daya', to: '/docs/getting-started', hasMega: true },
   { label: 'Blog', to: '/blog' }
 ]
 
@@ -27,25 +27,25 @@ const frameworks = [
 ]
 
 const megaMenuData = {
-  Events: {
+  Acara: {
     upcoming: [
       { date: '22 APR', title: 'NLFTs Workshop Jakarta', desc: 'SCBD, Jakarta Selatan' },
-      { date: '23 APR', title: 'Open Source Forum', desc: 'Online Webinar' },
+      { date: '23 APR', title: 'Open Source Forum', desc: 'Webinar Online' },
       { date: '24 APR', title: 'Dev Meetup Bandung', desc: 'Dago, Bandung' },
       { date: '30 APR', title: 'Community Talk Surabaya', desc: 'Ciputra World, Surabaya' }
     ],
     featured: [
       {
         image: 'https://media.istockphoto.com/id/2205848062/photo/gedung-sate-satay-building-an-iconic-place-in-bandung-city-indonesia.webp?a=1&b=1&s=612x612&w=0&k=20&c=dei-qIgEcSMgzTo2Hk77VLaa2-h_MbiDaEL0cspJV_o=',
-        title: 'NLFTs in Bandung',
-        date: 'MAY 26-27 2026',
+        title: 'NLFTs di Bandung',
+        date: '26-27 MEI 2026',
         location: 'BANDUNG ID'
       }
     ]
   },
-  Resources: {
+  'Sumber Daya': {
     categories: [
-      { title: 'Getting Started', to: '/docs/getting-started', icon: 'i-lucide-rocket' },
+      { title: 'Memulai', to: '/docs/getting-started', icon: 'i-lucide-rocket' },
       { title: 'HTML', to: '/docs/html', icon: 'i-lucide-code' },
       { title: 'CSS', to: '/docs/css', icon: 'i-lucide-palette' },
       { title: 'JavaScript', to: '/docs/js', icon: 'i-lucide-zap' },
@@ -206,18 +206,18 @@ watch(isOpen, (val) => {
                         class="mt-2 mb-4 pl-4 space-y-4 border-l border-white/10"
                       >
                         <!-- Specific content for Events -->
-                        <template v-if="item.label === 'Events'">
-                          <div v-for="event in megaMenuData.Events.upcoming" :key="event.title" class="space-y-1">
+                        <template v-if="item.label === 'Acara'">
+                          <div v-for="event in megaMenuData.Acara.upcoming" :key="event.title" class="space-y-1">
                             <p class="text-[10px] font-black text-blue-500 tracking-widest uppercase">{{ event.date }}</p>
                             <p class="text-sm font-bold text-white/80">{{ event.title }}</p>
                           </div>
                         </template>
 
                         <!-- Specific content for Resources -->
-                        <template v-if="item.label === 'Resources'">
+                        <template v-if="item.label === 'Sumber Daya'">
                           <div class="grid grid-cols-1 gap-4">
                             <NuxtLink 
-                              v-for="cat in megaMenuData.Resources.categories" 
+                              v-for="cat in megaMenuData['Sumber Daya'].categories" 
                               :key="cat.title"
                               :to="cat.to"
                               class="flex items-center gap-3 group"
@@ -229,7 +229,7 @@ watch(isOpen, (val) => {
                           </div>
                           <div class="pt-4 border-t border-white/5 space-y-3">
                             <NuxtLink 
-                              v-for="comp in megaMenuData.Resources.company" 
+                              v-for="comp in megaMenuData['Sumber Daya'].company" 
                               :key="comp.label"
                               :to="comp.to"
                               class="block text-xs font-medium text-white/40 hover:text-white"
@@ -249,7 +249,7 @@ watch(isOpen, (val) => {
 
                 <!-- Current Docs Sections (Dynamic) -->
                 <div v-if="currentDocsNavigation.length > 0" class="space-y-4 nav-item">
-                  <p class="text-[10px] uppercase tracking-[0.3em] font-black text-blue-500">Docs Navigation</p>
+                  <p class="text-[10px] uppercase tracking-[0.3em] font-black text-blue-500">Navigasi Dokumentasi</p>
                   <div class="space-y-2">
                     <NuxtLink
                       v-for="doc in currentDocsNavigation"
@@ -266,7 +266,7 @@ watch(isOpen, (val) => {
 
                 <!-- Framework Quick Links -->
                 <div class="space-y-4 nav-item">
-                  <p class="text-[10px] uppercase tracking-[0.3em] font-black text-white/20">Frameworks</p>
+                  <p class="text-[10px] uppercase tracking-[0.3em] font-black text-white/20">Kerangka Kerja</p>
                   <div class="grid grid-cols-2 gap-2">
                     <NuxtLink
                       v-for="fw in frameworks"
@@ -306,7 +306,7 @@ watch(isOpen, (val) => {
                 class="rounded-xl font-bold py-3"
                 @click="close"
               >
-                Sign In
+                Masuk
               </UButton>
             </div>
           </div>

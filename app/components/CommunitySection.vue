@@ -25,7 +25,7 @@ defineProps<{
       <div class="community-head">
         <div>
           <p class="eyebrow">
-            Loved by the community
+            Dicintai oleh komunitas
           </p>
           <h2>
             Jangan hanya percaya perkataan kami — dengarkan apa kata para developer

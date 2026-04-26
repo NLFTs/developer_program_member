@@ -30,15 +30,15 @@ watch(() => props.active, (isActive) => {
     v-show="active"
     class="mega-menu-content absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[1200px] bg-black/85 backdrop-blur-3xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.9)] z-[100] origin-top"
   >
-    <!-- Layout for EVENTS -->
+    <!-- Layout for ACARA -->
     <div
-      v-if="label === 'Events'"
+      v-if="label === 'Acara'"
       class="p-8 grid grid-cols-[1.2fr_2fr] gap-12"
     >
       <div class="mega-column space-y-8 border-r border-white/5 pr-12">
         <div>
           <h3 class="text-xs font-bold uppercase tracking-widest text-primary-500 mb-6 font-mono">
-            Upcoming Events
+            Acara Mendatang
           </h3>
           <div class="space-y-6">
             <NuxtLink
@@ -62,7 +62,7 @@ watch(() => props.active, (isActive) => {
           to="/events"
           class="inline-flex items-center gap-2 text-xs font-bold text-white/50 hover:text-white transition-colors group"
         >
-          View all events <UIcon
+          Lihat semua acara <UIcon
             name="i-lucide-arrow-right"
             class="w-3 h-3 transition-transform group-hover:translate-x-1"
           />
@@ -91,16 +91,16 @@ watch(() => props.active, (isActive) => {
       </div>
     </div>
 
-    <!-- Layout for RESOURCES -->
+    <!-- Layout for SUMBER DAYA -->
     <div
-      v-else-if="label === 'Resources'"
+      v-else-if="label === 'Sumber Daya'"
       class="flex flex-col"
     >
       <div class="p-10 grid grid-cols-[2.5fr_180px_1fr] gap-12">
         <!-- Col 1: Documentation Categories with Submenus -->
         <div class="mega-column space-y-8">
           <h3 class="text-xs font-bold uppercase tracking-widest text-primary-500 font-mono">
-            Documentation
+            Dokumentasi
           </h3>
           <div class="grid grid-cols-3 gap-x-8 gap-y-6">
             <div
@@ -145,7 +145,7 @@ watch(() => props.active, (isActive) => {
         <!-- Col 2: Company Links -->
         <div class="mega-column space-y-8 border-r border-white/5 pr-12">
           <h3 class="text-xs font-bold uppercase tracking-widest text-primary-500 font-mono">
-            Company
+            Perusahaan
           </h3>
           <div class="space-y-5">
             <NuxtLink
@@ -164,7 +164,7 @@ watch(() => props.active, (isActive) => {
 
           <div class="pt-4 space-y-4">
             <h4 class="text-xs font-bold uppercase tracking-widest text-primary-500 font-mono">
-              Partners
+              Mitra
             </h4>
             <div class="space-y-3">
               <NuxtLink
@@ -179,7 +179,7 @@ watch(() => props.active, (isActive) => {
                 to="#"
                 class="inline-flex items-center gap-1 text-xs font-bold text-primary-500"
               >
-                View all <UIcon
+                Lihat semua <UIcon
                   name="i-lucide-arrow-right"
                   class="w-3 h-3"
                 />
@@ -191,7 +191,7 @@ watch(() => props.active, (isActive) => {
         <!-- Col 3: Featured Article -->
         <div class="mega-column space-y-6">
           <h3 class="text-xs font-bold uppercase tracking-widest text-primary-500 font-mono">
-            Featured Article
+            Artikel Pilihan
           </h3>
           <NuxtLink
             to="/blog"
@@ -210,7 +210,7 @@ watch(() => props.active, (isActive) => {
                 {{ data.featured.desc }}
               </p>
               <div class="text-[10px] font-bold text-primary-500 flex items-center gap-1 pt-2">
-                Read more <UIcon
+                Baca selengkapnya <UIcon
                   name="i-lucide-arrow-right"
                   class="w-2.5 h-2.5"
                 />
@@ -236,7 +236,7 @@ watch(() => props.active, (isActive) => {
           </a>
         </div>
         <div class="text-xs text-white/40">
-          Explore our comprehensive documentation
+          Jelajahi dokumentasi lengkap kami
         </div>
       </div>
     </div>

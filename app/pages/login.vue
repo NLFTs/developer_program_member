@@ -48,9 +48,9 @@ const handleLogin = async () => {
   )
 
   if (popup) {
-    popup.document.title = 'Authenticating...'
+    popup.document.title = 'Mengautentikasi...'
   } else {
-    alert('Please allow popups for this website to sign in.')
+    alert('Harap izinkan popup untuk situs web ini agar dapat masuk.')
     isLoading.value = false
   }
 
@@ -107,10 +107,10 @@ onMounted(() => {
         </div>
 
         <h1 class="text-3xl font-extrabold text-white tracking-tight mb-2 font-display">
-          Welcome Back
+          Selamat Datang Kembali
         </h1>
         <p class="text-white/50 text-sm mb-10 max-w-[280px]">
-          Sign in with GitHub to access the NLFTs Developer Program.
+          Masuk dengan GitHub untuk mengakses Program Developer NLFTs.
         </p>
 
         <!-- GitHub Login Button -->
@@ -128,7 +128,7 @@ onMounted(() => {
               class="w-5 h-5 mr-2"
             />
           </template>
-          Continue with GitHub
+          Lanjutkan dengan GitHub
 
           <!-- Subtle Inner Shine -->
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
@@ -136,16 +136,16 @@ onMounted(() => {
 
         <div class="mt-8 pt-8 border-t border-white/5 w-full">
           <p class="text-white/30 text-xs">
-            By signing in, you agree to our
+            Dengan masuk, Anda menyetujui
             <NuxtLink
               to="/terms"
               class="text-white/60 hover:text-white transition-colors underline underline-offset-4"
-            >Terms of Service</NuxtLink>
-            and
+            >Ketentuan Layanan</NuxtLink>
+            dan
             <NuxtLink
               to="/privacy"
               class="text-white/60 hover:text-white transition-colors underline underline-offset-4"
-            >Privacy Policy</NuxtLink>.
+            >Kebijakan Privasi</NuxtLink>.
           </p>
         </div>
       </div>

@@ -7,10 +7,10 @@ useSeoMeta({
 })
 
 const stats = [
-  { label: 'Active Developers', value: '10,000+', note: '(Example)' },
-  { label: 'Open Source Projects', value: '50+', note: '(Example)' },
-  { label: 'Countries Reached', value: '75+', note: '(Example)' },
-  { label: 'GitHub Stars', value: '25,000+', note: '(Example)' }
+  { label: 'Developer Aktif', value: '52+', note: 'Bandung' },
+  { label: 'Developer Aktif', value: '12+', note: 'Yogyakarta' },
+  { label: 'Proyek', value: '5', note: 'Sedang di kembangkan' },
+  { label: 'Proyek Open Source', value: '11+', note: 'Dalam Perencanaan' }
 ]
 
 const team = [
@@ -68,10 +68,10 @@ const values = [
         <!-- Header -->
         <section class="text-center mb-16">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            About NLFTs
+            Tentang NLFTs Ltd.
           </h1>
           <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            We're on a mission to empower developers worldwide with innovative tools, frameworks, and community-driven solutions that make building software more enjoyable and efficient.
+            Berawal dari visi sederhana : menghadirkan platform lokal Indonesia yang tidak bergantung pada teknologi luar. Kami percaya, langkah kecil yang konsisten bisa membentuk ekosistem digital yang lebih kuat dan berkelanjutan.
           </p>
         </section>
 
@@ -103,13 +103,13 @@ const values = [
                 Our Mission
               </h2>
               <p class="text-neutral-300 mb-4 leading-relaxed">
-                At NLFTs, we believe that great software starts with great developer tools. Our mission is to create an ecosystem of modern, efficient, and delightful tools that help developers build better applications faster.
+                NLFTs merupakan startup teknologi mandiri Indonesia yang berfokus pada pembangunan ekosistem digital yang berdiri sendiri, tanpa ketergantungan pada teknologi luar.
               </p>
               <p class="text-neutral-300 mb-4 leading-relaxed">
-                We're not just building tools – we're building a community. A place where developers can learn, share, and grow together while pushing the boundaries of what's possible in web development.
+                Kami bukan sekadar membangun tools, tetapi juga membangun komunitas. Sebuah ruang di mana para developer dapat belajar, berbagi, dan bertumbuh bersama sambil mendorong batasan kemungkinan dalam pengembangan web.
               </p>
               <p class="text-neutral-300 leading-relaxed">
-                From our open-source frameworks to our developer program, everything we do is designed to make the developer experience more productive and enjoyable.
+                Mulai dari kerangka kerja terbuka hingga program pengembang kami, semua yang kami lakukan dirancang untuk membuat pengalaman pengembang menjadi lebih produktif dan menyenangkan.
               </p>
             </div>
             <div class="bg-neutral-900 rounded-lg p-8">
@@ -122,147 +122,37 @@ const values = [
                     name="i-lucide-check"
                     class="w-5 h-5 text-green-400"
                   />
-                  Build open-source developer tools
+                  Mengembangkan alat sumber terbuka untuk developer
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon
                     name="i-lucide-check"
                     class="w-5 h-5 text-green-400"
                   />
-                  Foster developer communities
+                  Membangun dan mendukung komunitas developer
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon
                     name="i-lucide-check"
                     class="w-5 h-5 text-green-400"
                   />
-                  Provide educational resources
+                  Menyediakan sumber belajar yang mudah diakses
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon
                     name="i-lucide-check"
                     class="w-5 h-5 text-green-400"
                   />
-                  Support emerging technologies
+                  Mendukung dan mengeksplorasi teknologi baru
                 </li>
                 <li class="flex items-center gap-3">
                   <UIcon
                     name="i-lucide-check"
                     class="w-5 h-5 text-green-400"
                   />
-                  Connect developers globally
+                  Menghubungkan para developer di Indonesia
                 </li>
               </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Values -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">
-            Our Values
-          </h2>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div
-              v-for="value in values"
-              :key="value.title"
-              class="border border-neutral-800 rounded-lg p-6"
-            >
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                  <UIcon
-                    :name="value.icon"
-                    class="w-5 h-5 text-blue-400"
-                  />
-                </div>
-                <h3 class="text-lg font-semibold">
-                  {{ value.title }}
-                </h3>
-              </div>
-              <p class="text-neutral-400 leading-relaxed">
-                {{ value.description }}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Team -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">
-            Meet Our Team
-          </h2>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div
-              v-for="member in team"
-              :key="member.name"
-              class="text-center"
-            >
-              <img
-                :src="member.avatar"
-                :alt="member.name"
-                class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                loading="lazy"
-              >
-              <h3 class="text-lg font-semibold mb-1">
-                {{ member.name }}
-              </h3>
-              <p class="text-blue-400 text-sm mb-3">
-                {{ member.role }}
-              </p>
-              <p class="text-neutral-400 text-sm leading-relaxed">
-                {{ member.bio }}
-              </p>
-              <p class="text-xs text-neutral-500 mt-2">
-                {{ member.note }}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- History -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold text-center mb-12">
-            Our Journey
-          </h2>
-          <div class="space-y-8">
-            <div class="flex gap-6">
-              <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center shrink-0">
-                <span class="text-blue-400 font-bold">2022</span>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-2">
-                  The Beginning
-                </h3>
-                <p class="text-neutral-400">
-                  NLFTs was founded with a simple idea: make developer tools that developers actually want to use. We started with a small team and big dreams.
-                </p>
-              </div>
-            </div>
-            <div class="flex gap-6">
-              <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center shrink-0">
-                <span class="text-blue-400 font-bold">2023</span>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-2">
-                  Community Growth
-                </h3>
-                <p class="text-neutral-400">
-                  Our first open-source projects gained traction, and we launched the developer program to support our growing community of contributors.
-                </p>
-              </div>
-            </div>
-            <div class="flex gap-6">
-              <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center shrink-0">
-                <span class="text-blue-400 font-bold">2024</span>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-2">
-                  Global Impact
-                </h3>
-                <p class="text-neutral-400">
-                  Today, NLFTs tools are used by thousands of developers worldwide, and our community continues to grow and innovate together.
-                </p>
-              </div>
             </div>
           </div>
         </section>
@@ -270,20 +160,20 @@ const values = [
         <!-- CTA -->
         <section class="text-center bg-neutral-900 rounded-lg p-8">
           <h2 class="text-2xl font-bold mb-4">
-            Join Our Mission
+            Siap Menjadi Bagian dari Kami?
           </h2>
           <p class="text-neutral-400 mb-6">
-            Ready to be part of something bigger? Join our community and help shape the future of developer tools.
+            Gabunglah dengan komunitas kami dan bantu membentuk masa depan teknologi Indonesia.
           </p>
           <div class="flex flex-wrap justify-center gap-4">
             <UButton
-              label="Join Community"
+              label="Bergabung dengan Komunitas"
               color="white"
               size="lg"
               to="/devlovers"
             />
             <UButton
-              label="Contribute"
+              label="berkontribusi"
               color="neutral"
               size="lg"
               external

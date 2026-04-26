@@ -64,16 +64,16 @@ defineProps<{
         <div class="flex flex-col items-start gap-8 order-1 lg:order-2 reveal-content">
           <div class="space-y-4">
             <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1] tracking-tighter">
-              Built by developers around the world
+              Dibangun oleh developer di seluruh dunia
             </h2>
             <p class="text-lg sm:text-xl text-neutral-400 max-w-lg leading-relaxed">
-              Hundreds of contributors making NLFTs better every day. Join us and build the future of open modules.
+              Ratusan kontributor membuat NLFTs lebih baik setiap hari. Bergabunglah dengan kami dan bangun masa depan modul terbuka.
             </p>
           </div>
 
           <div class="flex flex-wrap items-center gap-8">
             <UButton
-              label="Members"
+              label="Anggota"
               icon="i-lucide-arrow-right"
               trailing
               size="xl"

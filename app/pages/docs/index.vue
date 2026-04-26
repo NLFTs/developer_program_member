@@ -87,7 +87,13 @@ function translateTitle(title: string) {
     'nuxt': 'Nuxt.js',
     'mongodb': 'MongoDB',
     'java': 'Java',
-    'product guides': 'Panduan Produk'
+    'product guides': 'Panduan Produk',
+    'introduction': 'Pendahuluan',
+    'setup': 'Persiapan',
+    'components': 'Komponen',
+    'protocols': 'Protokol',
+    'license': 'Lisensi',
+    'advanced': 'Lanjutan'
   }
   return translations[title.toLowerCase()] || title
 }

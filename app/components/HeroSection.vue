@@ -18,7 +18,7 @@
           to="/product"
           class="hero-btn hero-btn-primary"
         >
-          Get Started
+          Mulai Sekarang
           <svg
             width="16"
             height="16"
@@ -36,7 +36,7 @@
           href="#live-demo"
           class="hero-btn hero-btn-ghost"
         >
-          Live Demo
+          Demo Langsung
         </a>
       </div>
 

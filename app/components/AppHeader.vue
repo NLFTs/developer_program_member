@@ -38,44 +38,44 @@ const handleLogout = () => {
 }
 
 const items = [
-  { label: 'Product', to: '/product' },
-  { label: 'Events', to: '/events', hasMega: true },
-  { label: 'Resources', to: '/docs/getting-started', hasMega: true },
+  { label: 'Produk', to: '/product' },
+  { label: 'Acara', to: '/events', hasMega: true },
+  { label: 'Sumber Daya', to: '/docs/getting-started', hasMega: true },
   { label: 'Blog', to: '/blog' }
 ]
 
 const megaMenuData = {
-  Events: {
+  Acara: {
     upcoming: [
       { date: '22 APR', title: 'NLFTs Workshop Jakarta', desc: 'SCBD, Jakarta Selatan' },
-      { date: '23 APR', title: 'Open Source Forum', desc: 'Online Webinar' },
+      { date: '23 APR', title: 'Open Source Forum', desc: 'Webinar Online' },
       { date: '24 APR', title: 'Dev Meetup Bandung', desc: 'Dago, Bandung' },
       { date: '30 APR', title: 'Community Talk Surabaya', desc: 'Ciputra World, Surabaya' }
     ],
     featured: [
       {
         image: 'https://media.istockphoto.com/id/2205848062/photo/gedung-sate-satay-building-an-iconic-place-in-bandung-city-indonesia.webp?a=1&b=1&s=612x612&w=0&k=20&c=dei-qIgEcSMgzTo2Hk77VLaa2-h_MbiDaEL0cspJV_o=',
-        title: 'NLFTs in Bandung',
-        date: 'MAY 26-27 2026',
+        title: 'NLFTs di Bandung',
+        date: '26-27 MEI 2026',
         location: 'BANDUNG ID'
       },
       {
         image: 'https://images.unsplash.com/photo-1707378174003-418d6262d355?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVndSUyMGpvZ2phfGVufDB8fDB8fHww',
-        title: 'NLFTs In Jogja',
-        date: 'JUN 18-19 2026',
+        title: 'NLFTs Di Jogja',
+        date: '18-19 JUNI 2026',
         location: 'YOGYAKARTA ID'
       }
     ]
   },
-  Resources: {
+  'Sumber Daya': {
     categories: [
       {
-        title: 'Getting Started',
+        title: 'Memulai',
         to: '/docs/getting-started',
         icon: 'i-lucide-rocket',
         desc: 'Mulai perjalanan development Anda',
         items: [
-          { label: 'Introduction', to: '/docs/getting-started' },
+          { label: 'Pendahuluan', to: '/docs/getting-started' },
           { label: 'Protokol', to: '/docs/getting-started/protokol' },
           { label: 'Lisensi', to: '/docs/getting-started/lisensi' }
         ]
@@ -86,7 +86,7 @@ const megaMenuData = {
         icon: 'i-lucide-code',
         desc: 'Pelajari HTML dari dasar hingga mahir',
         items: [
-          { label: 'Getting Started', to: '/docs/html/getting-started' },
+          { label: 'Memulai', to: '/docs/html/getting-started' },
           { label: 'Pustaka', to: '/docs/html/pustaka' }
         ]
       },
@@ -96,8 +96,8 @@ const megaMenuData = {
         icon: 'i-lucide-palette',
         desc: 'Styling dan design dengan CSS',
         items: [
-          { label: 'Fundamentals', to: '/docs/css/fundamentals' },
-          { label: 'Advanced', to: '/docs/css/advanced' }
+          { label: 'Dasar-dasar', to: '/docs/css/fundamentals' },
+          { label: 'Lanjutan', to: '/docs/css/advanced' }
         ]
       },
       {
@@ -106,7 +106,7 @@ const megaMenuData = {
         icon: 'i-lucide-zap',
         desc: 'Programming dengan JavaScript',
         items: [
-          { label: 'Basics', to: '/docs/js/basics' },
+          { label: 'Dasar-dasar', to: '/docs/js/basics' },
           { label: 'ES6+', to: '/docs/js/es6' }
         ]
       },
@@ -114,45 +114,45 @@ const megaMenuData = {
         title: 'TypeScript',
         to: '/docs/ts',
         icon: 'i-lucide-shield',
-        desc: 'Type-safe JavaScript development',
+        desc: 'Development JavaScript yang aman dengan tipe',
         items: [
-          { label: 'Introduction', to: '/docs/ts/introduction' },
-          { label: 'Advanced Types', to: '/docs/ts/advanced' }
+          { label: 'Pendahuluan', to: '/docs/ts/introduction' },
+          { label: 'Tipe Lanjutan', to: '/docs/ts/advanced' }
         ]
       },
       {
         title: 'Nuxt.js',
         to: '/docs/nuxt',
         icon: 'i-lucide-layers',
-        desc: 'Full-stack Vue.js framework',
+        desc: 'Framework Vue.js full-stack',
         items: [
-          { label: 'Setup', to: '/docs/nuxt/setup' },
-          { label: 'Components', to: '/docs/nuxt/components' }
+          { label: 'Persiapan', to: '/docs/nuxt/setup' },
+          { label: 'Komponen', to: '/docs/nuxt/components' }
         ]
       },
       {
         title: 'Laravel',
         to: '/docs/laravel',
         icon: 'i-lucide-server',
-        desc: 'PHP framework untuk web artisans'
+        desc: 'Framework PHP untuk artisan web'
       },
       {
         title: 'Next.js',
         to: '/docs/nextjs',
         icon: 'i-lucide-triangle',
-        desc: 'React framework untuk production'
+        desc: 'Framework React untuk produksi'
       },
       {
         title: 'MongoDB',
         to: '/docs/mongodb',
         icon: 'i-lucide-database',
-        desc: 'NoSQL database untuk modern apps'
+        desc: 'Database NoSQL untuk aplikasi modern'
       },
       {
         title: 'Java',
         to: '/docs/java',
         icon: 'i-lucide-coffee',
-        desc: 'Enterprise programming language'
+        desc: 'Bahasa pemrograman enterprise'
       }
     ],
     company: [
@@ -160,21 +160,22 @@ const megaMenuData = {
       { label: 'Agensi', to: '/agency', icon: 'i-lucide-briefcase' },
       { label: 'DevLovers', to: '/devlovers', icon: 'i-lucide-heart' },
       { label: 'Legal', to: '/legal', icon: 'i-lucide-scale' },
-      { label: 'Enterprise', to: '/enterprise', icon: 'i-lucide-building' }
+      { label: 'Enterprise', to: '/enterprise', icon: 'i-lucide-building' },
+      { label: 'Docs', to: '/docs', icon: 'i-lucide-book-open-text' }
     ],
     partners: [
-      'DevLovers Community',
+      'Komunitas DevLovers',
       'OpenFoundry',
       'CloudVortex',
-      'ModuleX Partners',
+      'Mitra ModuleX',
       'Sigma Design',
       'Redberry Apps'
     ],
     featured: {
       image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-      date: 'April 14, 2026',
-      title: 'How I Built an AI-Powered CRM with NLFTs in a Weekend',
-      desc: 'How a senior freelance developer built a full NL/*  */FTs MVP in under 48 hours using our new AI modules.'
+      date: '14 April 2026',
+      title: 'Bagaimana Saya Membangun CRM Berbasis AI dengan NLFTs dalam Akhir Pekan',
+      desc: 'Bagaimana seorang pengembang freelance senior membangun MVP NLFTs lengkap dalam waktu kurang dari 48 jam menggunakan modul AI baru kami.'
     },
     socials: [
       { icon: 'i-simple-icons-github', href: 'https://github.com/nlfts' },
@@ -310,7 +311,7 @@ setup(() => {
             name="i-lucide-search"
             class="w-4 h-4"
           />
-          <span>Search</span>
+          <span>Cari</span>
           <span class="opacity-30 border border-white/20 rounded px-1.5 ml-1 font-mono">⌘K</span>
         </button>
 
@@ -341,7 +342,7 @@ setup(() => {
                 <!-- Account info -->
                 <div class="px-5 py-4 border-b border-white/5 bg-white/5">
                   <p class="text-[10px] uppercase tracking-[0.2em] font-bold mb-1 text-white/30">
-                    Authenticated
+                    Terautentikasi
                   </p>
                   <div class="flex items-center gap-1.5">
                     <p class="text-sm font-bold text-white truncate max-w-[200px]">
@@ -364,7 +365,7 @@ setup(() => {
                       name="i-lucide-book"
                       class="w-4 h-4"
                     />
-                    Documentation
+                    Dokumentasi
                   </NuxtLink>
                   <NuxtLink
                     to="/community"
@@ -375,7 +376,7 @@ setup(() => {
                       name="i-lucide-users"
                       class="w-4 h-4"
                     />
-                    Community
+                    Komunitas
                   </NuxtLink>
                 </div>
 
@@ -389,7 +390,7 @@ setup(() => {
                       name="i-lucide-log-out"
                       class="w-4 h-4"
                     />
-                    Sign out
+                    Keluar
                   </button>
                 </div>
               </div>
@@ -402,7 +403,7 @@ setup(() => {
               variant="solid"
               size="sm"
               class="hidden sm:flex rounded-full font-bold px-5"
-              label="Login"
+              label="Masuk"
             />
           </template>
         </ClientOnly>
