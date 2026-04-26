@@ -1,524 +1,459 @@
 <script setup lang="ts">
-import {
-  Clock,
-  Mesh,
-  OrthographicCamera,
-  PlaneGeometry,
-  Scene,
-  ShaderMaterial,
-  Vector2,
-  Vector3,
-  WebGLRenderer
-} from 'three'
-import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch, type CSSProperties } from 'vue'
+import { Mesh, Program, Renderer, Triangle } from 'ogl';
+import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
 
-const vertexShader = `
-precision highp float;
+type PrismProps = {
+  height?: number;
+  baseWidth?: number;
+  animationType?: 'rotate' | 'hover' | '3drotate';
+  glow?: number;
+  offset?: { x?: number; y?: number };
+  noise?: number;
+  transparent?: boolean;
+  scale?: number;
+  hueShift?: number;
+  colorFrequency?: number;
+  hoverStrength?: number;
+  inertia?: number;
+  bloom?: number;
+  suspendWhenOffscreen?: boolean;
+  timeScale?: number;
+};
 
-void main() {
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}
-`
+const props = withDefaults(defineProps<PrismProps>(), {
+  height: 3.5,
+  baseWidth: 5.5,
+  animationType: 'rotate',
+  glow: 1,
+  offset: () => ({ x: 0, y: 0 }),
+  noise: 0.5,
+  transparent: true,
+  scale: 3.6,
+  hueShift: 0,
+  colorFrequency: 1,
+  hoverStrength: 2,
+  inertia: 0.05,
+  bloom: 1,
+  suspendWhenOffscreen: false,
+  timeScale: 0.5
+});
 
-const fragmentShader = `
-precision highp float;
+const containerRef = useTemplateRef('containerRef');
 
-uniform float iTime;
-uniform vec3  iResolution;
-uniform float animationSpeed;
+let cleanup: (() => void) | null = null;
 
-uniform bool enableTop;
-uniform bool enableMiddle;
-uniform bool enableBottom;
-
-uniform int topLineCount;
-uniform int middleLineCount;
-uniform int bottomLineCount;
-
-uniform float topLineDistance;
-uniform float middleLineDistance;
-uniform float bottomLineDistance;
-
-uniform vec3 topWavePosition;
-uniform vec3 middleWavePosition;
-uniform vec3 bottomWavePosition;
-
-uniform vec2 iMouse;
-uniform bool interactive;
-uniform float bendRadius;
-uniform float bendStrength;
-uniform float bendInfluence;
-
-uniform bool parallax;
-uniform float parallaxStrength;
-uniform vec2 parallaxOffset;
-
-uniform vec3 lineGradient[8];
-uniform int lineGradientCount;
-
-const vec3 BLACK = vec3(0.0);
-const vec3 PINK  = vec3(233.0, 71.0, 245.0) / 255.0;
-const vec3 BLUE  = vec3(47.0,  75.0, 162.0) / 255.0;
-
-mat2 rotate(float r) {
-  return mat2(cos(r), sin(r), -sin(r), cos(r));
-}
-
-vec3 background_color(vec2 uv) {
-  vec3 col = vec3(0.0);
-
-  float y = sin(uv.x - 0.2) * 0.3 - 0.1;
-  float m = uv.y - y;
-
-  col += mix(BLUE, BLACK, smoothstep(0.0, 1.0, abs(m)));
-  col += mix(PINK, BLACK, smoothstep(0.0, 1.0, abs(m - 0.8)));
-  return col * 0.5;
-}
-
-vec3 getLineColor(float t, vec3 baseColor) {
-  if (lineGradientCount <= 0) {
-    return baseColor;
-  }
-
-  vec3 gradientColor;
-
-  if (lineGradientCount == 1) {
-    gradientColor = lineGradient[0];
-  } else {
-    float clampedT = clamp(t, 0.0, 0.9999);
-    float scaled = clampedT * float(lineGradientCount - 1);
-    int idx = int(floor(scaled));
-    float f = fract(scaled);
-    int idx2 = min(idx + 1, lineGradientCount - 1);
-
-    vec3 c1 = lineGradient[idx];
-    vec3 c2 = lineGradient[idx2];
-
-    gradientColor = mix(c1, c2, f);
-  }
-
-  return gradientColor * 0.5;
-}
-
-float wave(vec2 uv, float offset, vec2 screenUv, vec2 mouseUv, bool shouldBend) {
-  float time = iTime * animationSpeed;
-
-  float x_offset   = offset;
-  float x_movement = time * 0.1;
-  float amp        = sin(offset + time * 0.2) * 0.3;
-  float y          = sin(uv.x + x_offset + x_movement) * amp;
-
-  if (shouldBend) {
-    vec2 d = screenUv - mouseUv;
-    float influence = exp(-dot(d, d) * bendRadius);
-    float bendOffset = (mouseUv.y - screenUv.y) * influence * bendStrength * bendInfluence;
-    y += bendOffset;
-  }
-
-  float m = uv.y - y;
-  return 0.0175 / max(abs(m) + 0.01, 1e-3) + 0.01;
-}
-
-void mainImage(out vec4 fragColor, in vec2 fragCoord) {
-  vec2 baseUv = (2.0 * fragCoord - iResolution.xy) / iResolution.y;
-  baseUv.y *= -1.0;
-
-  if (parallax) {
-    baseUv += parallaxOffset;
-  }
-
-  vec3 col = vec3(0.0);
-
-  vec3 b = lineGradientCount > 0 ? vec3(0.0) : background_color(baseUv);
-
-  vec2 mouseUv = vec2(0.0);
-  if (interactive) {
-    mouseUv = (2.0 * iMouse - iResolution.xy) / iResolution.y;
-    mouseUv.y *= -1.0;
-  }
-
-  if (enableBottom) {
-    for (int i = 0; i < bottomLineCount; ++i) {
-      float fi = float(i);
-      float t = fi / max(float(bottomLineCount - 1), 1.0);
-      vec3 lineCol = getLineColor(t, b);
-
-      float angle = bottomWavePosition.z * log(length(baseUv) + 1.0);
-      vec2 ruv = baseUv * rotate(angle);
-      col += lineCol * wave(
-        ruv + vec2(bottomLineDistance * fi + bottomWavePosition.x, bottomWavePosition.y),
-        1.5 + 0.2 * fi,
-        baseUv,
-        mouseUv,
-        interactive
-      ) * 0.2;
-    }
-  }
-
-  if (enableMiddle) {
-    for (int i = 0; i < middleLineCount; ++i) {
-      float fi = float(i);
-      float t = fi / max(float(middleLineCount - 1), 1.0);
-      vec3 lineCol = getLineColor(t, b);
-
-      float angle = middleWavePosition.z * log(length(baseUv) + 1.0);
-      vec2 ruv = baseUv * rotate(angle);
-      col += lineCol * wave(
-        ruv + vec2(middleLineDistance * fi + middleWavePosition.x, middleWavePosition.y),
-        2.0 + 0.15 * fi,
-        baseUv,
-        mouseUv,
-        interactive
-      );
-    }
-  }
-
-  if (enableTop) {
-    for (int i = 0; i < topLineCount; ++i) {
-      float fi = float(i);
-      float t = fi / max(float(topLineCount - 1), 1.0);
-      vec3 lineCol = getLineColor(t, b);
-
-      float angle = topWavePosition.z * log(length(baseUv) + 1.0);
-      vec2 ruv = baseUv * rotate(angle);
-      ruv.x *= -1.0;
-      col += lineCol * wave(
-        ruv + vec2(topLineDistance * fi + topWavePosition.x, topWavePosition.y),
-        1.0 + 0.2 * fi,
-        baseUv,
-        mouseUv,
-        interactive
-      ) * 0.1;
-    }
-  }
-
-  fragColor = vec4(col, 1.0);
-}
-
-void main() {
-  vec4 color = vec4(0.0);
-  mainImage(color, gl_FragCoord.xy);
-  gl_FragColor = color;
-}
-`
-
-const MAX_GRADIENT_STOPS = 8
-
-type WavePosition = {
-  x: number
-  y: number
-  rotate: number
-}
-
-type FloatingLinesProps = {
-  linesGradient?: string[]
-  enabledWaves?: Array<'top' | 'middle' | 'bottom'>
-  lineCount?: number | number[]
-  lineDistance?: number | number[]
-  topWavePosition?: WavePosition
-  middleWavePosition?: WavePosition
-  bottomWavePosition?: WavePosition
-  animationSpeed?: number
-  interactive?: boolean
-  bendRadius?: number
-  bendStrength?: number
-  mouseDamping?: number
-  parallax?: boolean
-  parallaxStrength?: number
-  mixBlendMode?: CSSProperties['mixBlendMode']
-}
-
-const props = withDefaults(defineProps<FloatingLinesProps>(), {
-  enabledWaves: () => ['top', 'middle', 'bottom'],
-  lineCount: () => [6],
-  lineDistance: () => [5],
-  bottomWavePosition: () => ({ x: 2.0, y: -0.7, rotate: -1 }),
-  animationSpeed: 1,
-  interactive: true,
-  bendRadius: 5.0,
-  bendStrength: -0.5,
-  mouseDamping: 0.05,
-  parallax: true,
-  parallaxStrength: 0.2,
-  mixBlendMode: 'screen'
-})
-
-function hexToVec3(hex: string): Vector3 {
-  let value = hex.trim()
-
-  if (value.startsWith('#')) {
-    value = value.slice(1)
-  }
-
-  let r = 255
-  let g = 255
-  let b = 255
-
-  if (value.length === 3) {
-    r = parseInt(value[0]! + value[0]!, 16)
-    g = parseInt(value[1]! + value[1]!, 16)
-    b = parseInt(value[2]! + value[2]!, 16)
-  } else if (value.length === 6) {
-    r = parseInt(value.slice(0, 2), 16)
-    g = parseInt(value.slice(2, 4), 16)
-    b = parseInt(value.slice(4, 6), 16)
-  }
-
-  return new Vector3(r / 255, g / 255, b / 255)
-}
-
-const containerRef = useTemplateRef('containerRef')
-const targetMouseRef = ref<Vector2>(new Vector2(-1000, -1000))
-const currentMouseRef = ref<Vector2>(new Vector2(-1000, -1000))
-const targetInfluenceRef = ref<number>(0)
-const currentInfluenceRef = ref<number>(0)
-const targetParallaxRef = ref<Vector2>(new Vector2(0, 0))
-const currentParallaxRef = ref<Vector2>(new Vector2(0, 0))
-
-let cleanup: (() => void) | null = null
 const setup = () => {
-  if (!containerRef.value) return
+  const container = containerRef.value;
+  if (!container) return;
 
-  const getLineCount = (waveType: 'top' | 'middle' | 'bottom'): number => {
-    if (typeof props.lineCount === 'number') return props.lineCount
-    if (!props.enabledWaves.includes(waveType)) return 0
-    const index = props.enabledWaves.indexOf(waveType)
-    return props.lineCount[index] ?? 6
-  }
+  const H = Math.max(0.001, props.height);
+  const BW = Math.max(0.001, props.baseWidth);
+  const BASE_HALF = BW * 0.5;
+  const GLOW = Math.max(0.0, props.glow);
+  const NOISE = Math.max(0.0, props.noise);
+  const offX = props.offset?.x ?? 0;
+  const offY = props.offset?.y ?? 0;
+  const SAT = props.transparent ? 1.5 : 1;
+  const SCALE = Math.max(0.001, props.scale);
+  const HUE = props.hueShift || 0;
+  const CFREQ = Math.max(0.0, props.colorFrequency || 1);
+  const BLOOM = Math.max(0.0, props.bloom || 1);
+  const RSX = 1;
+  const RSY = 1;
+  const RSZ = 1;
+  const TS = Math.max(0, props.timeScale || 1);
+  const HOVSTR = Math.max(0, props.hoverStrength || 1);
+  const INERT = Math.max(0, Math.min(1, props.inertia || 0.12));
 
-  const getLineDistance = (waveType: 'top' | 'middle' | 'bottom'): number => {
-    if (typeof props.lineDistance === 'number') return props.lineDistance
-    if (!props.enabledWaves.includes(waveType)) return 0.1
-    const index = props.enabledWaves.indexOf(waveType)
-    return props.lineDistance[index] ?? 0.1
-  }
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const renderer = new Renderer({
+    dpr,
+    alpha: props.transparent,
+    antialias: false
+  });
+  const gl = renderer.gl;
+  gl.disable(gl.DEPTH_TEST);
+  gl.disable(gl.CULL_FACE);
+  gl.disable(gl.BLEND);
 
-  const topLineCount = props.enabledWaves.includes('top') ? getLineCount('top') : 0
-  const middleLineCount = props.enabledWaves.includes('middle') ? getLineCount('middle') : 0
-  const bottomLineCount = props.enabledWaves.includes('bottom') ? getLineCount('bottom') : 0
+  Object.assign(gl.canvas.style, {
+    position: 'absolute',
+    inset: '0',
+    width: '100%',
+    height: '100%',
+    display: 'block'
+  } as Partial<CSSStyleDeclaration>);
+  container.appendChild(gl.canvas);
 
-  const topLineDistance = props.enabledWaves.includes('top') ? getLineDistance('top') * 0.01 : 0.01
-  const middleLineDistance = props.enabledWaves.includes('middle') ? getLineDistance('middle') * 0.01 : 0.01
-  const bottomLineDistance = props.enabledWaves.includes('bottom') ? getLineDistance('bottom') * 0.01 : 0.01
+  const vertex = /* glsl */ `
+      attribute vec2 position;
+      void main() {
+        gl_Position = vec4(position, 0.0, 1.0);
+      }
+    `;
 
-  const scene = new Scene()
+  const fragment = /* glsl */ `
+      precision highp float;
 
-  const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1)
-  camera.position.z = 1
+      uniform vec2  iResolution;
+      uniform float iTime;
 
-  const renderer = new WebGLRenderer({ antialias: true, alpha: false })
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
-  renderer.domElement.style.width = '100%'
-  renderer.domElement.style.height = '100%'
-  containerRef.value.appendChild(renderer.domElement)
+      uniform float uHeight;
+      uniform float uBaseHalf;
+      uniform mat3  uRot;
+      uniform int   uUseBaseWobble;
+      uniform float uGlow;
+      uniform vec2  uOffsetPx;
+      uniform float uNoise;
+      uniform float uSaturation;
+      uniform float uScale;
+      uniform float uHueShift;
+      uniform float uColorFreq;
+      uniform float uBloom;
+      uniform float uCenterShift;
+      uniform float uInvBaseHalf;
+      uniform float uInvHeight;
+      uniform float uMinAxis;
+      uniform float uPxScale;
+      uniform float uTimeScale;
 
-  const uniforms = {
-    iTime: { value: 0 },
-    iResolution: { value: new Vector3(1, 1, 1) },
-    animationSpeed: { value: props.animationSpeed },
+      vec4 tanh4(vec4 x){
+        vec4 e2x = exp(2.0*x);
+        return (e2x - 1.0) / (e2x + 1.0);
+      }
 
-    enableTop: { value: props.enabledWaves.includes('top') },
-    enableMiddle: { value: props.enabledWaves.includes('middle') },
-    enableBottom: { value: props.enabledWaves.includes('bottom') },
+      float rand(vec2 co){
+        return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453123);
+      }
 
-    topLineCount: { value: topLineCount },
-    middleLineCount: { value: middleLineCount },
-    bottomLineCount: { value: bottomLineCount },
+      float sdOctaAnisoInv(vec3 p){
+        vec3 q = vec3(abs(p.x) * uInvBaseHalf, abs(p.y) * uInvHeight, abs(p.z) * uInvBaseHalf);
+        float m = q.x + q.y + q.z - 1.0;
+        return m * uMinAxis * 0.5773502691896258;
+      }
 
-    topLineDistance: { value: topLineDistance },
-    middleLineDistance: { value: middleLineDistance },
-    bottomLineDistance: { value: bottomLineDistance },
+      float sdPyramidUpInv(vec3 p){
+        float oct = sdOctaAnisoInv(p);
+        float halfSpace = -p.y;
+        return max(oct, halfSpace);
+      }
 
-    topWavePosition: {
-      value: new Vector3(
-        props.topWavePosition?.x ?? 10.0,
-        props.topWavePosition?.y ?? 0.5,
-        props.topWavePosition?.rotate ?? -0.4
-      )
-    },
-    middleWavePosition: {
-      value: new Vector3(
-        props.middleWavePosition?.x ?? 5.0,
-        props.middleWavePosition?.y ?? 0.0,
-        props.middleWavePosition?.rotate ?? 0.2
-      )
-    },
-    bottomWavePosition: {
-      value: new Vector3(
-        props.bottomWavePosition?.x ?? 2.0,
-        props.bottomWavePosition?.y ?? -0.7,
-        props.bottomWavePosition?.rotate ?? 0.4
-      )
-    },
+      mat3 hueRotation(float a){
+        float c = cos(a), s = sin(a);
+        mat3 W = mat3(
+          0.299, 0.587, 0.114,
+          0.299, 0.587, 0.114,
+          0.299, 0.587, 0.114
+        );
+        mat3 U = mat3(
+           0.701, -0.587, -0.114,
+          -0.299,  0.413, -0.114,
+          -0.300, -0.588,  0.886
+        );
+        mat3 V = mat3(
+           0.168, -0.331,  0.500,
+           0.328,  0.035, -0.500,
+          -0.497,  0.296,  0.201
+        );
+        return W + U * c + V * s;
+      }
 
-    iMouse: { value: new Vector2(-1000, -1000) },
-    interactive: { value: props.interactive },
-    bendRadius: { value: props.bendRadius },
-    bendStrength: { value: props.bendStrength },
-    bendInfluence: { value: 0 },
+      void main(){
+        vec2 f = (gl_FragCoord.xy - 0.5 * iResolution.xy - uOffsetPx) * uPxScale;
 
-    parallax: { value: props.parallax },
-    parallaxStrength: { value: props.parallaxStrength },
-    parallaxOffset: { value: new Vector2(0, 0) },
+        float z = 5.0;
+        float d = 0.0;
 
-    lineGradient: {
-      value: Array.from({ length: MAX_GRADIENT_STOPS }, () => new Vector3(1, 1, 1))
-    },
-    lineGradientCount: { value: 0 }
-  }
+        vec3 p;
+        vec4 o = vec4(0.0);
 
-  if (props.linesGradient && props.linesGradient.length > 0) {
-    const stops = props.linesGradient.slice(0, MAX_GRADIENT_STOPS)
-    uniforms.lineGradientCount.value = stops.length
+        float centerShift = uCenterShift;
+        float cf = uColorFreq;
 
-    stops.forEach((hex, i) => {
-      const color = hexToVec3(hex)
-      uniforms.lineGradient.value[i].set(color.x, color.y, color.z)
-    })
-  }
+        mat2 wob = mat2(1.0);
+        if (uUseBaseWobble == 1) {
+          float t = iTime * uTimeScale;
+          float c0 = cos(t + 0.0);
+          float c1 = cos(t + 33.0);
+          float c2 = cos(t + 11.0);
+          wob = mat2(c0, c1, c2, c0);
+        }
 
-  const material = new ShaderMaterial({
-    uniforms,
-    vertexShader,
-    fragmentShader
-  })
+        const int STEPS = 100;
+        for (int i = 0; i < STEPS; i++) {
+          p = vec3(f, z);
+          p.xz = p.xz * wob;
+          p = uRot * p;
+          vec3 q = p;
+          q.y += centerShift;
+          d = 0.1 + 0.2 * abs(sdPyramidUpInv(q));
+          z -= d;
+          o += (sin((p.y + z) * cf + vec4(0.0, 1.0, 2.0, 3.0)) + 1.0) / d;
+        }
 
-  const geometry = new PlaneGeometry(2, 2)
-  const mesh = new Mesh(geometry, material)
-  scene.add(mesh)
+        o = tanh4(o * o * (uGlow * uBloom) / 1e5);
 
-  const clock = new Clock()
+        vec3 col = o.rgb;
+        float n = rand(gl_FragCoord.xy + vec2(iTime));
+        col += (n - 0.5) * uNoise;
+        col = clamp(col, 0.0, 1.0);
 
-  const setSize = () => {
-    const el = containerRef.value!
-    const width = el.clientWidth || 1
-    const height = el.clientHeight || 1
+        float L = dot(col, vec3(0.2126, 0.7152, 0.0722));
+        col = clamp(mix(vec3(L), col, uSaturation), 0.0, 1.0);
 
-    renderer.setSize(width, height, false)
+        if(abs(uHueShift) > 0.0001){
+          col = clamp(hueRotation(uHueShift) * col, 0.0, 1.0);
+        }
 
-    const canvasWidth = renderer.domElement.width
-    const canvasHeight = renderer.domElement.height
-    uniforms.iResolution.value.set(canvasWidth, canvasHeight, 1)
-  }
+        gl_FragColor = vec4(col, o.a);
+      }
+    `;
 
-  setSize()
+  const geometry = new Triangle(gl);
+  const iResBuf = new Float32Array(2);
+  const offsetPxBuf = new Float32Array(2);
 
-  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(setSize) : null
-
-  if (ro && containerRef.value) {
-    ro.observe(containerRef.value)
-  }
-
-  const handlePointerMove = (event: PointerEvent) => {
-    const rect = renderer.domElement.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
-    const dpr = renderer.getPixelRatio()
-
-    targetMouseRef.value.set(x * dpr, (rect.height - y) * dpr)
-    targetInfluenceRef.value = 1.0
-
-    if (props.parallax) {
-      const centerX = rect.width / 2
-      const centerY = rect.height / 2
-      const offsetX = (x - centerX) / rect.width
-      const offsetY = -(y - centerY) / rect.height
-      targetParallaxRef.value.set(offsetX * props.parallaxStrength, offsetY * props.parallaxStrength)
+  const program = new Program(gl, {
+    vertex,
+    fragment,
+    uniforms: {
+      iResolution: { value: iResBuf },
+      iTime: { value: 0 },
+      uHeight: { value: H },
+      uBaseHalf: { value: BASE_HALF },
+      uUseBaseWobble: { value: 1 },
+      uRot: { value: new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]) },
+      uGlow: { value: GLOW },
+      uOffsetPx: { value: offsetPxBuf },
+      uNoise: { value: NOISE },
+      uSaturation: { value: SAT },
+      uScale: { value: SCALE },
+      uHueShift: { value: HUE },
+      uColorFreq: { value: CFREQ },
+      uBloom: { value: BLOOM },
+      uCenterShift: { value: H * 0.25 },
+      uInvBaseHalf: { value: 1 / BASE_HALF },
+      uInvHeight: { value: 1 / H },
+      uMinAxis: { value: Math.min(BASE_HALF, H) },
+      uPxScale: {
+        value: 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE)
+      },
+      uTimeScale: { value: TS }
     }
+  });
+  const mesh = new Mesh(gl, { geometry, program });
+
+  const resize = () => {
+    const w = container.clientWidth || 1;
+    const h = container.clientHeight || 1;
+    renderer.setSize(w, h);
+    iResBuf[0] = gl.drawingBufferWidth;
+    iResBuf[1] = gl.drawingBufferHeight;
+    offsetPxBuf[0] = offX * dpr;
+    offsetPxBuf[1] = offY * dpr;
+    program.uniforms.uPxScale.value = 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE);
+  };
+  const ro = new ResizeObserver(resize);
+  ro.observe(container);
+  resize();
+
+  const rotBuf = new Float32Array(9);
+  const setMat3FromEuler = (yawY: number, pitchX: number, rollZ: number, out: Float32Array) => {
+    const cy = Math.cos(yawY),
+      sy = Math.sin(yawY);
+    const cx = Math.cos(pitchX),
+      sx = Math.sin(pitchX);
+    const cz = Math.cos(rollZ),
+      sz = Math.sin(rollZ);
+    const r00 = cy * cz + sy * sx * sz;
+    const r01 = -cy * sz + sy * sx * cz;
+    const r02 = sy * cx;
+
+    const r10 = cx * sz;
+    const r11 = cx * cz;
+    const r12 = -sx;
+
+    const r20 = -sy * cz + cy * sx * sz;
+    const r21 = sy * sz + cy * sx * cz;
+    const r22 = cy * cx;
+
+    out[0] = r00;
+    out[1] = r10;
+    out[2] = r20;
+    out[3] = r01;
+    out[4] = r11;
+    out[5] = r21;
+    out[6] = r02;
+    out[7] = r12;
+    out[8] = r22;
+    return out;
+  };
+
+  const NOISE_IS_ZERO = NOISE < 1e-6;
+  let raf = 0;
+  const t0 = performance.now();
+  const startRAF = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(render);
+  };
+  const stopRAF = () => {
+    if (!raf) return;
+    cancelAnimationFrame(raf);
+    raf = 0;
+  };
+
+  const rnd = () => Math.random();
+  const wX = (0.3 + rnd() * 0.6) * RSX;
+  const wY = (0.2 + rnd() * 0.7) * RSY;
+  const wZ = (0.1 + rnd() * 0.5) * RSZ;
+  const phX = rnd() * Math.PI * 2;
+  const phZ = rnd() * Math.PI * 2;
+
+  let yaw = 0,
+    pitch = 0,
+    roll = 0;
+  let targetYaw = 0,
+    targetPitch = 0;
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+  const pointer = { x: 0, y: 0, inside: true };
+  const onMove = (e: PointerEvent) => {
+    const ww = Math.max(1, window.innerWidth);
+    const wh = Math.max(1, window.innerHeight);
+    const cx = ww * 0.5;
+    const cy = wh * 0.5;
+    const nx = (e.clientX - cx) / (ww * 0.5);
+    const ny = (e.clientY - cy) / (wh * 0.5);
+    pointer.x = Math.max(-1, Math.min(1, nx));
+    pointer.y = Math.max(-1, Math.min(1, ny));
+    pointer.inside = true;
+  };
+  const onLeave = () => {
+    pointer.inside = false;
+  };
+  const onBlur = () => {
+    pointer.inside = false;
+  };
+
+  let onPointerMove: ((e: PointerEvent) => void) | null = null;
+  if (props.animationType === 'hover') {
+    onPointerMove = (e: PointerEvent) => {
+      onMove(e);
+      startRAF();
+    };
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('mouseleave', onLeave);
+    window.addEventListener('blur', onBlur);
+    program.uniforms.uUseBaseWobble.value = 0;
+  } else if (props.animationType === '3drotate') {
+    program.uniforms.uUseBaseWobble.value = 0;
+  } else {
+    program.uniforms.uUseBaseWobble.value = 1;
   }
 
-  const handlePointerLeave = () => {
-    targetInfluenceRef.value = 0.0
-  }
+  const render = (t: number) => {
+    const time = (t - t0) * 0.001;
+    program.uniforms.iTime.value = time;
 
-  if (props.interactive) {
-    renderer.domElement.addEventListener('pointermove', handlePointerMove)
-    renderer.domElement.addEventListener('pointerleave', handlePointerLeave)
-  }
+    let continueRAF = true;
 
-  let raf = 0
-  const renderLoop = () => {
-    uniforms.iTime.value = clock.getElapsedTime()
+    if (props.animationType === 'hover') {
+      const maxPitch = 0.6 * HOVSTR;
+      const maxYaw = 0.6 * HOVSTR;
+      targetYaw = (pointer.inside ? -pointer.x : 0) * maxYaw;
+      targetPitch = (pointer.inside ? pointer.y : 0) * maxPitch;
+      const prevYaw = yaw;
+      const prevPitch = pitch;
+      const prevRoll = roll;
+      yaw = lerp(prevYaw, targetYaw, INERT);
+      pitch = lerp(prevPitch, targetPitch, INERT);
+      roll = lerp(prevRoll, 0, 0.1);
+      program.uniforms.uRot.value = setMat3FromEuler(yaw, pitch, roll, rotBuf);
 
-    if (props.interactive) {
-      currentMouseRef.value.lerp(targetMouseRef.value, props.mouseDamping)
-      uniforms.iMouse.value.copy(currentMouseRef.value)
-
-      currentInfluenceRef.value += (targetInfluenceRef.value - currentInfluenceRef.value) * props.mouseDamping
-      uniforms.bendInfluence.value = currentInfluenceRef.value
+      if (NOISE_IS_ZERO) {
+        const settled =
+          Math.abs(yaw - targetYaw) < 1e-4 && Math.abs(pitch - targetPitch) < 1e-4 && Math.abs(roll) < 1e-4;
+        if (settled) continueRAF = false;
+      }
+    } else if (props.animationType === '3drotate') {
+      const tScaled = time * TS;
+      yaw = tScaled * wY;
+      pitch = Math.sin(tScaled * wX + phX) * 0.6;
+      roll = Math.sin(tScaled * wZ + phZ) * 0.5;
+      program.uniforms.uRot.value = setMat3FromEuler(yaw, pitch, roll, rotBuf);
+      if (TS < 1e-6) continueRAF = false;
+    } else {
+      rotBuf[0] = 1;
+      rotBuf[1] = 0;
+      rotBuf[2] = 0;
+      rotBuf[3] = 0;
+      rotBuf[4] = 1;
+      rotBuf[5] = 0;
+      rotBuf[6] = 0;
+      rotBuf[7] = 0;
+      rotBuf[8] = 1;
+      program.uniforms.uRot.value = rotBuf;
+      if (TS < 1e-6) continueRAF = false;
     }
 
-    if (props.parallax) {
-      currentParallaxRef.value.lerp(targetParallaxRef.value, props.mouseDamping)
-      uniforms.parallaxOffset.value.copy(currentParallaxRef.value)
+    renderer.render({ scene: mesh });
+    if (continueRAF) {
+      raf = requestAnimationFrame(render);
+    } else {
+      raf = 0;
     }
+  };
 
-    renderer.render(scene, camera)
-    raf = requestAnimationFrame(renderLoop)
+  if (props.suspendWhenOffscreen) {
+    const io = new IntersectionObserver(entries => {
+      const vis = entries.some(e => e.isIntersecting);
+      if (vis) startRAF();
+      else stopRAF();
+    });
+    io.observe(container);
+    startRAF();
+    (container as HTMLElement & { __prismIO?: IntersectionObserver }).__prismIO = io;
+  } else {
+    startRAF();
   }
-  renderLoop()
 
   cleanup = () => {
-    cancelAnimationFrame(raf)
-    if (ro && containerRef.value) {
-      ro.disconnect()
+    stopRAF();
+    ro.disconnect();
+    if (props.animationType === 'hover') {
+      if (onPointerMove) window.removeEventListener('pointermove', onPointerMove as EventListener);
+      window.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('blur', onBlur);
     }
-
-    if (props.interactive) {
-      renderer.domElement.removeEventListener('pointermove', handlePointerMove)
-      renderer.domElement.removeEventListener('pointerleave', handlePointerLeave)
+    if (props.suspendWhenOffscreen) {
+      const io = (container as HTMLElement & { __prismIO?: IntersectionObserver }).__prismIO as
+        | IntersectionObserver
+        | undefined;
+      if (io) io.disconnect();
+      delete (container as HTMLElement & { __prismIO?: IntersectionObserver }).__prismIO;
     }
-
-    geometry.dispose()
-    material.dispose()
-    renderer.dispose()
-    if (renderer.domElement.parentElement) {
-      renderer.domElement.parentElement.removeChild(renderer.domElement)
-    }
-  }
-}
+    if (gl.canvas.parentElement === container) container.removeChild(gl.canvas);
+  };
+};
 
 onMounted(() => {
-  setup()
-})
+  setup();
+});
 
 onBeforeUnmount(() => {
-  cleanup?.()
-})
+  cleanup?.();
+});
 
 watch(
-  () => [
-    props.linesGradient,
-    props.enabledWaves,
-    props.lineCount,
-    props.lineDistance,
-    props.topWavePosition,
-    props.middleWavePosition,
-    props.bottomWavePosition,
-    props.animationSpeed,
-    props.interactive,
-    props.bendRadius,
-    props.bendStrength,
-    props.mouseDamping,
-    props.parallax,
-    props.parallaxStrength
-  ],
+  props,
   () => {
-    cleanup?.()
-    setup()
+    cleanup?.();
+    setup();
   },
-  {
-    deep: true
-  }
-)
+  { deep: true }
+);
 </script>
 
 <template>
-  <div
-    ref="containerRef"
-    class="relative w-full h-full overflow-hidden floating-lines-container"
-    :style="{
-      mixBlendMode: mixBlendMode
-    }"
-  />
+  <div class="relative w-full h-full" ref="containerRef" />
 </template>
